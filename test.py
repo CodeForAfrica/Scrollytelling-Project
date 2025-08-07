@@ -255,4 +255,4 @@ html_code = """
 """
 
 # Render the HTML in Streamlit
-st.components.v1.html(html_code, height=1000, scrolling=True)
+st.components.v1.html(html_code, height=1000, width = 4000, scrolling=True)
