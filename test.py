@@ -365,7 +365,8 @@ html_code = """
         	// setup resize event
         	window.addEventListener('resize', handleResize);
         }
-            
+
+     init();
      
     </script>    
   </body>
