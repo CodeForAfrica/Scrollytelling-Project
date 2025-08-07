@@ -16,42 +16,52 @@ html_code = """
       margin: 0; padding: 0;
       background: #fff;
       color: #1d1d1d;
+      overflow-x: hidden;
     }
 
     #scrolly__section {
-      display: flex;
-      max-width: 900px;
+      position: relative;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      height: 100vh;
+      display: flex;
     }
 
     .scrolly__content {
-      flex: 1 1 40%;
-      margin-right: 2rem;
+      width: 40vw;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 2;
+      padding: 2rem;
     }
 
     .step {
       margin-bottom: 2rem;
       padding: 1rem;
       border: 2px solid #104E8B;
-      cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
-      min-height: 100vh; /* full viewport height */
+      min-height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
     }
 
     .step.is-active {
-      background-color: goldenrod;
-      color: #3b3b3b;
+      background-color: transparent;
+      border-color: goldenrod;
     }
 
     .scrolly__chart {
-      flex: 1 1 60%;
-      position: sticky;
-      top: 20px;
-      height: 80vh;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 60vw;
+      height: 100vh;
+      z-index: 1;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      background: white;
     }
 
     iframe {
@@ -64,21 +74,20 @@ html_code = """
     @media (max-width: 768px) {
       #scrolly__section {
         flex-direction: column;
+        height: auto;
+      }
+
+      .scrolly__content {
+        width: 100vw;
+        height: auto;
         padding: 1rem;
+        overflow-y: visible;
       }
-      .scrolly__content, .scrolly__chart {
-        flex: none;
-        width: 100%;
-        margin: 0 0 2rem 0;
-      }
-      .step {
-        min-height: auto;
-        margin-bottom: 1.5rem;
-      }
+
       .scrolly__chart {
-        height: 50vh;
         position: relative;
-        top: auto;
+        width: 100vw;
+        height: 50vh;
       }
     }
   </style>
@@ -86,7 +95,7 @@ html_code = """
 <body>
 
 <div id="scrolly__section">
-  <div class="scrolly__content">
+  <div class="scrolly__content" id="scroll-content">
     <div class="step is-active" data-step="0">
       <h3>Step 1 Title</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at suscipit sapien.</p>
@@ -114,39 +123,33 @@ html_code = """
 <script src="https://unpkg.com/scrollama"></script>
 
 <script>
-  // Initialize scrollama
   var scroller = scrollama();
 
-  // Setup function to set step heights dynamically (full viewport height)
   function handleResize() {
-    var stepHeight = window.innerHeight;
+    const stepHeight = window.innerHeight * 0.7;
     d3.selectAll('.step').style('min-height', stepHeight + 'px');
     scroller.resize();
   }
 
-  // When a step is entered, update active class and iframe src
   function handleStepEnter(response) {
-    // Remove active class from all steps
     d3.selectAll('.step').classed('is-active', false);
-    // Add active class to current step
     d3.select(response.element).classed('is-active', true);
 
-    // Update iframe src based on step index
     var slideNum = response.index;
     var iframe = document.getElementById('flourish-iframe');
     iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
   }
 
-  // Setup scrollama
   function init() {
     handleResize();
-
-    scroller.setup({
-      step: '.step',
-      offset: 0.7,
-      debug: false,
-    })
-    .onStepEnter(handleStepEnter);
+    scroller
+      .setup({
+        step: '.step',
+        offset: 0.6,
+        debug: false,
+        container: '#scroll-content'
+      })
+      .onStepEnter(handleStepEnter);
 
     window.addEventListener('resize', handleResize);
   }
@@ -158,4 +161,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=900, scrolling=True)
+st.components.v1.html(html_code, height=1000, scrolling=True)
