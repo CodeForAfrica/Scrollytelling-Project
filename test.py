@@ -1,204 +1,191 @@
 import streamlit as st
 
 html_code = """
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Scroll-driven Flourish Story - Text over Chart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scroll-driven Flourish Story</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #1d1d1d;
-    }
+  body {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
 
-    .app-header {
-      background-color: #104E8B;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      position: relative;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
-    }
+  header {
+    background-color: #104E8B;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
+  }
+  header h1 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+  }
+  header h2 {
+    margin: 0 0 1rem 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+  header p {
+    margin: 0 auto;
+    max-width: 600px;
+    font-style: italic;
+  }
 
-    .app-header h1 {
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      font-family: 'Lora', serif;
-    }
+  .container {
+    display: flex;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    gap: 2rem;
+  }
 
-    .app-header h2 {
-      font-weight: 400;
-      font-size: 1.3rem;
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
+  .text-container {
+    flex: 1 1 40%;
+    max-width: 480px;
+  }
 
-    .app-header .intro-text {
-      font-size: 1rem;
-      font-style: italic;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.4;
-    }
+  .step {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border: 2px solid #104E8B;
+    border-radius: 6px;
+    background: rgba(255 255 255 / 0.85);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
-    .wrapper {
-      display: flex;
-      flex-direction: row;
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-    }
+  .step.is-active {
+    border-color: goldenrod;
+    color: #3b3b3b;
+    background: transparent !important;
+  }
 
-    .scrolly__chart {
-      position: sticky;
-      top: 0;
-      right: 0;
-      width: 60vw;
-      height: 100vh;
-      z-index: 1;
-      background: #fff;
-    }
+  .chart-container {
+    flex: 1 1 60%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60vw;
+    height: 100vh;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    background: white;
+  }
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 
-    .scrolly__content {
-      width: 40vw;
-      padding: 2rem;
-      z-index: 2;
-    }
-
-    .step {
-      margin-bottom: 3rem;
-      padding: 1rem;
-      border: 2px solid #104E8B;
-      background: rgba(255, 255, 255, 0.85);
-      cursor: pointer;
-      min-height: 70vh;
-      display: flex;
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
       flex-direction: column;
-      justify-content: center;
-      border-radius: 6px;
-      backdrop-filter: saturate(180%) blur(10px);
-      transition: 0.3s;
+      max-width: 100%;
     }
-
-    .step.is-active {
-      background: transparent !important;
-      box-shadow: none !important;
-      filter: none !important;
-      backdrop-filter: none !important;
-      border-color: goldenrod;
-      color: #3b3b3b;
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      box-shadow: none;
+      margin-bottom: 2rem;
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .wrapper {
-        flex-direction: column;
-      }
-
-      .scrolly__chart {
-        width: 100vw;
-        height: 50vh;
-        position: relative;
-      }
-
-      .scrolly__content {
-        width: 100vw;
-      }
-
-      .step {
-        min-height: auto;
-      }
+    .text-container {
+      max-width: 100%;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header class="app-header">
-    <h1>Data Scrollytelling</h1>
-    <h2>Interactive analysis with Scrollama and Flourish</h2>
-    <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
-  </header>
+<header>
+  <h1>Data Scrollytelling</h1>
+  <h2>Interactive analysis with Scrollama and Flourish</h2>
+  <p>Discover how text and graphics interact harmoniously to tell your story.</p>
+</header>
 
-  <div class="wrapper">
-    <div class="scrolly__content" id="scroll-content">
-      <div class="step is-active" data-step="0">
-        <h3>Step 1 Title</h3>
-        <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines were not met. Women and children bear the greatest health burden, with air pollution being one of the greatest risks to child health.</p>
-      </div>
-      <div class="step" data-step="1">
-        <h3>Step 2 Title</h3>
-        <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      </div>
-      <div class="step" data-step="2">
-        <h3>Step 3 Title</h3>
-        <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-      </div>
-      <div class="step" data-step="3">
-        <h3>Step 4 Title</h3>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-      </div>
+<div class="container">
+  <div class="text-container" id="scroll-container">
+    <div class="step is-active" data-step="0">
+      <h3>Step 1 Title</h3>
+      <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health.</p>
     </div>
-
-    <div class="scrolly__chart">
-      <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    <div class="step" data-step="1">
+      <h3>Step 2 Title</h3>
+      <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+    </div>
+    <div class="step" data-step="2">
+      <h3>Step 3 Title</h3>
+      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+    </div>
+    <div class="step" data-step="3">
+      <h3>Step 4 Title</h3>
+      <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
     </div>
   </div>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://unpkg.com/scrollama"></script>
+  <div class="chart-container">
+    <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+  </div>
+</div>
 
-  <script>
-    var scroller = scrollama();
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+  // Initialize scrollama
+  var scroller = scrollama();
 
-    function handleResize() {
-      var isMobile = window.matchMedia("(max-width: 768px)").matches;
-      d3.selectAll('.step')
-        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-      scroller.resize();
-    }
+  function handleStepEnter(response) {
+    // Remove active class from all steps
+    d3.selectAll('.step').classed('is-active', false);
+    // Add active class to current step
+    d3.select(response.element).classed('is-active', true);
 
-    function handleStepEnter(response) {
-      d3.selectAll('.step').classed('is-active', false);
-      d3.select(response.element).classed('is-active', true);
+    // Change iframe src to correct slide
+    var slideIndex = response.index;
+    var iframe = document.getElementById('flourish-iframe');
+    // Reset src to trigger reload reliably
+    iframe.src = '';
+    setTimeout(() => {
+      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideIndex;
+    }, 50);
+  }
 
-      var slideNum = response.index;
-      var iframe = document.getElementById('flourish-iframe');
-      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
-    }
+  function init() {
+    scroller.setup({
+      step: '.step',
+      offset: 0.7,
+      debug: false,
+      // Use window scroll, so no container needed
+      // container: '#scroll-container'  // <-- removed, use window scroll
+    })
+    .onStepEnter(handleStepEnter);
 
-    function init() {
-      handleResize();
-      scroller
-        .setup({
-          step: '.step',
-          offset: 0.7,
-          debug: false
-        })
-        .onStepEnter(handleStepEnter);
+    window.addEventListener('resize', scroller.resize);
+  }
 
-      window.addEventListener('resize', handleResize);
-    }
+  init();
+</script>
 
-    init();
-  </script>
 </body>
 </html>
 """
 
-st.components.v1.html(html_code, height=3000, width=2500, scrolling=True)
+st.components.v1.html(html_code, height=2000, scrolling=True)
