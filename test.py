@@ -19,15 +19,16 @@ html_code = """
       overflow-x: hidden;
     }
 
-    /* Container for the scrolling section */
+    /* Section containing the scrolling text and fixed chart */
     #scrolly__section {
       position: relative;
       max-width: 900px;
-      margin: 2rem auto 0 auto; /* Added top margin to separate from header */
+      margin: 0 auto;
       height: 100vh;
+      padding-top: 120px; /* Space between header and scroll content */
     }
 
-    /* Fixed chart on right side */
+    /* Fixed position for the chart iframe on the right */
     .scrolly__chart {
       position: fixed;
       top: 0;
@@ -45,7 +46,7 @@ html_code = """
       border: none;
     }
 
-    /* Scrollable text content on left side */
+    /* Scrollable text container on the left */
     .scrolly__content {
       position: relative;
       width: 100%;
@@ -57,7 +58,7 @@ html_code = """
       height: 100vh;
     }
 
-    /* Each text step styling */
+    /* Each scroll step styling */
     .step {
       margin-bottom: 3rem;
       padding: 1rem;
@@ -115,8 +116,20 @@ html_code = """
         min-height: auto;
       }
     }
+  </style>
+</head>
+<body>
 
-    /* Header styling */
+  <header class="app-header">
+    <div class="container">
+      <h1>Data Scrollytelling</h1>
+      <h2>Interactive analysis with Scrollama and Flourish</h2>
+      <hr />
+      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
+    </div>
+  </header>
+  
+  <style>
     .app-header {
       background-color: #104E8B;
       color: white;
@@ -163,26 +176,13 @@ html_code = """
       line-height: 1.4;
     }
   </style>
-</head>
-<body>
 
-  <header class="app-header">
-    <div class="container">
-      <h1>Data Scrollytelling</h1>
-      <h2>Interactive analysis with Scrollama and Flourish</h2>
-      <hr />
-      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
-    </div>
-  </header>
-  
   <div id="scrolly__section">
 
-    <!-- Fixed Flourish iframe chart -->
     <div class="scrolly__chart">
       <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
     </div>
 
-    <!-- Scrollable text content -->
     <div class="scrolly__content" id="scroll-content">
       <div class="step is-active" data-step="0">
         <h3>Step 1 Title</h3>
@@ -208,42 +208,38 @@ html_code = """
   <script src="https://unpkg.com/scrollama"></script>
 
   <script>
-    // Initialize Scrollama instance
     var scroller = scrollama();
 
-    // Resize handler to adjust step heights and scroller
     function handleResize() {
-      // On mobile, set step min-height to auto
+      // On mobile, let steps have auto height
       var isMobile = window.matchMedia("(max-width: 768px)").matches;
       d3.selectAll('.step')
         .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
       scroller.resize();
     }
 
-    // Handle step enter event triggered by scrollama
     function handleStepEnter(response) {
-      // Remove active class from all steps and add to current step
+      // Remove active class from all steps
       d3.selectAll('.step').classed('is-active', false);
+      // Add active class to current step
       d3.select(response.element).classed('is-active', true);
 
-      // Update Flourish iframe to show slide corresponding to step
+      // Update Flourish iframe to corresponding slide
       var slideNum = response.index;
       var iframe = document.getElementById('flourish-iframe');
       iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
     }
 
-    // Initialization function to setup scrollama and events
     function init() {
       handleResize();
       scroller.setup({
         step: '.step',
         offset: 0.7,
         debug: false,
-        container: '#scroll-content'  // limit scrollama to this scroll container
+        container: '#scroll-content'  // Important: limit scrollama to the scroll container
       })
       .onStepEnter(handleStepEnter);
 
-      // Recalculate on window resize
       window.addEventListener('resize', handleResize);
     }
 
@@ -254,4 +250,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=2500, width = 3000, scrolling=True)
+st.components.v1.html(html_code, height=2500, width=3000, scrolling=True)
