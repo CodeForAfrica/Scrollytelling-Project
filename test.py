@@ -344,21 +344,29 @@ html_code = """
       }
     
       function init() {
-        setupStickyfill();
-        handleResize();
-        scroller
-          .setup({
-            step: "#scrolly__section .scrolly__content .step",
-            offset: 0.7,
-            debug: true
-          })
-          .onStepEnter(handleStepEnter);
-    
-        // setup resize event
-        window.addEventListener("resize", handleResize);
-      }
-    
-      init();
+        	// 1. call a resize on load to update width/height/position of elements
+        	handleResize();
+        
+        	// 2. setup the scrollama instance
+        	// 3. bind scrollama event handlers (this can be chained like below)
+        	scroller
+        		.setup({
+        			container: '#scroll', // our outermost scrollytelling element
+        			graphic: '.scroll__graphic', // the graphic
+        			text: '.scroll__text', // the step container
+        			step: '.scroll__text .step', // the step elements
+        			offset: 0.5, // set the trigger to be 1/2 way down screen
+        			debug: true, // display the trigger offset for testing
+        		})
+        		.onStepEnter(handleStepEnter)
+        		.onContainerEnter(handleContainerEnter)
+        		.onContainerExit(handleContainerExit);
+        
+        	// setup resize event
+        	window.addEventListener('resize', handleResize);
+        }
+            
+     
     </script>    
   </body>
 </html>
