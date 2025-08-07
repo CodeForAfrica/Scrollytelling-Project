@@ -270,8 +270,6 @@ html_code = """
     <script src="https://public.flourish.studio/resources/embed.js"></script>
     
 
-    <!-- This code from here on is derived from the side-by-side code example from the scrollama library which can be found here: https://github.com/russellgoldenberg/scrollama  -->
-    <!-- I tweaked the function for handleStepEnter to accomodate the Flourish story! -->
 
     <script>
       var scrolly = d3.select("#scrolly__section");
@@ -301,20 +299,15 @@ html_code = """
     
       // scrollama event handlers
       function handleStepEnter(response) {
-        const textblock = step.select(".text-block");
-
-        // add color to current step only
-        textblock.classed("is-active", function(d, i) {
-          return i === response.index;
-        });
-    
-        // update graphic based on step
-        const linkHead = 'https://flo.uri.sh/story/872914/embed#slide-'
-        const slide = response.index
-
-        d3.select('.scrolly__chart iframe')
-          .attr('src', linkHead + slide);
+        step.selectAll(".text-block").classed("is-active", false);
+      
+        d3.select(response.element).select(".text-block").classed("is-active", true);
+      
+        const linkHead = 'https://flo.uri.sh/story/872914/embed#slide-';
+        const slide = response.index;
+        d3.select('.scrolly__chart iframe').attr('src', linkHead + slide);
       }
+
     
       function setupStickyfill() {
         d3.selectAll(".sticky").each(function() {
