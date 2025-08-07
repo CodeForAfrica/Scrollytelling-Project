@@ -1,53 +1,40 @@
 import streamlit as st
 
 html_code = """
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Scroll-driven Flourish Story</title>
+  <title>Scroll-driven Flourish Story - Text over Chart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: #fff;
       color: #1d1d1d;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    .app-header {
-      background-color: #104E8B;
-      color: white;
-      text-align: center;
-      padding: 2rem 0;
-      margin: 0;
-      width: 100vw;
-      box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
-    }
-
-    .app-header h1 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin: 0;
-    }
-
-    .wrapper {
-      display: flex;
-      height: calc(100vh - 160px); /* Adjusted height for header */
-      overflow: hidden;
+    #scrolly__section {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 100vh;
     }
 
     .scrolly__chart {
-      position: sticky;
+      position: fixed;
       top: 0;
+      right: 0;
       width: 60vw;
-      height: 100%;
+      height: 100vh;
       z-index: 1;
+      background: #fff;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
     iframe {
@@ -57,48 +44,70 @@ html_code = """
     }
 
     .scrolly__content {
-      width: 40vw;
-      height: 100%;
-      overflow-y: scroll;
-      padding: 2rem;
-      background: transparent;
+      position: relative;
+      width: 100%;
+      max-width: 40vw;
+      margin-left: 2rem;
+      padding-top: 2rem;
       z-index: 2;
+      overflow-y: auto;
+      height: 100vh;
     }
 
     .step {
       margin-bottom: 3rem;
       padding: 1rem;
       border: 2px solid #104E8B;
-      background: transparent;
+      background: rgba(255 255 255 / 0.85);
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
       min-height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      box-sizing: border-box;
       border-radius: 6px;
-      color: #000;
+      backdrop-filter: saturate(180%) blur(10px);
     }
 
     .step.is-active {
-      border-color: goldenrod;
-      color: #000;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    border-color: goldenrod;
+    color: #3b3b3b;
     }
 
+    /* Scrollbar styling for content */
+    .scrolly__content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrolly__content::-webkit-scrollbar-thumb {
+      background-color: rgba(16,78,139,0.5);
+      border-radius: 4px;
+    }
+    .scrolly__content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .wrapper {
-        flex-direction: column;
-        height: auto;
-      }
       .scrolly__chart {
+        position: relative;
         width: 100vw;
         height: 50vh;
-        position: relative;
+        box-shadow: none;
       }
       .scrolly__content {
-        width: 100vw;
+        max-width: 100vw;
+        margin-left: 0;
         height: auto;
         overflow-y: visible;
+        padding: 1rem;
+      }
+      .step {
+        min-height: auto;
       }
     }
   </style>
@@ -106,76 +115,136 @@ html_code = """
 <body>
 
   <header class="app-header">
-    <h1>Data Scrollytelling</h1>
-  </header>
-
-  <div class="wrapper">
-    <div class="scrolly__content">
-      <div class="step is-active" data-step="0">
-        <h3>Step 1 Title</h3>
-        <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Women and children bear the greatest health burden, with air pollution being one of the greatest risks to child health.</p>
-      </div>
-      <div class="step" data-step="1">
-        <h3>Step 2 Title</h3>
-        <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      </div>
-      <div class="step" data-step="2">
-        <h3>Step 3 Title</h3>
-        <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-      </div>
-      <div class="step" data-step="3">
-        <h3>Step 4 Title</h3>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-      </div>
+    <div class="container">
+      <h1>Data Scrollytelling</h1>
+      <h2>Interactive analysis with Scrollama et Flourish</h2>
+      <hr />
+      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story..</p>
     </div>
+  </header>
+  
+  <style>
+       .app-header {
+      background-color: #104E8B;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 1.5rem 0;   /* padding vertical, not horizontal */
+      margin: 0;           /* no marging */
+      width: 100vw;        /* width 100% */
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
+    }
+    
+    .wrapper {
+      padding-top: 3rem;  /* espace entre header et contenu, ajuste selon besoin */
+    }
+    .app-header h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
+      font-family: 'Lora', serif;
+    }
+  
+    .app-header h2 {
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+  
+    .app-header hr {
+      border: 0;
+      height: 1px;
+      background: white;
+      width: 40%;
+      margin: 0 auto 1.5rem auto;
+      opacity: 0.7;
+    }
+  
+    .app-header .intro-text {
+      font-size: 1rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+  </style>
 
-    <div class="scrolly__chart">
-      <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+
+
+<div id="scrolly__section">
+
+  <div class="scrolly__chart">
+    <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+  </div>
+
+  <div class="scrolly__content" id="scroll-content">
+    <div class="step is-active" data-step="0">
+      <h3>Step 1 Title</h3>
+      <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
+      </p>
+    </div>
+    <div class="step" data-step="1">
+      <h3>Step 2 Title</h3>
+      <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+    </div>
+    <div class="step" data-step="2">
+      <h3>Step 3 Title</h3>
+      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+    </div>
+    <div class="step" data-step="3">
+      <h3>Step 4 Title</h3>
+      <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
     </div>
   </div>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://unpkg.com/scrollama"></script>
+</div>
 
-  <script>
-    var scroller = scrollama();
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
 
-    function handleResize() {
-      var isMobile = window.matchMedia("(max-width: 768px)").matches;
-      d3.selectAll('.step')
-        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-      scroller.resize();
-    }
+<script>
+  var scroller = scrollama();
 
-    function handleStepEnter(response) {
-      d3.selectAll('.step').classed('is-active', false);
-      d3.select(response.element).classed('is-active', true);
+  function handleResize() {
+    // on mobile, let steps have auto height
+    var isMobile = window.matchMedia("(max-width: 768px)").matches;
+    d3.selectAll('.step')
+      .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
+    scroller.resize();
+  }
 
-      var slideNum = response.index;
-      var iframe = document.getElementById('flourish-iframe');
-      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
-    }
+  function handleStepEnter(response) {
+    d3.selectAll('.step').classed('is-active', false);
+    d3.select(response.element).classed('is-active', true);
 
-    function init() {
-      handleResize();
+    var slideNum = response.index;
+    var iframe = document.getElementById('flourish-iframe');
+    iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
+  }
 
-      scroller
-        .setup({
-          step: '.step',
-          offset: 0.7,
-          debug: false
-        })
-        .onStepEnter(handleStepEnter)
-        .container(document.querySelector('.scrolly__content'));
+  function init() {
+    handleResize();
+    scroller.setup({
+      step: '.step',
+      offset: 0.7,
+      debug: false,
+      container: '#scroll-content'  // important: limit scrollama to the scroll container
+    })
+    .onStepEnter(handleStepEnter);
 
-      window.addEventListener('resize', handleResize);
-    }
+    window.addEventListener('resize', handleResize);
+  }
 
-    init();
-  </script>
+  init();
+</script>
+
 </body>
 </html>
 """
 
-# In Streamlit:
-st.components.v1.html(html_code, height=1000, scrolling=True)
+st.components.v1.html(html_code, height=2500, width= 2500,  scrolling=True)
