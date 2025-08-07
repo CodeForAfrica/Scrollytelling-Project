@@ -64,7 +64,7 @@ html_code = """
 <body>
   <div class="container">
     <div class="chart">
-      <iframe id="viz" src="https://flo.uri.sh/story/872914/embed#slide-0"></iframe>
+      <iframe id="viz" src="https://flo.uri.sh/story/872914/embed"></iframe>
     </div>
     <div class="text" id="step-container">
       <div class="step is-active"> <h3>Step 1</h3><p>Intro text that explains the story.</p></div>
@@ -84,7 +84,13 @@ html_code = """
     }).onStepEnter(function(response) {
       d3.selectAll('.step').classed('is-active', false);
       d3.select(response.element).classed('is-active', true);
-      document.getElementById('viz').src = 'https://flo.uri.sh/story/872914/embed#slide-' + response.index;
+
+      var iframe = document.getElementById('viz');
+      // Send message to Flourish iframe to change slide
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ messageType: 'changeSlide', slide: response.index }),
+        '*'
+      );
     });
     window.addEventListener('resize', scroller.resize);
   </script>
@@ -92,4 +98,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=2500, width= 2500, scrolling=True)
+st.components.v1.html(html_code, height=2500, scrolling=True)
