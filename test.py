@@ -2,375 +2,145 @@ import streamlit as st
 
 html_code = """
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Data story with flourish</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="how-to-make-a-story">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Lora&display=swap" rel="stylesheet" />
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       color: #1d1d1d;
     }
-
     .wrapper {
       padding: 96px 0;
     }
-
     .font-secondary {
       font-family: 'Lora', serif !important;
     }
-
-    .text-h1 {
-      font-size: 36px;
-      line-height: 52px;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 32px;
-        line-height: 48px;
-      }
-    }
-
-    .text-h2 {
-      font-size: 32px;
-      line-height: 36px;
-      font-weight: 500;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 28px;
-        line-height: 32px;
-      }
-    }
-
-    .text-body-1 {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 32px;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 18px;
-        line-height: 28px;
-      }
-    }
-
-    .text-body-2 {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 28px;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 14px;
-        line-height: 24px;
-      }
-    }
-
+    .text-h1 { font-size: 36px; line-height: 52px; }
+    .text-h2 { font-size: 32px; line-height: 36px; font-weight: 500; }
+    .text-body-1 { font-size: 20px; font-weight: 400; line-height: 32px; }
+    .text-body-2 { font-size: 16px; font-weight: 400; line-height: 28px; }
     .blockquote {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 36px;
-      text-transform: uppercase;
-      text-align: center;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 28px;
-      }  
+      font-size: 32px; font-weight: 700; line-height: 36px;
+      text-transform: uppercase; text-align: center;
     }
-
     .text-caption {
-      font-size: 14px;
-      line-height: 22px;
-
-      @media (min-width: @screen-sm-min) {
-        font-size: 12px;
-        line-height: 18px; 
-      }
+      font-size: 14px; line-height: 22px;
     }
-
     a {
       color: #104E8B !important;
       border-bottom: 2px solid #104E8B;
       text-decoration: none;
       word-break: break-word;
     }
-
-    /* Small devices (tablets, 768px and up) */
-    /* @media (min-width: @screen-sm-min) { ... } */
-
-    /* Medium devices (desktops, 992px and up) */
-    /* @media (min-width: @screen-md-min) { ... } */
-
-    /* Large devices (large desktops, 1200px and up) */
-    /* @media (min-width: @screen-lg-min) { ... } */
-
     #scrolly__section {
-      position: relative;
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      /* background-color: #f3f3f3; */
       padding: 1rem;
     }
-
     #scrolly__section > * {
-      -webkit-box-flex: 1;
-      -ms-flex: 1;
       flex: 1;
     }
-
     .scrolly__content {
-      position: relative;
       padding: 0 1rem;
       width: 100%;
     }
-
     .scrolly__chart {
-      position: -webkit-sticky;
       position: sticky;
+      top: 0;
       width: 100%;
       margin: 0;
-      -webkit-transform: translate3d(0, 0, 0);
-      -moz-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(0,0,0);
       z-index: 0;
     }
-
     .scrolly__chart iframe {
       width: 100%;
-      height: 100%;
+      height: 500px;
+      border: none;
     }
-
     .step {
       margin: 0 auto 2rem auto;
       border: 2px solid #104E8B;
-      display: flex;
-      justify-content: center;
-      align-items: start;      
+      padding: 1rem;
+      cursor: pointer;
     }
-
-    .step:last-child {
-      margin-bottom: 0;
-    }
-
-    .text-block.is-active {
+    .step.is-active {
       background-color: goldenrod;
       color: #3b3b3b;
     }
-
-    .text-block {
-      background-color: salmon;
-    }
-
-    .step p {
-      text-align: center;
-      padding: 1rem;
-    }
-
-    iframe {
-      border: unset;
-    }
-    
   </style>
 </head>
 
-  <body>
-    <div class="wrapper">
-      <div class="container py-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-7 col-11">
-            <p class="text-body-2 mb-5">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolorem iusto, vel, cum est architecto odit quia culpa sed ex ipsa praesentium alias ullam tempore numquam aliquid aspernatur, provident nesciunt!
-            </p>
-
-            <img src="https://picsum.photos/640/280" alt="placeholder" width=100% class="mb-5 py-2" />          
-
-            <h3 class="text-h2 font-secondary mb-3">subtitle here</h3>  
-
-            <div class="flourish-embed flourish-chart mt-3" data-src="visualisation/6262784">
-            </div>
-            <p class="text-caption mb-5 text-center">caption: here is a flourish chart and I basically plonked this in here exactly like how I get from the embed instructions</p>            
-
-            <p class="text-body-1 mb-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis aut, cum reprehenderit obcaecati minima eius aperiam dolorem laboriosam ullam facere eaque earum voluptatibus, doloremque officiis quibusdam quae impedit ipsa sunt.
-            </p> 
-
-            <hr class="line-divider my-5 py-lg-2" />
-
-            <p class="blockquote font-secondary ">
-              “Block quote example”
-            </p>
-
-            <hr class="line-divider my-5 py-lg-2" />           
-
-            <p class="text-body-1 mb-5">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto obcaecati alias delectus, illo non nam ad, accusamus magnam <em>italics here</em> <a href="" target="_blank">random link here</a> ipsa accusantium ratione praesentium dolores nesciunt ab officia quisquam excepturi sunt?
-            </p>
-
-            <img src="https://picsum.photos/640/280" alt="placeholder" width=100% class="mb-5 py-2" />
-
-            <h3 class="text-h2 font-secondary mb-3">subtitle here</h3>
-
-            <p class="text-body-1 mb-4">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error dolor, quos aut repellendus quia porro temporibus magni unde, rerum quasi aperiam, eligendi ducimus aliquam fugiat quas autem labore id consectetur.
-            </p>         
-          </div>
-        </div>
-      </div>
-
+<body>
+  <div class="wrapper">
+    <div class="container py-5">
+      <h3 class="text-h2 font-secondary mb-3">Scrollama + Flourish embed demo</h3>
       <div class="container-fluid" id="root">
         <div class="row justify-content-center" id="scrolly__section">
           <div class="col-4 scrolly__content">
-            <div class="step" data-step="1">
-              <div class="text-block pa-2">
-                <p class="text-body-2">lorem 1</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium debitis modi labore unde commodi, dolorem ut enim, necessitatibus odit facere et pariatur minus! Aliquam rem earum tempore accusamus corporis similique.</p>
-              </div>
-            </div>
-            <div class="step" data-step="2">
-              <div class="text-block pa-2">
-                <p class="text-body-2">lorem 2</p>
-                <p class="text-body-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium debitis modi labore unde commodi, dolorem ut enim, necessitatibus odit facere et pariatur minus! Aliquam rem earum tempore accusamus corporis similique.</p>
-              </div>            
-            </div>
-            <div class="step" data-step="3">
-              <div class="text-block pa-2">
-                <p class="text-body-2">lorem 3</p>
-                <p class="text-body-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium debitis modi labore unde commodi, dolorem ut enim, necessitatibus odit facere et pariatur minus! Aliquam rem earum tempore accusamus corporis similique.</p>
-              </div>            
-            </div>
-            <div class="step" data-step="4">
-              <div class="text-block pa-2">
-                <p class="text-body-2">lorem 4</p>
-                <p class="text-body-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium debitis modi labore unde commodi, dolorem ut enim, necessitatibus odit facere et pariatur minus! Aliquam rem earum tempore accusamus corporis similique.</p>
-              </div>            
-            </div>
+            <div class="step" data-step="1"><p>Step 1 content</p></div>
+            <div class="step" data-step="2"><p>Step 2 content</p></div>
+            <div class="step" data-step="3"><p>Step 3 content</p></div>
+            <div class="step" data-step="4"><p>Step 4 content</p></div>
           </div>
 
           <div class="col-6 scrolly__chart">
-            <iframe scrolling="no" src="https://flo.uri.sh/story/872914/embed#slide-0"></iframe>
+            <iframe id="chart-frame" scrolling="no" src="https://flo.uri.sh/story/872914/embed#slide-0"></iframe>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
-    <script src="https://unpkg.com/intersection-observer"></script>
-    <script src="https://unpkg.com/scrollama"></script>    
-    <script src="https://public.flourish.studio/resources/embed.js"></script>
-    
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
 
+  <script>
+    const scrollySection = d3.select("#scrolly__section");
+    const steps = scrollySection.selectAll(".step");
+    const iframe = document.getElementById("chart-frame");
+    const scroller = scrollama();
 
-    <script>
-      var scrolly = d3.select("#scrolly__section");
-      var chart = scrolly.select(".scrolly__chart");
-      var content = scrolly.select(".scrolly__content");
-      var step = content.selectAll(".step");
-    
-      // initialize the scrollama
-      var scroller = scrollama();
-    
-      // generic window resize listener event
-      function handleResize() {
-        	// 1. update height of step elements for breathing room between steps
-        	var stepHeight = Math.floor(window.innerHeight * 0.75);
-        	$step.style('height', stepHeight + 'px');
-        
-        	// 2. update height of graphic element
-        	var bodyWidth = d3.select('body').node().offsetWidth;
-        
-        	$graphic
-        		.style('height', window.innerHeight + 'px');
-        
-        	// 3. update width of chart by subtracting from text width
-        	var chartMargin = 32;
-        	var textWidth = $text.node().offsetWidth;
-        	var chartWidth = $graphic.node().offsetWidth - textWidth - chartMargin;
-        	// make the height 1/2 of viewport
-        	var chartHeight = Math.floor(window.innerHeight / 2);
-        
-        	$chart
-        		.style('width', chartWidth + 'px')
-        		.style('height', chartHeight + 'px');
-        
-        	// 4. tell scrollama to update new element dimensions
-        	scroller.resize();
-        }
-    
-      // scrollama event handlers
-      function handleStepEnter(response) {
-      	// response = { element, direction, index }
-      
-      	// fade in current step
-      	$step.classed('is-active', function (d, i) {
-      		return i === response.index;
-      	})
-      
-      	// update graphic based on step here
-      	var stepData = $step.attr('data-step')
-      	...
-      }
-      
-      function handleContainerEnter(response) {
-      	// response = { direction }
-      
-      	// sticky the graphic
-      	$graphic.classed('is-fixed', true);
-      	$graphic.classed('is-bottom', false);
-      }
-      
-      function handleContainerExit(response) {
-      	// response = { direction }
-      
-      	// un-sticky the graphic, and pin to top/bottom of container
-      	$graphic.classed('is-fixed', false);
-      	$graphic.classed('is-bottom', response.direction === 'down');
-      }
+    function handleStepEnter(response) {
+      // Highlight active step
+      steps.classed("is-active", (d, i) => i === response.index);
 
-      function setupStickyfill() {
-        d3.selectAll(".sticky").each(function() {
-          Stickyfill.add(this);
-        });
-      }
-    
-      function init() {
-        	// 1. call a resize on load to update width/height/position of elements
-        	handleResize();
-        
-        	// 2. setup the scrollama instance
-        	// 3. bind scrollama event handlers (this can be chained like below)
-        	scroller
-        		.setup({
-        			container: '#scroll', // our outermost scrollytelling element
-        			graphic: '.scroll__graphic', // the graphic
-        			text: '.scroll__text', // the step container
-        			step: '.scroll__text .step', // the step elements
-        			offset: 0.5, // set the trigger to be 1/2 way down screen
-        			debug: true, // display the trigger offset for testing
-        		})
-        		.onStepEnter(handleStepEnter)
-        		.onContainerEnter(handleContainerEnter)
-        		.onContainerExit(handleContainerExit);
-        
-        	// setup resize event
-        	window.addEventListener('resize', handleResize);
-        }
+      // Change iframe src based on step index (for demo purposes)
+      const stepNum = response.index + 1;
+      iframe.src = `https://flo.uri.sh/story/872914/embed#slide-${stepNum - 1}`;
+    }
 
-     init();
-     
-    </script>    
-  </body>
+    function handleResize() {
+      // Update step height to 75% of viewport height
+      const stepHeight = Math.floor(window.innerHeight * 0.75);
+      steps.style("height", stepHeight + "px");
+    }
+
+    function init() {
+      handleResize();
+
+      scroller
+        .setup({
+          container: "#root",
+          graphic: ".scrolly__chart",
+          text: ".scrolly__content",
+          step: ".step",
+          offset: 0.5,
+          debug: false,
+        })
+        .onStepEnter(handleStepEnter);
+
+      window.addEventListener("resize", handleResize);
+    }
+
+    init();
+  </script>
+</body>
 </html>
 """
 
-st.components.v1.html(html_code, height=1000, width=5000, scrolling=True)
+st.components.v1.html(html_code, height=900, scrolling=True)
