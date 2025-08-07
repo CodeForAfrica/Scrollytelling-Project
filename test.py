@@ -1,5 +1,8 @@
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
+
 html_code = """
 <!doctype html>
 <html lang="en">
