@@ -19,16 +19,16 @@ html_code = """
       overflow-x: hidden;
     }
 
-    /* Section containing the scrolling text and fixed chart */
+    /* Main container with padding below header */
     #scrolly__section {
       position: relative;
       max-width: 900px;
       margin: 0 auto;
-      height: 100vh;
-      padding-top: 120px; /* Space between header and scroll content */
+      min-height: 200vh; /* Tall enough to scroll */
+      padding-top: 120px; /* space for header */
     }
 
-    /* Fixed position for the chart iframe on the right */
+    /* Fixed chart on right */
     .scrolly__chart {
       position: fixed;
       top: 0;
@@ -46,7 +46,7 @@ html_code = """
       border: none;
     }
 
-    /* Scrollable text container on the left */
+    /* Scrollable content on left — no fixed height, normal flow */
     .scrolly__content {
       position: relative;
       width: 100%;
@@ -54,11 +54,9 @@ html_code = """
       margin-left: 2rem;
       padding-top: 2rem;
       z-index: 2;
-      overflow-y: auto;
-      height: 100vh;
     }
 
-    /* Each scroll step styling */
+    /* Steps styling */
     .step {
       margin-bottom: 3rem;
       padding: 1rem;
@@ -75,7 +73,7 @@ html_code = """
       backdrop-filter: saturate(180%) blur(10px);
     }
 
-    /* Active step styling */
+    /* Active step */
     .step.is-active {
       background-color: transparent !important;
       box-shadow: none !important;
@@ -85,7 +83,7 @@ html_code = """
       color: #3b3b3b;
     }
 
-    /* Scrollbar styling for content */
+    /* Scrollbar styling */
     .scrolly__content::-webkit-scrollbar {
       width: 8px;
     }
@@ -97,7 +95,7 @@ html_code = """
       background: transparent;
     }
 
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 768px) {
       .scrolly__chart {
         position: relative;
@@ -116,34 +114,24 @@ html_code = """
         min-height: auto;
       }
     }
-  </style>
-</head>
-<body>
 
-  <header class="app-header">
-    <div class="container">
-      <h1>Data Scrollytelling</h1>
-      <h2>Interactive analysis with Scrollama and Flourish</h2>
-      <hr />
-      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
-    </div>
-  </header>
-  
-  <style>
+    /* Header styling */
     .app-header {
       background-color: #104E8B;
       color: white;
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding: 1.5rem 0;   /* vertical padding */
-      margin: 0;           /* no margin */
-      width: 100vw;        /* full width */
+      padding: 1.5rem 0;
+      margin: 0;
+      width: 100vw;
       box-sizing: border-box;
-      position: relative;
+      position: fixed; /* fix header on top */
+      top: 0;
+      left: 0;
       z-index: 1000;
       box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
     }
-    
+
     .app-header h1 {
       font-weight: 700;
       font-size: 2.8rem;
@@ -176,6 +164,17 @@ html_code = """
       line-height: 1.4;
     }
   </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="container">
+      <h1>Data Scrollytelling</h1>
+      <h2>Interactive analysis with Scrollama and Flourish</h2>
+      <hr />
+      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
+    </div>
+  </header>
 
   <div id="scrolly__section">
 
@@ -211,7 +210,7 @@ html_code = """
     var scroller = scrollama();
 
     function handleResize() {
-      // On mobile, let steps have auto height
+      // Reset step min height based on viewport
       var isMobile = window.matchMedia("(max-width: 768px)").matches;
       d3.selectAll('.step')
         .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
@@ -219,12 +218,9 @@ html_code = """
     }
 
     function handleStepEnter(response) {
-      // Remove active class from all steps
       d3.selectAll('.step').classed('is-active', false);
-      // Add active class to current step
       d3.select(response.element).classed('is-active', true);
 
-      // Update Flourish iframe to corresponding slide
       var slideNum = response.index;
       var iframe = document.getElementById('flourish-iframe');
       iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
@@ -235,8 +231,8 @@ html_code = """
       scroller.setup({
         step: '.step',
         offset: 0.7,
-        debug: false,
-        container: '#scroll-content'  // Important: limit scrollama to the scroll container
+        debug: false
+        // removed container option to track window scroll
       })
       .onStepEnter(handleStepEnter);
 
@@ -250,4 +246,5 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=2500, width=3000, scrolling=True)
+# Ici on met une hauteur raisonnable pour le composant (par ex 1500 px)
+st.components.v1.html(html_code, height=1500, width=1000, scrolling=True)
