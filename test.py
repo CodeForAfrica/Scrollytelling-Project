@@ -137,4 +137,4 @@ html_code = """
   </html>
 """
 
-st.components.v1.html(html_code, height=2500, scrolling=True)
+st.components.v1.html(html_code, height=2500, width= 3000, scrolling=True)
