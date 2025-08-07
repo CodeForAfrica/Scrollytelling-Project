@@ -2,65 +2,44 @@ import streamlit as st
 
 html_code = """
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="">
 <head>
-  <meta charset="utf-8" />
-  <title>Scroll-driven Flourish Story</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <title>Data story with flourish</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="how-to-make-a-story">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Lora&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0; padding: 0;
-      background: #fff;
-      color: #1d1d1d;
+      margin: 0;
       overflow-x: hidden;
     }
 
     .wrapper {
-      padding: 48px 0;
+      padding: 96px 0;
     }
 
-    #scrolly__section {
+    .scrolly__section {
       position: relative;
-      display: flex;
-      max-width: 900px;
-      margin: 0 auto;
-      height: 90vh;
-      padding: 1rem;
-    }
-
-    #scrolly__section > * {
-      flex: 1;
-    }
-
-    .scrolly__content {
-      position: relative;
-      max-width: 40vw;
-      margin-left: 2rem;
-      overflow-y: auto;
-      height: 100%;
-      padding-right: 1rem;
-      box-sizing: border-box;
+      height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
     }
 
     .scrolly__chart {
-      position: sticky;
-      top: 2rem;
-      width: 60vw;
-      height: 100%;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
     }
 
     .scrolly__chart iframe {
@@ -69,130 +48,106 @@ html_code = """
       border: none;
     }
 
+    .scrolly__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: 100px;
+    }
+
     .step {
-      margin-bottom: 3rem;
-      padding: 1rem;
-      border: 2px solid #104E8B;
-      background: rgba(255 255 255 / 0.85);
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-sizing: border-box;
-      border-radius: 6px;
-      backdrop-filter: saturate(180%) blur(10px);
+      margin: 0 auto 3rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .step.is-active {
+    .text-block.is-active {
       background-color: goldenrod;
-      color: #3b3b3b;
-      border-color: goldenrod;
-    }
-
-    /* Scrollbar for content */
-    .scrolly__content::-webkit-scrollbar {
-      width: 8px;
-    }
-    .scrolly__content::-webkit-scrollbar-thumb {
-      background-color: rgba(16,78,139,0.5);
-      border-radius: 4px;
-    }
-    .scrolly__content::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      #scrolly__section {
-        flex-direction: column;
-        height: auto;
-        max-width: 100vw;
-      }
-      .scrolly__content {
-        max-width: 100vw;
-        margin-left: 0;
-        height: auto;
-        overflow-y: visible;
-        padding: 1rem 0;
-      }
-      .scrolly__chart {
-        position: relative;
-        width: 100vw;
-        height: 50vh;
-        box-shadow: none;
-        margin-bottom: 1rem;
-        top: auto;
-        border-radius: 0;
-      }
-      .step {
-        min-height: auto;
-      }
     }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
-    <div id="scrolly__section">
-      <div class="scrolly__content" id="scroll-content">
-        <div class="step is-active" data-step="0">
-          <h3>Step 1 Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at suscipit sapien.</p>
-        </div>
-        <div class="step" data-step="1">
-          <h3>Step 2 Title</h3>
-          <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div>
-        <div class="step" data-step="2">
-          <h3>Step 3 Title</h3>
-          <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-        </div>
-        <div class="step" data-step="3">
-          <h3>Step 4 Title</h3>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-7 col-11">
+          <p class="mb-5">
+            Intro: Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolorem iusto...
+          </p>
+          <img src="https://picsum.photos/640/280" class="mb-5 py-2" width="100%" />
+          <h3 class="mb-3">Subtitle</h3>
+          <div class="flourish-embed flourish-chart mt-3" data-src="visualisation/6262784"></div>
+          <p class="text-center">caption: here is a flourish chart...</p>
         </div>
       </div>
+    </div>
 
+    <div id="scrolly" class="scrolly__section">
       <div class="scrolly__chart">
-        <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+        <iframe src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+      </div>
+      <div class="scrolly__content">
+        <div class="step" data-step="1">
+          <div class="text-block">
+            <p>Step 1: Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="text-block">
+            <p>Step 2: Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="text-block">
+            <p>Step 3: Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+        <div class="step" data-step="4">
+          <div class="text-block">
+            <p>Step 4: Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/intersection-observer"></script>
   <script src="https://unpkg.com/scrollama"></script>
+  <script src="https://public.flourish.studio/resources/embed.js"></script>
 
   <script>
-    const scroller = scrollama();
-
-    function handleResize() {
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
-      d3.selectAll('.step')
-        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-      scroller.resize();
-    }
+    var scroller = scrollama();
+    var stepSel = d3.selectAll(".step");
 
     function handleStepEnter(response) {
-      d3.selectAll('.step').classed('is-active', false);
-      d3.select(response.element).classed('is-active', true);
+      stepSel.selectAll(".text-block")
+        .classed("is-active", (d, i) => i === response.index);
 
-      const slideNum = response.index;
-      const iframe = document.getElementById('flourish-iframe');
-      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
+      const slide = response.index;
+      d3.select(".scrolly__chart iframe")
+        .attr("src", `https://flo.uri.sh/story/872914/embed#slide-${slide}`);
+    }
+
+    function handleResize() {
+      var stepH = Math.floor(window.innerHeight * 0.8);
+      stepSel.style("height", stepH + "px");
+      scroller.resize();
     }
 
     function init() {
       handleResize();
       scroller.setup({
-        step: '.step',
-        offset: 0.7,
-        debug: false,
-        container: '#scroll-content'
+        step: ".step",
+        offset: 0.5,
+        debug: false
       }).onStepEnter(handleStepEnter);
-
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
     }
 
     init();
@@ -201,4 +156,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=1000, width=3000, scrolling=True)
+st.components.v1.html(html_code, height=3000, scrolling=True)
