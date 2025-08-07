@@ -299,16 +299,35 @@ html_code = """
     
       // scrollama event handlers
       function handleStepEnter(response) {
-        step.selectAll(".text-block").classed("is-active", false);
-      
-        d3.select(response.element).select(".text-block").classed("is-active", true);
-      
-        const linkHead = 'https://flo.uri.sh/story/872914/embed#slide-';
-        const slide = response.index;
-        d3.select('.scrolly__chart iframe').attr('src', linkHead + slide);
-      }
+          // Supprimer la classe "is-active" de tous les blocs texte
+          step.selectAll(".text-block").classed("is-active", false);
+        
+          // Ajouter la classe "is-active" uniquement à la step active
+          d3.select(response.element).select(".text-block").classed("is-active", true);
+        
+          // Mettre à jour l'iframe du graphique selon la step active
+          const linkHead = 'https://flo.uri.sh/story/872914/embed#slide-';
+          const slide = response.index;
+          d3.select('.scrolly__chart iframe').attr('src', linkHead + slide);
+        }
+        
+        function init() {
+          setupStickyfill();
+          handleResize();
+          scroller
+            .setup({
+              step: "#scrolly__section .scrolly__content .step",
+              offset: 0.7,
+              debug: true,
+            })
+            .onStepEnter(handleStepEnter);
+        
+          // setup resize event
+          window.addEventListener("resize", handleResize);
+        }
+        
+        init();
 
-    
       function setupStickyfill() {
         d3.selectAll(".sticky").each(function() {
           Stickyfill.add(this);
