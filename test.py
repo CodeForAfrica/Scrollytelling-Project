@@ -343,4 +343,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=2500, width=4000, scrolling=True)
+st.components.v1.html(html_code, height=1000, width=5000, scrolling=True)
