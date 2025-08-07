@@ -1,3 +1,7 @@
+import streamlit as st
+
+html_code = """
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -123,6 +127,10 @@
 
       window.addEventListener("resize", handleResize);
     }
+
+    """
+st.components.v1.html(html_code, height=2500, scrolling=True)
+
 
     init();
   </script>
