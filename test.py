@@ -129,10 +129,12 @@ html_code = """
     }
 
     """
-st.components.v1.html(html_code, height=2500, scrolling=True)
 
 
     init();
   </script>
 </body>
 </html>
+
+st.components.v1.html(html_code, height=2500, scrolling=True)
+
