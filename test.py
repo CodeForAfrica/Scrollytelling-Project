@@ -248,6 +248,3 @@ Le titre doit avoir un espace avec le contenu c'est à dire les graphiques et le
 """
 
 st.components.v1.html(html_code, height=2500, width=3000, scrolling=True)
-
-
-st.components.v1.html(html_code, height=900, scrolling=True)
