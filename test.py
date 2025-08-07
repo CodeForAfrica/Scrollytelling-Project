@@ -330,7 +330,7 @@ html_code = """
   
   <div class="scrolly__chart" id="chart-container">
     <div class="chart-transition-overlay" id="transition-overlay"></div>
-    <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    <iframe id="flourish-iframe" src="https://flo.uri.sh/visualisation/19897131/embed" scrolling="no"></iframe>
     
     <div class="chart-info-panel active" id="chart-info-0">
       <div class="chart-info-title">Vue d'ensemble des données</div>
@@ -427,6 +427,14 @@ html_code = """
     });
   }
 
+  // Différents graphiques pour chaque étape
+  const chartUrls = [
+    'https://flo.uri.sh/visualisation/19897131/embed',  // Graphique 1 - Vue d'ensemble
+    'https://flo.uri.sh/visualisation/19897164/embed',  // Graphique 2 - Tendances temporelles
+    'https://flo.uri.sh/visualisation/19897188/embed',  // Graphique 3 - Comparaisons
+    'https://flo.uri.sh/visualisation/19897210/embed'   // Graphique 4 - Synthèse
+  ];
+
   function changeChart(stepIndex) {
     if (isTransitioning) return;
     
@@ -446,7 +454,11 @@ html_code = """
     
     // Changer la source de l'iframe avec un délai pour l'effet visuel
     setTimeout(() => {
-      iframe.src = `https://flo.uri.sh/story/872914/embed#slide-${stepIndex}`;
+      // Utiliser un graphique différent pour chaque étape
+      const newUrl = chartUrls[stepIndex] || chartUrls[0];
+      iframe.src = newUrl;
+      
+      console.log(`Changement vers l'étape ${stepIndex}, URL: ${newUrl}`);
       
       // Afficher le nouveau panneau d'info
       const newPanel = document.getElementById(`chart-info-${stepIndex}`);
@@ -548,4 +560,4 @@ html_code = """
 </html>
 """
 
-st.components.v1.html(html_code, height=3000, width = 3000, scrolling=True)
+st.components.v1.html(html_code, height=900, scrolling=True)
