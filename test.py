@@ -51,7 +51,7 @@ html_code = """
       position: relative;
       width: 100%;
       max-width: 40vw;
-      margin-left: calc(100vw - 60vw - 40vw);
+      margin-left: 2rem;
       padding-top: 2rem;
       z-index: 2;
       overflow-y: auto;
