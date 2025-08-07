@@ -1,7 +1,6 @@
 import streamlit as st
 
 html_code = """
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -90,7 +89,7 @@ html_code = """
       </div>
 
       <div class="scrolly__chart">
-        <iframe src="https://flo.uri.sh/story/872914/embed#slide-0" title="Flourish Story"></iframe>
+        <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" title="Flourish Story"></iframe>
       </div>
     </div>
   </div>
@@ -111,8 +110,7 @@ html_code = """
       d3.selectAll(".step").classed("is-active", (d, i) => i === response.index);
       const slide = response.index;
       const linkHead = 'https://flo.uri.sh/story/872914/embed#slide-';
-      d3.select(".scrolly__chart iframe")
-        .attr("src", linkHead + slide);
+      document.getElementById('flourish-iframe').src = linkHead + slide;
     }
 
     function init() {
@@ -128,13 +126,10 @@ html_code = """
       window.addEventListener("resize", handleResize);
     }
 
-    """
-
-
-      init();
-    </script>
-  </body>
-  </html>
+    init();
+  </script>
+</body>
+</html>
+"""
 
 st.components.v1.html(html_code, height=2500, scrolling=True)
-
