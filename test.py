@@ -19,13 +19,15 @@ html_code = """
       overflow-x: hidden;
     }
 
+    /* Container for the scrolling section */
     #scrolly__section {
       position: relative;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 2rem auto 0 auto; /* Added top margin to separate from header */
       height: 100vh;
     }
 
+    /* Fixed chart on right side */
     .scrolly__chart {
       position: fixed;
       top: 0;
@@ -43,6 +45,7 @@ html_code = """
       border: none;
     }
 
+    /* Scrollable text content on left side */
     .scrolly__content {
       position: relative;
       width: 100%;
@@ -54,6 +57,7 @@ html_code = """
       height: 100vh;
     }
 
+    /* Each text step styling */
     .step {
       margin-bottom: 3rem;
       padding: 1rem;
@@ -70,13 +74,14 @@ html_code = """
       backdrop-filter: saturate(180%) blur(10px);
     }
 
+    /* Active step styling */
     .step.is-active {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    border-color: goldenrod;
-    color: #3b3b3b;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+      border-color: goldenrod;
+      color: #3b3b3b;
     }
 
     /* Scrollbar styling for content */
@@ -91,7 +96,7 @@ html_code = """
       background: transparent;
     }
 
-    /* Responsive */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       .scrolly__chart {
         position: relative;
@@ -110,37 +115,22 @@ html_code = """
         min-height: auto;
       }
     }
-  </style>
-</head>
-<body>
 
-  <header class="app-header">
-    <div class="container">
-      <h1>Data Scrollytelling</h1>
-      <h2>Interactive analysis with Scrollama et Flourish</h2>
-      <hr />
-      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story..</p>
-    </div>
-  </header>
-  
-  <style>
-       .app-header {
+    /* Header styling */
+    .app-header {
       background-color: #104E8B;
       color: white;
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding: 1.5rem 0;   /* padding vertical, not horizontal */
-      margin: 0;           /* no marging */
-      width: 100vw;        /* width 100% */
+      padding: 1.5rem 0;   /* vertical padding */
+      margin: 0;           /* no margin */
+      width: 100vw;        /* full width */
       box-sizing: border-box;
       position: relative;
       z-index: 1000;
       box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
     }
     
-    .wrapper {
-      padding-top: 3rem;  /* espace entre header et contenu, ajuste selon besoin */
-    }
     .app-header h1 {
       font-weight: 700;
       font-size: 2.8rem;
@@ -173,73 +163,92 @@ html_code = """
       line-height: 1.4;
     }
   </style>
+</head>
+<body>
 
-<div id="scrolly__section">
+  <header class="app-header">
+    <div class="container">
+      <h1>Data Scrollytelling</h1>
+      <h2>Interactive analysis with Scrollama and Flourish</h2>
+      <hr />
+      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
+    </div>
+  </header>
+  
+  <div id="scrolly__section">
 
-  <div class="scrolly__chart">
-    <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    <!-- Fixed Flourish iframe chart -->
+    <div class="scrolly__chart">
+      <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    </div>
+
+    <!-- Scrollable text content -->
+    <div class="scrolly__content" id="scroll-content">
+      <div class="step is-active" data-step="0">
+        <h3>Step 1 Title</h3>
+        <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health.</p>
+      </div>
+      <div class="step" data-step="1">
+        <h3>Step 2 Title</h3>
+        <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+      <div class="step" data-step="2">
+        <h3>Step 3 Title</h3>
+        <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+      </div>
+      <div class="step" data-step="3">
+        <h3>Step 4 Title</h3>
+        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="scrolly__content" id="scroll-content">
-    <div class="step is-active" data-step="0">
-      <h3>Step 1 Title</h3>
-      <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
-      </p>
-    </div>
-    <div class="step" data-step="1">
-      <h3>Step 2 Title</h3>
-      <p>Aliquam erat volutpat. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-    </div>
-    <div class="step" data-step="2">
-      <h3>Step 3 Title</h3>
-      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-    </div>
-    <div class="step" data-step="3">
-      <h3>Step 4 Title</h3>
-      <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-    </div>
-  </div>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
 
-</div>
+  <script>
+    // Initialize Scrollama instance
+    var scroller = scrollama();
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://unpkg.com/scrollama"></script>
+    // Resize handler to adjust step heights and scroller
+    function handleResize() {
+      // On mobile, set step min-height to auto
+      var isMobile = window.matchMedia("(max-width: 768px)").matches;
+      d3.selectAll('.step')
+        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
+      scroller.resize();
+    }
 
-<script>
-  var scroller = scrollama();
+    // Handle step enter event triggered by scrollama
+    function handleStepEnter(response) {
+      // Remove active class from all steps and add to current step
+      d3.selectAll('.step').classed('is-active', false);
+      d3.select(response.element).classed('is-active', true);
 
-  function handleResize() {
-    // on mobile, let steps have auto height
-    var isMobile = window.matchMedia("(max-width: 768px)").matches;
-    d3.selectAll('.step')
-      .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-    scroller.resize();
-  }
+      // Update Flourish iframe to show slide corresponding to step
+      var slideNum = response.index;
+      var iframe = document.getElementById('flourish-iframe');
+      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
+    }
 
-  function handleStepEnter(response) {
-    d3.selectAll('.step').classed('is-active', false);
-    d3.select(response.element).classed('is-active', true);
+    // Initialization function to setup scrollama and events
+    function init() {
+      handleResize();
+      scroller.setup({
+        step: '.step',
+        offset: 0.7,
+        debug: false,
+        container: '#scroll-content'  // limit scrollama to this scroll container
+      })
+      .onStepEnter(handleStepEnter);
 
-    var slideNum = response.index;
-    var iframe = document.getElementById('flourish-iframe');
-    iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
-  }
+      // Recalculate on window resize
+      window.addEventListener('resize', handleResize);
+    }
 
-  function init() {
-    handleResize();
-    scroller.setup({
-      step: '.step',
-      offset: 0.7,
-      debug: false,
-      container: '#scroll-content'  // important: limit scrollama to the scroll container
-    })
-    .onStepEnter(handleStepEnter);
-
-    window.addEventListener('resize', handleResize);
-  }
-
-  init();
-</script>
+    init();
+  </script>
 
 </body>
 </html>
