@@ -7,11 +7,9 @@ html_code = """
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Scroll-driven Flourish Story - Text over Chart</title>
+  <title>Scroll-driven Story - Text over Chart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
-
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -22,113 +20,121 @@ html_code = """
       overflow-x: hidden;
     }
 
-    /* Chart + text container */
+    /* Main container - fullscreen chart with text overlay */
     #scrolly__section {
       position: relative;
-      max-width: 900px;
-      margin: 0 auto;
+      width: 100vw;
       height: 100vh;
     }
 
-    /* Fixed chart on the right */
+    /* Full-screen chart background */
     .scrolly__chart {
       position: fixed;
       top: 0;
-      right: 0;
-      width: 60vw;
+      left: 0;
+      width: 100vw;
       height: 100vh;
       z-index: 1;
       background: #fff;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
     iframe {
       width: 100%;
       height: 100%;
       border: none;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
     }
 
-    /* Scrollable text content - HIDDEN SCROLLBAR */
+    /* Text overlay - scrollable over the chart */
     .scrolly__content {
       position: relative;
       width: 100%;
-      max-width: 40vw;
-      margin-left: 2rem;
-      padding-top: 2rem;
-      z-index: 2;
-      overflow-y: auto;
-      height: 100vh;
+      height: auto;
+      z-index: 10;
+      padding: 2rem;
       
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      /* Hide scrollbar completely */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
     .scrolly__content::-webkit-scrollbar {
       display: none;
     }
 
-    /* Each text step block */
+    /* Text steps positioned over the chart */
     .step {
-      margin-bottom: 3rem;
-      padding: 1rem;
-      border: 2px solid #104E8B;
-      background: rgba(255, 255, 255, 0.85);
-      cursor: pointer;
-      transition: all 0.4s ease-in-out;
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-sizing: border-box;
-      border-radius: 6px;
-      backdrop-filter: saturate(180%) blur(10px);
-      opacity: 0.7;
-      transform: translateY(20px);
+      margin: 0 0 100vh 0;
+      padding: 2rem;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      opacity: 0.3;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
 
-    /* Active step with smooth animation */
+    /* Progressive positioning for text blocks */
+    .step:nth-child(1) {
+      margin-left: 5%;
+    }
+    
+    .step:nth-child(2) {
+      margin-left: 60%;
+    }
+    
+    .step:nth-child(3) {
+      margin-left: 20%;
+    }
+    
+    .step:nth-child(4) {
+      margin-left: 70%;
+    }
+
+    /* Active step styling */
     .step.is-active {
-      background-color: rgba(255, 255, 255, 0.95) !important;
-      box-shadow: 0 8px 32px rgba(16, 78, 139, 0.2) !important;
-      backdrop-filter: saturate(180%) blur(20px) !important;
-      border-color: goldenrod;
-      color: #3b3b3b;
       opacity: 1;
-      transform: translateY(0);
-      scale: 1.02;
+      transform: translateY(0) scale(1);
+      border-color: #104E8B;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 12px 48px rgba(16, 78, 139, 0.2);
     }
 
-    /* Smooth scroll behavior */
-    .scrolly__content {
-      scroll-behavior: smooth;
-    }
-
-    /* Step titles and content styling */
     .step h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
       margin-bottom: 1rem;
       color: #104E8B;
-      transition: color 0.3s ease;
+      transition: color 0.4s ease;
     }
 
     .step.is-active h3 {
-      color: goldenrod;
+      color: #D4AF37;
     }
 
     .step p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      color: #2c2c2c;
     }
 
-    /* Navigation indicators */
-    .scroll-indicator {
+    .step .highlight {
+      background: linear-gradient(120deg, #D4AF37 0%, #F4E87C 100%);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #2c2c2c;
+    }
+
+    /* Progress indicator */
+    .progress-indicator {
       position: fixed;
-      left: 2rem;
+      right: 2rem;
       top: 50%;
       transform: translateY(-50%);
       z-index: 1000;
@@ -137,101 +143,114 @@ html_code = """
       gap: 1rem;
     }
 
-    .indicator-dot {
-      width: 12px;
-      height: 12px;
+    .progress-dot {
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: rgba(16, 78, 139, 0.3);
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
 
-    .indicator-dot.active {
-      background: goldenrod;
+    .progress-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      transition: all 0.4s ease;
+    }
+
+    .progress-dot.active {
+      background: #D4AF37;
       transform: scale(1.3);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
-    .indicator-dot:hover {
-      background: rgba(16, 78, 139, 0.7);
+    .progress-dot.active::after {
+      background: #fff;
     }
 
-    /* Responsive styles for mobile */
+    /* Chart elements animation control */
+    .chart-element {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chart-element.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive design */
     @media (max-width: 768px) {
-      .scrolly__chart {
-        position: relative;
-        width: 100vw;
-        height: 50vh;
-        box-shadow: none;
-      }
-      .scrolly__content {
-        max-width: 100vw;
-        margin-left: 0;
-        height: auto;
-        overflow-y: visible;
-        padding: 1rem;
-      }
       .step {
-        min-height: auto;
-        transform: none;
-        opacity: 1;
+        max-width: 90%;
+        margin-left: 5% !important;
+        margin-right: 5%;
+        padding: 1.5rem;
       }
-      .scroll-indicator {
-        display: none;
+      
+      .progress-indicator {
+        bottom: 2rem;
+        top: auto;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+      }
+
+      .step h3 {
+        font-size: 1.5rem;
+      }
+
+      .step p {
+        font-size: 1rem;
       }
     }
 
     /* Header styling */
     .app-header {
-      background-color: #104E8B;
+      background: linear-gradient(135deg, #104E8B 0%, #1e5f9e 100%);
       color: white;
-      font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding: 2rem 0;
-      margin: 0;
-      width: 100vw;
-      box-sizing: border-box;
+      padding: 3rem 1rem;
       position: relative;
       z-index: 1000;
-      box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
+      box-shadow: 0 4px 20px rgba(16, 78, 139, 0.3);
     }
 
     .app-header h1 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 0.3rem;
-      font-family: 'Lora', serif;
+      font-weight: 800;
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .app-header h2 {
-      font-weight: 400;
-      font-size: 1.4rem;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-
-    .app-header hr {
-      border: 0;
-      height: 1px;
-      background: white;
-      width: 40%;
-      margin: 0 auto 1.5rem auto;
-      opacity: 0.7;
+      font-weight: 300;
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
     }
 
     .app-header .intro-text {
-      font-size: 1rem;
-      font-style: italic;
+      font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto;
-      line-height: 1.4;
+      opacity: 0.85;
+      line-height: 1.6;
     }
 
-    /* Adds space between header and content */
-    .wrapper {
-      padding-top: 4rem;
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
     }
-
   </style>
 </head>
 <body>
@@ -239,44 +258,51 @@ html_code = """
   <header class="app-header">
     <div class="container">
       <h1>Data Scrollytelling</h1>
-      <h2>Interactive analysis with Scrollama and Flourish</h2>
-      <hr />
-      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
+      <h2>Interactive Visualization Journey</h2>
+      <p class="intro-text">Scroll through the story as data elements reveal themselves progressively with each narrative step.</p>
     </div>
   </header>
 
-  <!-- Navigation indicators -->
-  <div class="scroll-indicator" id="scroll-indicators">
-    <div class="indicator-dot active" data-step="0"></div>
-    <div class="indicator-dot" data-step="1"></div>
-    <div class="indicator-dot" data-step="2"></div>
-    <div class="indicator-dot" data-step="3"></div>
+  <!-- Progress indicator -->
+  <div class="progress-indicator" id="progress-indicators">
+    <div class="progress-dot active" data-step="0" title="Premature Deaths"></div>
+    <div class="progress-dot" data-step="1" title="Children Impact"></div>
+    <div class="progress-dot" data-step="2" title="Regional Analysis"></div>
+    <div class="progress-dot" data-step="3" title="Solutions"></div>
   </div>
 
-  <div class="wrapper">
-    <div id="scrolly__section">
+  <div id="scrolly__section">
+    
+    <!-- Full-screen chart background -->
+    <div class="scrolly__chart">
+      <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    </div>
 
-      <div class="scrolly__chart">
-        <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    <!-- Text content overlaid on chart -->
+    <div class="scrolly__content" id="scroll-content">
+      
+      <div class="step is-active" data-step="0" data-chart-elements="global-deaths,mortality-rate">
+        <h3>🌍 Global Health Crisis</h3>
+        <p><span class="highlight">89% of premature deaths</span> from air pollution occurred in low- and middle-income countries.</p>
+        <p>This stark disparity reveals how environmental health challenges disproportionately affect the world's most vulnerable populations.</p>
       </div>
 
-      <div class="scrolly__content" id="scroll-content">
-        <div class="step is-active" data-step="0">
-          <h3>Premature deaths</h3>
-          <p>89% of premature deaths occurred in low- and middle-income countries. This visualization shows the global distribution and impact of air pollution on public health.</p>
-        </div>
-        <div class="step" data-step="1">
-          <h3>Children deaths</h3>
-          <p>Over 237,000 deaths of children under the age of 5 are attributed to air pollution annually. The most vulnerable populations suffer the greatest impact from environmental health hazards.</p>
-        </div>
-        <div class="step" data-step="2">
-          <h3>Regional Impact</h3>
-          <p>Exploring the regional variations in air quality and health outcomes. Notice how different areas show varying levels of pollution exposure and related health consequences.</p>
-        </div>
-        <div class="step" data-step="3">
-          <h3>Call to Action</h3>
-          <p>Understanding these patterns is crucial for developing targeted interventions and policies. The data reveals clear priorities for environmental health improvements worldwide.</p>
-        </div>
+      <div class="step" data-step="1" data-chart-elements="child-mortality,age-groups">
+        <h3>👶 Children at Risk</h3>
+        <p>Over <span class="highlight">237,000 deaths of children</span> under age 5 are attributed to air pollution annually.</p>
+        <p>Young lungs are particularly susceptible to environmental toxins, making children our most vulnerable population in the fight for clean air.</p>
+      </div>
+
+      <div class="step" data-step="2" data-chart-elements="regional-data,pollution-levels">
+        <h3>📊 Regional Variations</h3>
+        <p>Air quality and health outcomes vary dramatically across regions, with <span class="highlight">developing nations</span> bearing the heaviest burden.</p>
+        <p>Understanding these geographical patterns is crucial for targeted interventions and resource allocation.</p>
+      </div>
+
+      <div class="step" data-step="3" data-chart-elements="solutions,trends">
+        <h3>💡 Path Forward</h3>
+        <p>Data-driven policies and <span class="highlight">targeted interventions</span> can significantly reduce air pollution mortality.</p>
+        <p>The evidence points to clear priorities: invest in clean energy, improve monitoring systems, and protect vulnerable communities.</p>
       </div>
 
     </div>
@@ -286,56 +312,75 @@ html_code = """
   <script src="https://unpkg.com/scrollama"></script>
 
   <script>
-    var scroller = scrollama();
-    var currentSlide = 0;
+    let scroller = scrollama();
+    let currentSlide = 0;
 
-    function handleResize() {
-      var isMobile = window.matchMedia("(max-width: 768px)").matches;
-      d3.selectAll('.step')
-        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-      scroller.resize();
+    // Animation sequences for chart elements
+    const chartAnimations = {
+      0: () => animateChartElements(['global-deaths', 'mortality-rate']),
+      1: () => animateChartElements(['child-mortality', 'age-groups']),
+      2: () => animateChartElements(['regional-data', 'pollution-levels']),
+      3: () => animateChartElements(['solutions', 'trends'])
+    };
+
+    function animateChartElements(elements) {
+      // This function would communicate with your Flourish chart
+      // to progressively reveal specific elements
+      console.log('Animating chart elements:', elements);
+      
+      // Send message to iframe to trigger specific animations
+      const iframe = document.getElementById('flourish-iframe');
+      if (iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+          type: 'animate-elements',
+          elements: elements
+        }, '*');
+      }
     }
 
     function updateChart(slideNum) {
       if (slideNum !== currentSlide) {
-        var iframe = document.getElementById('flourish-iframe');
+        const iframe = document.getElementById('flourish-iframe');
         
-        // Add fade effect during transition
-        iframe.style.opacity = '0.7';
+        // Smooth transition effect
+        iframe.style.opacity = '0.8';
         
         setTimeout(() => {
-          iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
-          iframe.style.opacity = '1';
-        }, 150);
+          iframe.src = `https://flo.uri.sh/story/872914/embed#slide-${slideNum}`;
+          
+          // Trigger progressive animation after chart loads
+          setTimeout(() => {
+            if (chartAnimations[slideNum]) {
+              chartAnimations[slideNum]();
+            }
+            iframe.style.opacity = '1';
+          }, 300);
+          
+        }, 200);
         
         currentSlide = slideNum;
       }
     }
 
-    function updateIndicators(activeIndex) {
-      d3.selectAll('.indicator-dot')
+    function updateProgressIndicator(activeIndex) {
+      d3.selectAll('.progress-dot')
         .classed('active', false);
-      d3.select('.indicator-dot[data-step="' + activeIndex + '"]')
+      d3.select(`.progress-dot[data-step="${activeIndex}"]`)
         .classed('active', true);
     }
 
     function handleStepEnter(response) {
-      // Update active step with smooth transitions
+      // Update active step
       d3.selectAll('.step').classed('is-active', false);
       d3.select(response.element).classed('is-active', true);
 
-      var slideNum = response.index;
+      const slideNum = response.index;
       updateChart(slideNum);
-      updateIndicators(slideNum);
-    }
-
-    function handleStepExit(response) {
-      // Optional: handle when leaving a step
-      // Could add additional animations here
+      updateProgressIndicator(slideNum);
     }
 
     function scrollToStep(stepIndex) {
-      var targetStep = document.querySelector('.step[data-step="' + stepIndex + '"]');
+      const targetStep = document.querySelector(`.step[data-step="${stepIndex}"]`);
       if (targetStep) {
         targetStep.scrollIntoView({
           behavior: 'smooth',
@@ -344,45 +389,65 @@ html_code = """
       }
     }
 
+    function handleResize() {
+      scroller.resize();
+    }
+
     function init() {
-      handleResize();
-      
-      // Setup scrollama
+      // Setup scrollama with optimized settings
       scroller.setup({
         step: '.step',
-        offset: 0.6, // Trigger when step is 60% visible
+        offset: 0.5, // Trigger when step is centered
         debug: false,
-        container: '#scroll-content'
       })
-      .onStepEnter(handleStepEnter)
-      .onStepExit(handleStepExit);
+      .onStepEnter(handleStepEnter);
 
-      // Add click handlers for navigation indicators
-      d3.selectAll('.indicator-dot')
+      // Progress indicator click handlers
+      d3.selectAll('.progress-dot')
         .on('click', function() {
-          var stepIndex = parseInt(d3.select(this).attr('data-step'));
+          const stepIndex = parseInt(d3.select(this).attr('data-step'));
           scrollToStep(stepIndex);
         });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown' || e.key === ' ') {
+          e.preventDefault();
+          if (currentSlide < 3) scrollToStep(currentSlide + 1);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (currentSlide > 0) scrollToStep(currentSlide - 1);
+        }
+      });
 
       // Handle window resize
       window.addEventListener('resize', handleResize);
 
-      // Optional: Add keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowDown' && currentSlide < 3) {
-          scrollToStep(currentSlide + 1);
-        } else if (e.key === 'ArrowUp' && currentSlide > 0) {
-          scrollToStep(currentSlide - 1);
-        }
-      });
+      // Smooth scroll behavior
+      document.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        const delta = e.deltaY;
+        window.scrollBy({
+          top: delta * 0.8,
+          behavior: 'smooth'
+        });
+      }, { passive: false });
     }
 
-    // Initialize when DOM is loaded
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
     }
+
+    // Listen for messages from Flourish iframe (if supported)
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'flourish-ready') {
+        console.log('Flourish chart is ready for animations');
+      }
+    });
+
   </script>
 
 </body>
