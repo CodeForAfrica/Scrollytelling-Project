@@ -2,7 +2,6 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-
 html_code = """
 <!doctype html>
 <html lang="en">
@@ -47,9 +46,10 @@ html_code = """
       width: 100%;
       height: 100%;
       border: none;
+      transition: opacity 0.3s ease-in-out;
     }
 
-    /* Scrollable text content */
+    /* Scrollable text content - HIDDEN SCROLLBAR */
     .scrolly__content {
       position: relative;
       width: 100%;
@@ -59,6 +59,15 @@ html_code = """
       z-index: 2;
       overflow-y: auto;
       height: 100vh;
+      
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrolly__content::-webkit-scrollbar {
+      display: none;
     }
 
     /* Each text step block */
@@ -68,7 +77,7 @@ html_code = """
       border: 2px solid #104E8B;
       background: rgba(255, 255, 255, 0.85);
       cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
+      transition: all 0.4s ease-in-out;
       min-height: 70vh;
       display: flex;
       flex-direction: column;
@@ -76,28 +85,74 @@ html_code = """
       box-sizing: border-box;
       border-radius: 6px;
       backdrop-filter: saturate(180%) blur(10px);
+      opacity: 0.7;
+      transform: translateY(20px);
     }
 
-    /* Active step */
+    /* Active step with smooth animation */
     .step.is-active {
-      background-color: transparent !important;
-      box-shadow: none !important;
-      filter: none !important;
-      backdrop-filter: none !important;
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 8px 32px rgba(16, 78, 139, 0.2) !important;
+      backdrop-filter: saturate(180%) blur(20px) !important;
       border-color: goldenrod;
       color: #3b3b3b;
+      opacity: 1;
+      transform: translateY(0);
+      scale: 1.02;
     }
 
-    /* Scrollbar style for scrollable text */
-    .scrolly__content::-webkit-scrollbar {
-      width: 8px;
+    /* Smooth scroll behavior */
+    .scrolly__content {
+      scroll-behavior: smooth;
     }
-    .scrolly__content::-webkit-scrollbar-thumb {
-      background-color: rgba(16, 78, 139, 0.5);
-      border-radius: 4px;
+
+    /* Step titles and content styling */
+    .step h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #104E8B;
+      transition: color 0.3s ease;
     }
-    .scrolly__content::-webkit-scrollbar-track {
-      background: transparent;
+
+    .step.is-active h3 {
+      color: goldenrod;
+    }
+
+    .step p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* Navigation indicators */
+    .scroll-indicator {
+      position: fixed;
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .indicator-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(16, 78, 139, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator-dot.active {
+      background: goldenrod;
+      transform: scale(1.3);
+    }
+
+    .indicator-dot:hover {
+      background: rgba(16, 78, 139, 0.7);
     }
 
     /* Responsive styles for mobile */
@@ -117,6 +172,11 @@ html_code = """
       }
       .step {
         min-height: auto;
+        transform: none;
+        opacity: 1;
+      }
+      .scroll-indicator {
+        display: none;
       }
     }
 
@@ -185,6 +245,14 @@ html_code = """
     </div>
   </header>
 
+  <!-- Navigation indicators -->
+  <div class="scroll-indicator" id="scroll-indicators">
+    <div class="indicator-dot active" data-step="0"></div>
+    <div class="indicator-dot" data-step="1"></div>
+    <div class="indicator-dot" data-step="2"></div>
+    <div class="indicator-dot" data-step="3"></div>
+  </div>
+
   <div class="wrapper">
     <div id="scrolly__section">
 
@@ -195,19 +263,19 @@ html_code = """
       <div class="scrolly__content" id="scroll-content">
         <div class="step is-active" data-step="0">
           <h3>Premature deaths</h3>
-          <p>89% of premature deaths occurred in low- and middle-income countries.</p>
+          <p>89% of premature deaths occurred in low- and middle-income countries. This visualization shows the global distribution and impact of air pollution on public health.</p>
         </div>
         <div class="step" data-step="1">
           <h3>Children deaths</h3>
-          <p>Overlay: Over 237 000 deaths of children under the age of 5</p>
+          <p>Over 237,000 deaths of children under the age of 5 are attributed to air pollution annually. The most vulnerable populations suffer the greatest impact from environmental health hazards.</p>
         </div>
         <div class="step" data-step="2">
-          <h3>Step 3 Title</h3>
-          <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+          <h3>Regional Impact</h3>
+          <p>Exploring the regional variations in air quality and health outcomes. Notice how different areas show varying levels of pollution exposure and related health consequences.</p>
         </div>
         <div class="step" data-step="3">
-          <h3>Step 4 Title</h3>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h3>Call to Action</h3>
+          <p>Understanding these patterns is crucial for developing targeted interventions and policies. The data reveals clear priorities for environmental health improvements worldwide.</p>
         </div>
       </div>
 
@@ -219,38 +287,102 @@ html_code = """
 
   <script>
     var scroller = scrollama();
+    var currentSlide = 0;
 
     function handleResize() {
-      // On mobile, steps can have auto height
       var isMobile = window.matchMedia("(max-width: 768px)").matches;
       d3.selectAll('.step')
         .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
       scroller.resize();
     }
 
+    function updateChart(slideNum) {
+      if (slideNum !== currentSlide) {
+        var iframe = document.getElementById('flourish-iframe');
+        
+        // Add fade effect during transition
+        iframe.style.opacity = '0.7';
+        
+        setTimeout(() => {
+          iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
+          iframe.style.opacity = '1';
+        }, 150);
+        
+        currentSlide = slideNum;
+      }
+    }
+
+    function updateIndicators(activeIndex) {
+      d3.selectAll('.indicator-dot')
+        .classed('active', false);
+      d3.select('.indicator-dot[data-step="' + activeIndex + '"]')
+        .classed('active', true);
+    }
+
     function handleStepEnter(response) {
+      // Update active step with smooth transitions
       d3.selectAll('.step').classed('is-active', false);
       d3.select(response.element).classed('is-active', true);
 
       var slideNum = response.index;
-      var iframe = document.getElementById('flourish-iframe');
-      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
+      updateChart(slideNum);
+      updateIndicators(slideNum);
+    }
+
+    function handleStepExit(response) {
+      // Optional: handle when leaving a step
+      // Could add additional animations here
+    }
+
+    function scrollToStep(stepIndex) {
+      var targetStep = document.querySelector('.step[data-step="' + stepIndex + '"]');
+      if (targetStep) {
+        targetStep.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
     }
 
     function init() {
       handleResize();
+      
+      // Setup scrollama
       scroller.setup({
         step: '.step',
-        offset: 0.7,
+        offset: 0.6, // Trigger when step is 60% visible
         debug: false,
-        container: '#scroll-content' // Limit scrollama to scrollable content
+        container: '#scroll-content'
       })
-      .onStepEnter(handleStepEnter);
+      .onStepEnter(handleStepEnter)
+      .onStepExit(handleStepExit);
 
+      // Add click handlers for navigation indicators
+      d3.selectAll('.indicator-dot')
+        .on('click', function() {
+          var stepIndex = parseInt(d3.select(this).attr('data-step'));
+          scrollToStep(stepIndex);
+        });
+
+      // Handle window resize
       window.addEventListener('resize', handleResize);
+
+      // Optional: Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown' && currentSlide < 3) {
+          scrollToStep(currentSlide + 1);
+        } else if (e.key === 'ArrowUp' && currentSlide > 0) {
+          scrollToStep(currentSlide - 1);
+        }
+      });
     }
 
-    init();
+    // Initialize when DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 
 </body>
@@ -258,4 +390,4 @@ html_code = """
 """
 
 # Render the HTML in Streamlit
-st.components.v1.html(html_code, height=1000, width = 4000, scrolling=True)
+st.components.v1.html(html_code, height=1000, width=4000, scrolling=True)
