@@ -2,13 +2,14 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
+
 html_code = """
 <!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scrollytelling - Texte sur Graphique</title>
+<title>Scrollytelling - Maps Flourish</title>
 <style>
   html, body {
     margin: 0;
@@ -19,32 +20,44 @@ html_code = """
     overflow-x: hidden;
   }
 
-  /* Fullscreen fixed chart */
+  /* Zone visuelle fixe */
   .visuals {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 1;
     background: black;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
   .visuals iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    display: block;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
   }
 
-  /* Overlay scrolling text */
+  .visuals iframe.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  /* Texte défilant par-dessus */
   .scrolling-text {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10vh;
   }
 
   .step {
@@ -58,13 +71,13 @@ html_code = """
     box-sizing: border-box;
     text-align: center;
     color: white;
-    transition: transform 0.3s, opacity 0.3s;
     opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .step.is-active {
-    transform: scale(1.05);
     opacity: 1;
+    transform: scale(1.05);
   }
 
   .step h3 {
@@ -80,19 +93,21 @@ html_code = """
 <body>
 
 <div class="visuals">
-    <iframe id="flourish-iframe" src="https://flo.uri.sh/visualisation/24728120/embed" scrolling="no"></iframe>
+  <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
+  <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
+  <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
 </div>
 
 <div class="scrolling-text">
-  <div class="step" data-slide="0">
+  <div class="step" data-target="vis-1">
     <h3>Exposure pollution</h3>
     <p>Exposure to PM2 varies across the continent.</p>
   </div>
-  <div class="step" data-slide="1">
+  <div class="step" data-target="vis-2">
     <h3>Household pollution</h3>
     <p>Indoor air pollution death rates are high in the West, Central and East.</p>
   </div>
-  <div class="step" data-slide="2">
+  <div class="step" data-target="vis-3">
     <h3>Ambient pollution</h3>
     <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
   </div>
@@ -101,8 +116,7 @@ html_code = """
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const steps = document.querySelectorAll('.step');
-  const iframe = document.getElementById('flourish-iframe');
-  const baseUrl = "https://flo.uri.sh/story/872914/embed#slide-";
+  const iframes = document.querySelectorAll('.visuals iframe');
 
   function setStepHeights() {
     const vh = window.innerHeight;
@@ -116,14 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         steps.forEach(s => s.classList.remove('is-active'));
         entry.target.classList.add('is-active');
-        const slideNum = entry.target.dataset.slide;
-        iframe.contentWindow.postMessage({ message: "update", slide: slideNum }, "*");
-        iframe.src = baseUrl + slideNum;
+
+        const targetId = entry.target.dataset.target;
+        iframes.forEach(f => f.classList.remove('active'));
+        const activeFrame = document.getElementById(targetId);
+        if (activeFrame) activeFrame.classList.add('active');
       }
     });
   }, { threshold: 0.6 });
 
   steps.forEach(step => observer.observe(step));
+
+  // Activer le premier iframe par défaut
+  iframes[0].classList.add('active');
 });
 </script>
 
@@ -132,3 +151,4 @@ document.addEventListener('DOMContentLoaded', () => {
 """
 
 st.components.v1.html(html_code, height=1200, scrolling=True)
+
