@@ -5,7 +5,7 @@ st.set_page_config(layout="wide")
 
 html_code = """
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
