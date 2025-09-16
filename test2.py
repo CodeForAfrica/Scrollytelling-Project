@@ -2,8 +2,6 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-
-
 html_code = """
 <!doctype html>
 <html lang="fr">
@@ -21,14 +19,7 @@ html_code = """
     overflow-x: hidden;
   }
 
-  /* Container that holds everything */
-  .scrolly-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Fixed chart background */
+  /* Fullscreen fixed chart */
   .visuals {
     position: fixed;
     top: 0;
@@ -45,7 +36,7 @@ html_code = """
     display: block;
   }
 
-  /* Scrolling text overlay */
+  /* Overlay scrolling text */
   .scrolling-text {
     position: relative;
     z-index: 2;
@@ -53,6 +44,7 @@ html_code = """
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 10vh;
   }
 
   .step {
@@ -64,52 +56,45 @@ html_code = """
     justify-content: center;
     padding: 2rem;
     box-sizing: border-box;
-    background: rgba(0,0,0,0.55); /* semi-transparent overlay */
-    backdrop-filter: blur(4px);
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    transition: background 0.3s;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0.6;
   }
 
   .step.is-active {
-    background: rgba(0,0,0,0.75);
-    border: 2px solid gold;
+    transform: scale(1.05);
+    opacity: 1;
   }
 
   .step h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
-    text-align: center;
   }
   .step p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.6;
-    text-align: center;
   }
 </style>
 </head>
 <body>
 
-<div class="scrolly-container">
-  <!-- Background chart -->
-  <div class="visuals">
-    <iframe id="flourish-iframe" src="https://flo.uri.sh/visualisation/24728120/embed" scrolling="no"></iframe>
-  </div>
+<div class="visuals">
+  <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+</div>
 
-  <!-- Overlay scrolling text -->
-  <div class="scrolling-text">
-    <div class="step" data-src="https://flo.uri.sh/visualisation/24728120/embed">
-      <h3>Exposure pollution</h3>
-      <p>Exposure to PM2 varies across the continent.</p>
-    </div>
-    <div class="step" data-src="https://flo.uri.sh/visualisation/24838022/embed">
-      <h3>Household pollution</h3>
-      <p>Indoor air pollution death rates are high in the West, Central and East.</p>
-    </div>
-    <div class="step" data-src="https://flo.uri.sh/visualisation/24838425/embed">
-      <h3>Ambient pollution</h3>
-      <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
-    </div>
+<div class="scrolling-text">
+  <div class="step" data-slide="0">
+    <h3>Exposure pollution</h3>
+    <p>Exposure to PM2 varies across the continent.</p>
+  </div>
+  <div class="step" data-slide="1">
+    <h3>Household pollution</h3>
+    <p>Indoor air pollution death rates are high in the West, Central and East.</p>
+  </div>
+  <div class="step" data-slide="2">
+    <h3>Ambient pollution</h3>
+    <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
   </div>
 </div>
 
@@ -117,6 +102,7 @@ html_code = """
 document.addEventListener('DOMContentLoaded', () => {
   const steps = document.querySelectorAll('.step');
   const iframe = document.getElementById('flourish-iframe');
+  const baseUrl = "https://flo.uri.sh/story/872914/embed#slide-";
 
   function setStepHeights() {
     const vh = window.innerHeight;
@@ -130,13 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         steps.forEach(s => s.classList.remove('is-active'));
         entry.target.classList.add('is-active');
-        const newSrc = entry.target.dataset.src;
-        if (iframe.src !== newSrc) {
-          iframe.src = newSrc;
-        }
+        const slideNum = entry.target.dataset.slide;
+        iframe.contentWindow.postMessage({ message: "update", slide: slideNum }, "*");
+        iframe.src = baseUrl + slideNum;
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.6 });
 
   steps.forEach(step => observer.observe(step));
 });
