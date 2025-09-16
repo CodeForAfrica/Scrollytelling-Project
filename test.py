@@ -5,257 +5,135 @@ st.set_page_config(layout="wide")
 
 html_code = """
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Scroll-driven Flourish Story - Text over Chart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scrollytelling - Flourish embed</title>
+<style>
+  :root { --accent: #104E8B; --active: goldenrod; }
+  body { margin:0; font-family: Poppins, Arial, sans-serif; background:#f7f7f7; color:#222; }
+  .scrolly-container { max-width:1200px; margin:0 auto; padding:24px; }
+  .scrolly-inner { display:flex; gap:24px; align-items:flex-start; }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+  /* Sticky visuals (single iframe) */
+  .visuals {
+    position: sticky;
+    top: 20px;              /* distance from top of iframe viewport */
+    flex: 1 1 60%;
+    height: calc(100vh - 40px);
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .visuals iframe {
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+    background: transparent;
+  }
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #1d1d1d;
-      overflow-x: hidden;
-    }
+  /* Scrolling text column */
+  .textcol {
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+  .step {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    padding: 28px;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.95);
+    transition: transform 0.28s ease, background-color 0.28s ease;
+  }
+  .step.is-active {
+    border-color: var(--active);
+    background: rgba(255, 237, 179, 0.95);
+    transform: translateY(-6px);
+  }
 
-    /* Chart + text container */
-    #scrolly__section {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      height: 100vh;
-    }
-
-    /* Fixed chart on the right */
-    .scrolly__chart {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 60vw;
-      height: 100vh;
-      z-index: 1;
-      background: #fff;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Scrollable text content */
-    .scrolly__content {
-      position: relative;
-      width: 100%;
-      max-width: 40vw;
-      margin-left: 2rem;
-      padding-top: 2rem;
-      z-index: 2;
-      overflow-y: auto;
-      height: 100vh;
-    }
-
-    /* Each text step block */
-    .step {
-      margin-bottom: 3rem;
-      padding: 1rem;
-      border: 2px solid #104E8B;
-      background: rgba(255, 255, 255, 0.85);
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-sizing: border-box;
-      border-radius: 6px;
-      backdrop-filter: saturate(180%) blur(10px);
-    }
-
-    /* Active step */
-    .step.is-active {
-      background-color: transparent !important;
-      box-shadow: none !important;
-      filter: none !important;
-      backdrop-filter: none !important;
-      border-color: goldenrod;
-      color: #3b3b3b;
-    }
-
-    /* Scrollbar style for scrollable text */
-    .scrolly__content::-webkit-scrollbar {
-      width: 8px;
-    }
-    .scrolly__content::-webkit-scrollbar-thumb {
-      background-color: rgba(16, 78, 139, 0.5);
-      border-radius: 4px;
-    }
-    .scrolly__content::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    /* Responsive styles for mobile */
-    @media (max-width: 768px) {
-      .scrolly__chart {
-        position: relative;
-        width: 100vw;
-        height: 50vh;
-        box-shadow: none;
-      }
-      .scrolly__content {
-        max-width: 100vw;
-        margin-left: 0;
-        height: auto;
-        overflow-y: visible;
-        padding: 1rem;
-      }
-      .step {
-        min-height: auto;
-      }
-    }
-
-    /* Header styling */
-    .app-header {
-      background-color: #104E8B;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      padding: 2rem 0;
-      margin: 0;
-      width: 100vw;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(16, 78, 139, 0.3);
-    }
-
-    .app-header h1 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 0.3rem;
-      font-family: 'Lora', serif;
-    }
-
-    .app-header h2 {
-      font-weight: 400;
-      font-size: 1.4rem;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-
-    .app-header hr {
-      border: 0;
-      height: 1px;
-      background: white;
-      width: 40%;
-      margin: 0 auto 1.5rem auto;
-      opacity: 0.7;
-    }
-
-    .app-header .intro-text {
-      font-size: 1rem;
-      font-style: italic;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.4;
-    }
-
-    /* Adds space between header and content */
-    .wrapper {
-      padding-top: 4rem;
-    }
-
-  </style>
+  /* make sure steps are readable on narrow screens */
+  @media (max-width: 900px) {
+    .scrolly-inner { flex-direction: column; }
+    .visuals { position: relative; height: 360px; width: 100%; top: 0; }
+    .textcol { max-width: 100%; width:100%; }
+  }
+</style>
 </head>
 <body>
-
-  <header class="app-header">
-    <div class="container">
-      <h1>Data Scrollytelling</h1>
-      <h2>Interactive analysis with Scrollama and Flourish</h2>
-      <hr />
-      <p class="intro-text">Discover how text and graphics interact harmoniously to tell your story.</p>
-    </div>
-  </header>
-
-  <div class="wrapper">
-    <div id="scrolly__section">
-
-      <div class="scrolly__chart">
-        <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
-      </div>
-
-      <div class="scrolly__content" id="scroll-content">
-        <div class="step is-active" data-step="0">
-          <h3>Premature deaths</h3>
-          <p>89% of premature deaths occurred in low- and middle-income countries.</p>
+  <div class="scrolly-container">
+    <h2>Scrollytelling - example</h2>
+    <div class="scrolly-inner">
+      <!-- left: scrolling steps -->
+      <div class="textcol">
+        <!-- NOTE: replace data-src values with your embed URLs (embed path) -->
+        <div class="step" data-src="https://flo.uri.sh/visualisation/24728120/embed">
+          <h3>Exposure pollution</h3>
+          <p>Exposure to PM2 varies across the continent.</p>
         </div>
-        <div class="step" data-step="1">
-          <h3>Children deaths</h3>
-          <p>Overlay: Over 237 000 deaths of children under the age of 5</p>
+
+        <div class="step" data-src="https://flo.uri.sh/visualisation/24838022/embed">
+          <h3>Household pollution</h3>
+          <p>Indoor air pollution death rates are high in the West, Central and East.</p>
         </div>
-        <div class="step" data-step="2">
-          <h3>Step 3 Title</h3>
-          <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-        </div>
-        <div class="step" data-step="3">
-          <h3>Step 4 Title</h3>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+
+        <div class="step" data-src="https://flo.uri.sh/visualisation/24838425/embed">
+          <h3>Ambient pollution</h3>
+          <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
         </div>
       </div>
 
+      <!-- right: single iframe that we update -->
+      <div class="visuals">
+        <iframe id="flourish-iframe" src="https://flo.uri.sh/visualisation/24728120/embed" scrolling="no" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://unpkg.com/scrollama"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const iframe = document.getElementById('flourish-iframe');
 
-  <script>
-    var scroller = scrollama();
+  // set each step height equal to the iframe viewport height for reliable intersection
+  function setStepHeights() {
+    const vh = window.innerHeight;
+    steps.forEach(s => s.style.minHeight = (vh) + 'px');
+  }
+  setStepHeights();
+  window.addEventListener('resize', setStepHeights);
 
-    function handleResize() {
-      // On mobile, steps can have auto height
-      var isMobile = window.matchMedia("(max-width: 768px)").matches;
-      d3.selectAll('.step')
-        .style('min-height', isMobile ? null : window.innerHeight * 0.7 + 'px');
-      scroller.resize();
-    }
+  // IntersectionObserver to detect which step is centered/visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // remove active from all and add to the currently intersecting
+        steps.forEach(s => s.classList.remove('is-active'));
+        entry.target.classList.add('is-active');
 
-    function handleStepEnter(response) {
-      d3.selectAll('.step').classed('is-active', false);
-      d3.select(response.element).classed('is-active', true);
+        // get the embed URL from data-src and update the iframe
+        const src = entry.target.dataset.src;
+        if (src) {
+          // Only change if different (prevents reloads when same)
+          if (iframe.src !== src) {
+            iframe.src = src;
+          }
+        }
+      }
+    });
+  }, { threshold: 0.55 }); // ~55% visible triggers
 
-      var slideNum = response.index;
-      var iframe = document.getElementById('flourish-iframe');
-      iframe.src = 'https://flo.uri.sh/story/872914/embed#slide-' + slideNum;
-    }
-
-    function init() {
-      handleResize();
-      scroller.setup({
-        step: '.step',
-        offset: 0.7,
-        debug: false,
-        container: '#scroll-content' // Limit scrollama to scrollable content
-      })
-      .onStepEnter(handleStepEnter);
-
-      window.addEventListener('resize', handleResize);
-    }
-
-    init();
-  </script>
-
+  // observe steps
+  steps.forEach(s => observer.observe(s));
+});
+</script>
 </body>
 </html>
 """
 
-# Render the HTML in Streamlit
-st.components.v1.html(html_code, height=1000, width = 4000, scrolling=True)
+# Use scrolling=True so the embedded HTML can scroll inside the Streamlit iframe.
+# Height should be large enough for the embedded viewport (adjust to your needs).
+st.components.v1.html(html_code, height=900, scrolling=True)
