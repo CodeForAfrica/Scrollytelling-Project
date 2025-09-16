@@ -70,7 +70,7 @@ html_code = """
     padding: 2rem;
     box-sizing: border-box;
     text-align: center;
-    color: white;
+    color: black;
     opacity: 0.6;
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
