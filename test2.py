@@ -80,7 +80,7 @@ html_code = """
 <body>
 
 <div class="visuals">
-  <iframe id="flourish-iframe" src="https://flo.uri.sh/story/872914/embed#slide-0" scrolling="no"></iframe>
+    <iframe id="flourish-iframe" src="https://flo.uri.sh/visualisation/24728120/embed" scrolling="no"></iframe>
 </div>
 
 <div class="scrolling-text">
