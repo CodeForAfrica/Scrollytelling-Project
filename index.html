@@ -28,37 +28,31 @@
 
     /* ======= Section 1 : Title ======= */
     .hero {
+      padding: 2rem;
+    }
+    
+    .hero-content {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start; 
-      text-align: left;      
-      padding: 2rem;         
+      align-items: flex-start; /* alignement vertical en haut */
+      gap: 2rem;               /* espace entre texte et image */
     }
     
-    .hero h1 {
-      text-align: left;
-      font-size: 3rem;
-    }
-    .hero h3 {
-      text-align: left;
-      font-weight: normal;
-      color: #555;
-      margin-top: 0;
-    }
-
-    /* ======= Section 2 : Image ======= */
-      .image {
-    display: flex;
-    justify-content: flex-start; 
-    padding: 1rem; 
+    .hero-content .text {
+      max-width: 600px;        /* limite la largeur du texte */
     }
     
-    .image img {
-      max-width: 90%;
-      height: 50%; 
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    .hero-content h1,
+    .hero-content h3 {
+      text-align: left;        /* assure l’alignement à gauche */
     }
-        
+    
+    .hero-content .image img {
+      max-width: 400px;        /* largeur de l’image */
+      height: auto;
+      border-radius: 0px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
 
     /* ======= Section 3 : intro Text ======= */
     .intro-text {
@@ -146,14 +140,17 @@
 
   <!-- Section 1 : Title -->
   <section class="hero">
-    <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
-    <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
+    <div class="hero-content">
+      <div class="text">
+        <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
+        <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
+      </div>
+      <div class="image">
+        <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Air pollution image">
+      </div>
+    </div>
   </section>
 
-  <!-- Section 2 : Image -->
-  <section class="image">
-    <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Air pollution image">
-  </section>
 
   <!-- Section 3 : Intro Text-->
   <section class="intro-text">
