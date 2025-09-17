@@ -6,10 +6,10 @@
   <title>Air Pollution in Africa</title>
   <style>
     body {
-      margin-left: 2rem;
-      margin-rigth: 2rem;
-      margin-bottom: 2rem;
-      margin-top: 2rem;
+      margin-left: 4rem;
+      margin-rigth: 4rem;
+      margin-bottom: 4rem;
+      margin-top: 4rem;
       font-family: Poppins, Arial, sans-serif;
       background: #D3D3D3;
       color: #111;
@@ -47,16 +47,16 @@
       font-weight: normal;
       color: #555;
       margin-top: 0;
+      margin-bottom: 4rem;
       text-align: left;
     }
     
     .hero .image img {
-      max-width: 100%; /* width image */
+      max-width: 50%; /* width image */
       height: auto;
       border-radius: 0px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-
 
 
     /* ======= Section 3 : intro Text ======= */
@@ -66,8 +66,23 @@
       line-height: 1.6;
       text-align: justify;
     }
+    
+  /* ======= Section 4 : Flourish Chart ======= */
 
-    /* ======= Section 4 : Scrollytelling ======= */
+    .flourish-chart1 {
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .flourish-chart1 p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+
+    /* ======= Section 5 : Scrollytelling ======= */
     .scrolly-section {
       position: relative;
       display: flex;
@@ -136,7 +151,7 @@
       font-size: 1.3rem;
       max-width: 800px;
       line-height: 1.6;
-      text-align: center;
+      text-align: left;
       padding: 4rem 1rem;
     }
   </style>
@@ -170,7 +185,19 @@
     </p>
   </section>
 
-  <!-- Section 4 : Scrollytelling -->
+  
+  <!-- Section 4 : Flourish chart -->
+
+  <section class="flourish-chart1">
+  <div class="flourish-figure">
+    <iframe src="https://public.flourish.studio/visualisation/24470534/" width="100%" height="500" frameborder="0"></iframe>
+  </div>
+  <p>In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
+    Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.</p>
+</section>
+
+
+  <!-- Section 5 : Scrollytelling -->
   <section class="scrolly-section">
     <div class="visuals">
       <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
