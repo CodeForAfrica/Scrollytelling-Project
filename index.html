@@ -5,155 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Air Pollution in Africa</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ======= Global Styles ======= */
     body {
+      margin: 0;
       font-family: "Poppins", Arial, sans-serif;
       background: #F5F5F5;
-      color: #333;
+      color: #111;
       overflow-x: hidden;
-      padding-top: 80px; /* Space for fixed navbar */
+      line-height: 1.6;
     }
 
-    /* ======= Fixed Navigation Bar ======= */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      padding: 0 6rem;
-      height: 80px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-tab {
-      padding: 0.8rem 1.5rem;
-      background: none;
-      border: none;
+    h1, h2, h3, p {
       font-family: inherit;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #666;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-align: left;
+      margin: 0 0 1rem 0;
     }
 
-    .nav-tab:hover {
-      background: rgba(0, 0, 0, 0.05);
-      color: #333;
-    }
-
-    .nav-tab.active {
-      background: #007bff;
-      color: white;
-    }
-
-    /* ======= Content Containers ======= */
-    .content-container {
-      display: none;
-      margin: 0 6rem 4rem 6rem;
-    }
-
-    .content-container.active {
-      display: block;
-    }
-
-    /* ======= Typography Standards ======= */
     h1 {
       font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      text-align: left;
-      color: #222;
+      font-weight: bold;
     }
 
     h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 1rem;
-      text-align: left;
-      color: #222;
+      font-size: 2rem;
+      margin-top: 2rem;
     }
 
     h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 1rem;
-      text-align: left;
+      font-size: 1.5rem;
+      font-weight: 500;
       color: #333;
     }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 1.2rem;
-      text-align: left;
-      color: #444;
+    /* ======= Fixed Navigation Bar ======= */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: flex-start;
+      gap: 2rem;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #FFD700;
     }
 
     /* ======= Section containers ======= */
     section {
       width: 100%;
-      padding: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
       text-align: left;
+      padding: 3rem 6rem;
+      box-sizing: border-box;
     }
 
     /* ======= Hero Section ======= */
     .hero {
-      padding: 3rem 0;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.2rem;
-      font-weight: normal;
-      color: #666;
-      margin-bottom: 3rem;
-    }
-    
-    .hero .image img {
-      width: 100%;       
-      height: 400px;     
-      object-fit: fill;  
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      display: block;    
+      padding-top: 7rem; /* espace pour la nav bar */
+      gap: 2rem;
     }
 
-    /* ======= Chart Sections ======= */
-    .chart-section {
+    .hero .image img {
       width: 100%;
-      padding: 2rem 0;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      display: block;
     }
-    
-    .chart-figure {
+
+    /* ======= Intro & Flourish Text ======= */
+    .intro-text,
+    .flourish1-text,
+    .flourish2-text,
+    .flourish3-text,
+    .flourish4-text,
+    .outro {
+      font-size: 1.2rem;
       width: 100%;
-      height: 500px; 
-      margin: 1rem 0;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 100%;
     }
-    
-    .chart-figure iframe {
+
+    /* ======= Flourish Figures ======= */
+    .flourish1-figure,
+    .flourish3-figure,
+    .flourish4-figure {
+      width: 100%;
+      height: 500px;
+      margin-bottom: 1rem;
+    }
+
+    iframe {
       width: 100%;
       height: 100%;
       border: none;
@@ -166,6 +126,7 @@
       display: flex;
       flex-direction: column;
       margin: 4rem 0;
+      padding: 0 6rem;
     }
 
     .visuals {
@@ -184,7 +145,6 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border: none;
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
     }
@@ -200,24 +160,24 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       color: black;
       margin-top: 100vh;
     }
 
     .step {
       min-height: 100vh;
-      max-width: 700px;
-      margin: 0 auto;
+      max-width: 800px;
+      margin: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 2rem;
+      padding: 2rem 0;
       box-sizing: border-box;
-      text-align: center;
+      text-align: left;
       opacity: 0.6;
       transition: opacity 0.3s ease, transform 0.3s ease;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     .step.is-active {
@@ -225,297 +185,75 @@
       transform: scale(1.05);
     }
 
-    /* ======= Image Section ======= */
-    .image-section {
-      margin: 2rem 0;
-    }
-    
-    .image-section img {
-      width: 100%; 
-      height: auto; 
-      border-radius: 8px; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-      margin: 1rem 0;
-    }
-
-    /* ======= About Section ======= */
-    .about-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-
-    .about-content h1 {
-      margin-bottom: 2rem;
-    }
-
-    .about-content ul {
-      margin: 1rem 0;
-      padding-left: 2rem;
-    }
-
-    .about-content li {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 0.5rem;
-      color: #444;
-    }
-
-    /* ======= Responsive Design ======= */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 0 2rem;
-      }
-      
-      .content-container {
-        margin: 0 2rem 4rem 2rem;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
-      
-      .hero .image img {
-        height: 250px;
-      }
-      
-      .chart-figure {
-        height: 350px;
-      }
-      
-      .step {
-        min-height: 60vh;
-        padding: 1rem;
-      }
-      
-      .visuals {
-        height: 60vh;
-      }
-      
-      .scrolling-text {
-        margin-top: 60vh;
-      }
+    /* ======= Images ======= */
+    .image1-section img {
+      width: 100%;
+      height: auto;
+      border-radius: 0px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <button class="nav-tab active" onclick="showContent('project')">Project</button>
-      <button class="nav-tab" onclick="showContent('about')">About</button>
-    </div>
+  <!-- Navigation -->
+  <nav>
+    <a href="#project">Project</a>
+    <a href="#about">About</a>
   </nav>
 
-  <!-- Project Content -->
-  <div id="project-content" class="content-container active">
-    <!-- Section 1: Title -->
-    <section class="hero">
-      <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
-      <p class="hero-subtitle">Air pollution and climate change are a deadly duo for Africa.</p>
+  <!-- Section 1 : Title -->
+  <section class="hero" id="project">
+    <div class="hero-content">
+      <div class="text">
+        <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
+        <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
+      </div>
       <div class="image">
-        <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg" alt="Air pollution in Africa">
+        <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg">
       </div>
-    </section>
-
-    <!-- Section 2: Intro Text -->
-    <section>
-      <p>
-        Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress. It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality.
-      </p>
-      <p>
-        sensors.AFRICA records that the leading pollutant is particulate matter (PM), a common proxy indicator for air pollution, with strong evidence for the negative health impacts associated with exposure to it. PM is composed of sulfate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water droplets. Of note is Indoor (household) air pollution and outdoor (ambient) air pollution.
-      </p>
-      <p>
-        According to the World Health Organisation, the combined effects of ambient air pollution and household air pollution are associated with 6.7 million premature deaths annually. Ambient air pollution is estimated to have caused 4.2 million premature deaths worldwide while household air pollution was responsible for an estimated 3.2 million deaths per year.
-      </p>
-    </section>
-
-    <!-- Section 3: Flourish chart -->
-    <section class="chart-section">
-      <div class="chart-figure">
-        <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
-      </div>
-    </section>
-
-    <!-- Section 4: Flourish text -->
-    <section>
-      <p>
-        In 2019, 99% of the world's population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health.
-      </p>
-      <p>
-        Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
-      </p>
-    </section>
-
-    <!-- Section 5: Scrollytelling -->
-    <section class="scrolly-section">
-      <div class="visuals">
-        <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
-        <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
-        <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
-      </div>
-
-      <div class="scrolling-text">
-        <div class="step" data-target="vis-1">
-          <h3>Exposure pollution</h3>
-          <p>Exposure to PM2 varies across the continent.</p>
-        </div>
-        <div class="step" data-target="vis-2">
-          <h3>Household pollution</h3>
-          <p>Indoor air pollution death rates are high in the West, Central and East.</p>
-        </div>
-        <div class="step" data-target="vis-3">
-          <h3>Ambient pollution</h3>
-          <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 6: Infrastructure text -->
-    <section>
-      <h2>Air Quality and Infrastructure</h2>
-      <p>
-        People with lower incomes are more likely to live in areas with higher pollution levels due to various factors creating and perpetuating environmental inequality. Environmental burdens of society, like pollution, are disproportionately borne by marginalised communities.
-      </p>
-      <p>
-        The 2018 study Nature: Air pollution and infant mortality in Africa by Heft-Neal et al., suggests that current estimates for the death toll of air pollution might be too low. With two datasets: one based on household surveys, which detail the time and place of nearly one million births across sub-Saharan Africa, and another detailing spatial distribution of exposure to PM2.5 based on satellite data, they estimate the impact of air pollution on mortality rates among infants in Africa.
-      </p>
-      <p>
-        Findings show that a 10μg/m³ increase in PM2.5 concentration is associated with a 9% rise in infant mortality. This suggests that PM2.5 exposure is responsible for 22% of infant deaths in the studied countries; this means 449,000 infant deaths in 2015 alone: an extremely high death toll, suggesting the exposure-response relationship in the select African countries is steeper than previous studies.
-      </p>
-    </section>
-
-    <!-- Section 7: Flourish 3 chart -->
-    <section class="chart-section">
-      <div class="chart-figure">
-        <iframe id="vis-4" src="https://public.flourish.studio/visualisation/24679794/embed"></iframe>
-      </div>
-    </section>
-
-    <!-- Section 8: Mathare case study -->
-    <section>
-      <h3>Mathare: Where Indoor and Outdoor Collide</h3>
-      <p>
-        In Mathare, Nairobi's most densely populated sub-county, the line between outdoor and indoor pollution is almost invisible. Mathare packs <strong>206,564 people</strong> into just <strong>3 km²</strong> according to the KNBS Census, 2019; nearly <strong>69,000 residents per km²</strong>.
-      </p>
-      <p>
-        The 2018 study Nature: Air pollution and infant mortality in Africa by Heft-Neal et al., suggests that current estimates for the death toll of air pollution might be too low. With two datasets: one based on household surveys, which detail the time and place of nearly one million births across sub-Saharan Africa, and another detailing spatial distribution of exposure to PM2.5 based on satellite data, they estimate the impact of air pollution on mortality rates among infants in Africa.
-      </p>
-      <p>
-        Findings show that a 10μg/m³ increase in PM2.5 concentration is associated with a 9% rise in infant mortality. This suggests that PM2.5 exposure is responsible for 22% of infant deaths in the studied countries; this means 449,000 infant deaths in 2015 alone: an extremely high death toll, suggesting the exposure-response relationship in the select African countries is steeper than previous studies.
-      </p>
-      <p>
-        Smoke from household fuels, waste burning, and the settlement's dense construction make the air outside as hazardous as the air inside: smoke, crowding, and trapped pollution.
-      </p>
-
-      <h3>Sensors tell the story</h3>
-      <p>
-        From 2019 to 2024, data from Mathare's air quality sensors show a steady rise in pollution. Fine particulate matter (PM₂.₅) reached levels nearly <strong>eight times</strong> higher than the WHO's safe annual limit of <strong>5 µg/m³</strong>, while coarse particles (PM₁₀) more than doubled the recommended <strong>15 µg/m³</strong>.
-      </p>
-      <p>Every year, the air has grown more hazardous to breathe.</p>
-    </section>
-
-    <!-- Section 9: Flourish 4 chart -->
-    <section class="chart-section">
-      <div class="chart-figure">
-        <iframe id="vis-5" src="https://public.flourish.studio/visualisation/24855106/embed"></iframe>
-      </div>
-    </section>
-
-    <!-- Section 10: Buildings analysis -->
-    <section>
-      <p>
-        At these concentrations, the risks are severe. The WHO notes that long-term exposure to PM₂.₅ and PM₁₀ increases the likelihood of asthma, heart disease, stroke, and premature death. In Mathare, this means residents are constantly breathing air that carries invisible but life-threatening health costs.
-      </p>
-      <p>
-        To understand why pollution accumulates so heavily here, we need to look beyond the sensors, to Mathare's built environment; dense housing and limited open space shaping how air moves through the settlement.
-      </p>
-      
-      <h3>Buildings reveal the density</h3>
-      <p>Using Google's Open Buildings dataset, we verified 775 structures within the Mathare boundary.</p>
-    </section>
-
-    <!-- Section 11: Satellite image -->
-    <section class="image-section">
-      <img src="https://p-2d475f4d-952b-49e8-89ec-c70437a32add.apps.webstudio.is/cgi/image/Open_building_Mathare__iqAmbk8HvzZxgtDd-joQ.png" alt="Mathare satellite view">
-    </section>
-
-    <!-- Conclusion -->
-    <section>
-      <h2>Conclusion</h2>
-      <p>
-        These graphics highlight the urgent need to implement public health policies adapted to the most affected regions.
-      </p>
-    </section>
-  </div>
-
-  <!-- About Content -->
-  <div id="about-content" class="content-container">
-    <div class="about-content">
-      <h1>About This Project</h1>
-      
-      <h2>Overview</h2>
-      <p>
-        This interactive data story explores the critical issue of air pollution across Africa, combining comprehensive datasets with compelling visualizations to reveal the human cost of poor air quality on the continent.
-      </p>
-      
-      <h2>Key Features</h2>
-      <ul>
-        <li>Interactive maps showing pollution exposure patterns across African countries</li>
-        <li>Scrollytelling visualization technique to guide users through complex data</li>
-        <li>Case study of Mathare, Nairobi, demonstrating local impact</li>
-        <li>Integration of WHO guidelines and health impact assessments</li>
-        <li>Satellite imagery and sensor data analysis</li>
-      </ul>
-      
-      <h2>Data Sources</h2>
-      <p>
-        This project utilizes data from multiple authoritative sources including the World Health Organization, sensors.AFRICA network, Google's Open Buildings dataset, and peer-reviewed research from Nature journal.
-      </p>
-      
-      <h2>Technical Implementation</h2>
-      <p>
-        The project combines HTML, CSS, and JavaScript with embedded Flourish visualizations to create an engaging, responsive web experience. The scrollytelling technique allows users to interact with data visualizations as they progress through the narrative.
-      </p>
-      
-      <h2>Impact and Goals</h2>
-      <p>
-        By making complex air quality data accessible and engaging, this project aims to raise awareness about the environmental health crisis facing African communities and support evidence-based policy making for cleaner air initiatives.
-      </p>
     </div>
-  </div>
+  </section>
+
+  <!-- Section 2 : Intro Text-->
+  <section class="intro-text">
+    <p>Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems...</p>
+    <p>sensors.AFRICA records that the leading pollutant is particulate matter (PM)...</p>
+    <p>According to the World Health Organisation, the combined effects...</p>
+  </section>
+
+  <!-- Section 3 : Flourish chart -->
+  <section class="flourish1-section">
+    <div class="flourish1-figure">
+      <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
+    </div>
+  </section>
+
+  <!-- Section 4 : Flourish text -->
+  <section class="flourish1-text">
+    <p>In 2019, 99% of the world’s population was living in places...</p>
+  </section>
+
+  <!-- Section 5 : Scrollytelling -->
+  <!-- (reste inchangé) -->
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About</h2>
+    <p>This project explores the impact of air pollution on health, infrastructure, and inequality across Africa, using data visualisations and scrollytelling for better understanding.</p>
+  </section>
+
+  <!-- (reste du script inchangé) -->
 
   <script>
-    // Navigation functionality
-    function showContent(contentType) {
-      // Hide all content containers
-      document.querySelectorAll('.content-container').forEach(container => {
-        container.classList.remove('active');
-      });
-      
-      // Remove active class from all nav tabs
-      document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      
-      // Show selected content and activate corresponding tab
-      document.getElementById(contentType + '-content').classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    // Scrollytelling functionality
     document.addEventListener('DOMContentLoaded', () => {
       const steps = document.querySelectorAll('.step');
       const iframes = document.querySelectorAll('.visuals iframe');
 
       function setStepHeights() {
-        const vh = window.innerHeight * 0.8; // 80vh to account for navbar
+        const vh = window.innerHeight;
         steps.forEach(step => step.style.minHeight = vh + 'px');
       }
       setStepHeights();
@@ -535,9 +273,7 @@
       }, { threshold: 0.6 });
 
       steps.forEach(step => observer.observe(step));
-      if (iframes.length > 0) {
-        iframes[0].classList.add('active');
-      }
+      iframes[0].classList.add('active');
     });
   </script>
 
