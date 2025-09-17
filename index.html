@@ -132,7 +132,7 @@
     .hero .image img {
       width: 100%;       
       height: 400px;     
-      object-fit: cover;  
+      object-fit: fill;  
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       display: block;    
@@ -170,16 +170,14 @@
 
     .visuals {
       position: sticky;
-      top: 80px; /* Account for navbar */
+      top: 0;
       width: 100%;
-      height: 80vh;
+      height: 100vh;
       background: #000;
       z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
-      overflow: hidden;
     }
 
     .visuals iframe {
@@ -204,11 +202,11 @@
       flex-direction: column;
       align-items: center;
       color: black;
-      margin-top: 80vh;
+      margin-top: 100vh;
     }
 
     .step {
-      min-height: 80vh;
+      min-height: 100vh;
       max-width: 700px;
       margin: 0 auto;
       display: flex;
@@ -219,21 +217,12 @@
       text-align: center;
       opacity: 0.6;
       transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: 2rem;
     }
 
     .step.is-active {
       opacity: 1;
-      transform: scale(1.02);
-    }
-
-    .step h3 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .step p {
-      text-align: center;
-      font-size: 1.2rem;
+      transform: scale(1.05);
     }
 
     /* ======= Image Section ======= */
