@@ -8,8 +8,8 @@
     body {
       margin: 0;
       font-family: Poppins, Arial, sans-serif;
-      background: #000;
-      color: #fff;
+      background: #f5f5f5;
+      color: #111;
       overflow-x: hidden;
     }
 
@@ -32,7 +32,7 @@
     }
     .hero h3 {
       font-weight: normal;
-      color: #bbb;
+      color: #555;
       margin-top: 0;
     }
 
@@ -41,10 +41,10 @@
       max-width: 90%;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
-    /* ======= Section 3 : intro Texte  ======= */
+    /* ======= Section 3 : intro Text ======= */
     .intro-text {
       max-width: 800px;
       font-size: 1.2rem;
@@ -53,10 +53,16 @@
     }
 
     /* ======= Section 4 : Scrollytelling ======= */
+    .scrolly-section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin: 4rem 0;
+    }
+
     .visuals {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
       width: 100%;
       height: 100vh;
       background: #000;
@@ -68,8 +74,6 @@
 
     .visuals iframe {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       border: none;
@@ -89,7 +93,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: black;
+      color: white;
+      margin-top: 100vh;
     }
 
     .step {
@@ -117,12 +122,13 @@
       max-width: 800px;
       line-height: 1.6;
       text-align: center;
+      padding: 4rem 1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Section 1 : Titre -->
+  <!-- Section 1 : Title -->
   <section class="hero">
     <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
     <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
@@ -130,49 +136,51 @@
 
   <!-- Section 2 : Image -->
   <section class="image">
-    <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg?_gl=1*1x3zst5*_ga*NzEzMTM1OTEuMTc1ODEwMzA4MA..*_ga_8JE65Q40S6*czE3NTgxMDMwNzkkbzEkZzAkdDE3NTgxMDMwNzkkajYwJGwwJGgw">
+    <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Air pollution image">
   </section>
 
-  <!-- Section 3 : Texte introductif -->
+  <!-- Section 3 : Intro Text-->
   <section class="intro-text">
     <p>
-     Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress.  It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality. 
-
-sensors.AFRICA records that the leading pollutant is particulate matter (PM),  a common proxy indicator for air pollution, with strong evidence for the negative health impacts associated with exposure to it. PM is composed of sulfate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water droplets. Of note is Indoor (household) air pollution and outdoor (ambient) air pollution. 
-
-According to the World Health Organisation, the combined effects of ambient air pollution and household air pollution are associated with 6.7 million premature deaths annually. Ambient air pollution is estimated to have caused 4.2 million premature deaths worldwide while  household air pollution was responsible for an estimated 3.2 million deaths per year. 
-
+      Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress.  It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality.
     </p>
-    
+    <p>
+      sensors.AFRICA records that the leading pollutant is particulate matter (PM), a common proxy indicator for air pollution, with strong evidence for the negative health impacts associated with exposure to it. PM is composed of sulfate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water droplets. Of note is Indoor (household) air pollution and outdoor (ambient) air pollution.
+    </p>
+    <p>
+      According to the World Health Organisation, the combined effects of ambient air pollution and household air pollution are associated with 6.7 million premature deaths annually. Ambient air pollution is estimated to have caused 4.2 million premature deaths worldwide while household air pollution was responsible for an estimated 3.2 million deaths per year.
+    </p>
   </section>
 
   <!-- Section 4 : Scrollytelling -->
-  <div class="visuals">
-    <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
-    <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
-    <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
-  </div>
+  <section class="scrolly-section">
+    <div class="visuals">
+      <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
+      <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
+      <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
+    </div>
 
-  <div class="scrolling-text">
-    <div class="step" data-target="vis-1">
-      <h3>Exposure pollution</h3>
-      <p>Exposure to PM2 varies across the continent.</p>
+    <div class="scrolling-text">
+      <div class="step" data-target="vis-1">
+        <h3>Exposure pollution</h3>
+        <p>Exposure to PM2 varies across the continent.</p>
+      </div>
+      <div class="step" data-target="vis-2">
+        <h3>Household pollution</h3>
+        <p>Indoor air pollution death rates are high in the West, Central and East.</p>
+      </div>
+      <div class="step" data-target="vis-3">
+        <h3>Ambient pollution</h3>
+        <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
+      </div>
     </div>
-    <div class="step" data-target="vis-2">
-      <h3>Household pollution</h3>
-      <p>Indoor air pollution death rates are high in the West, Central and East.</p>
-    </div>
-    <div class="step" data-target="vis-3">
-      <h3>Ambient pollution</h3>
-      <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
-    </div>
-  </div>
+  </section>
 
   <!-- Section 5 : Conclusion -->
   <section class="outro">
     <h2>Conclusion</h2>
     <p>
-      Ces graphiques montrent l'urgence de mettre en place des politiques de santé publique adaptées dans les zones les plus touchées.
+      These graphics highlight the urgent need to implement public health policies adapted to the most affected regions.
     </p>
   </section>
 
