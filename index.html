@@ -7,7 +7,7 @@
   <style>
     /* ======= Global Styles ======= */
     body {
-      margin: 0;
+      margin: 20px;
       font-family: "Poppins", Arial, sans-serif;
       background: #F5F5F5;
       color: #111;
@@ -166,18 +166,13 @@
     }
 
     .step {
-      min-height: 100vh;
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 2rem;
-      box-sizing: border-box;
-      text-align: center;
-      opacity: 0.6;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      font-size: 2rem;
+      
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+
     }
 
     .step.is-active {
@@ -360,7 +355,6 @@
     <p>This project explores the impact of air pollution on health, infrastructure, and inequality across Africa, using data visualisations and scrollytelling for better understanding.</p>
   </section>
 
-  <!-- (reste du script inchangé) -->
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -375,17 +369,18 @@
       window.addEventListener('resize', setStepHeights);
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            steps.forEach(s => s.classList.remove('is-active'));
-            entry.target.classList.add('is-active');
-            const targetId = entry.target.dataset.target;
-            iframes.forEach(f => f.classList.remove('active'));
-            const activeFrame = document.getElementById(targetId);
-            if (activeFrame) activeFrame.classList.add('active');
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          steps.forEach(s => s.classList.remove('is-active'));
+          entry.target.classList.add('is-active');
+          const targetId = entry.target.dataset.target;
+          iframes.forEach(f => f.classList.remove('active'));
+          const activeFrame = document.getElementById(targetId);
+          if (activeFrame) activeFrame.classList.add('active');
           }
         });
-      }, { threshold: 0.6 });
+      }, { threshold: 0.3 }); 
+
 
       steps.forEach(step => observer.observe(step));
       iframes[0].classList.add('active');
