@@ -28,33 +28,32 @@
     /* ======= Section 1 : Title ======= */
     .hero {
       padding: 2rem;
+      display: flex;
+      flex-direction: column; /* text then image */
+      align-items: flex-start; /* align left */
+      gap: 1rem; /* space between elements */
     }
     
-    .hero-content {
-      display: flex;            /* texte + image same line */
-      align-items: flex-start;  /* align vertically on top */
-      gap: 2rem;                /* space between text and image */
-    }
-    
-    .hero-content .text h1 {
+    .hero h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
       text-align: left;
     }
     
-    .hero-content .text h3 {
+    .hero h3 {
       font-weight: normal;
       color: #555;
       margin-top: 0;
       text-align: left;
     }
     
-    .hero-content .image img {
-      max-width: 400%;           /* width image */
+    .hero .image img {
+      max-width: 300%; /* width image */
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
+
 
 
     /* ======= Section 3 : intro Text ======= */
