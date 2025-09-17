@@ -5,6 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scrollytelling - Maps Flourish</title>
 <style>
+
+
+  .intro {
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: #000;
+  color: #fff;
+}
+
+
+  .outro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: #000;
+    color: #fff;
+    font-size: 1.2rem;
+  }
   html, body {
     margin: 0;
     padding: 0;
@@ -14,7 +41,7 @@
     overflow-x: hidden;
   }
 
-  /* Zone visuelle fixe */
+
   .visuals {
     position: fixed;
     top: 0;
@@ -44,7 +71,7 @@
     z-index: 2;
   }
 
-  /* Texte défilant par-dessus */
+
   .scrolling-text {
     position: relative;
     z-index: 3;
@@ -85,6 +112,13 @@
 </style>
 </head>
 <body>
+
+  <header class="intro">
+    <h1>Air Pollution in Africa</h1>
+    <p>Cette page explore trois dimensions de la pollution en Afrique : 
+    exposition, pollution domestique et pollution ambiante. 
+    Faites défiler pour voir les graphiques changer.</p>
+  </header>
 
 <div class="visuals">
   <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
