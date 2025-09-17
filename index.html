@@ -122,67 +122,43 @@
 
     /* ======= Scrollytelling ======= */
     .scrolly-section {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 0;
     }
-
+    
     .visuals {
-      position: sticky;
-      top: 0;
+      position: relative; 
       width: 100%;
-      height: 100vh;
-      background: #000;
-      z-index: 1;
+      background: transparent; 
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      gap: 2rem; 
     }
-
+    
     .visuals iframe {
-      position: absolute;
+      position: relative; 
       width: 100%;
-      height: 100%;
+      height: 600px; 
       border: none;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+      opacity: 1; 
+      transition: none; 
     }
-
-    .visuals iframe.active {
-      opacity: 1;
-      z-index: 2;
-    }
-
+    
     .scrolling-text {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: black;
-      margin-top: 100vh;
-    }
-
-    .step {
-      min-height: 100vh;
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 2rem;
-      box-sizing: border-box;
       text-align: center;
-      opacity: 0.6;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      font-size: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      color: #111; 
     }
-
-    .step.is-active {
+    
+    .step {
+      min-height: auto; 
+      margin: 2rem 0;
+      text-align: center;
       opacity: 1;
-      transform: scale(1.05);
+      transform: none;
+      font-size: 1.6rem; 
     }
 
 
