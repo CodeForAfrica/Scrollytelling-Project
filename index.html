@@ -5,64 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Air Pollution in Africa</title>
   <style>
-    /* ======= Global Styles ======= */
     body {
-      margin: 20px;
+      margin-left: 6rem;
+      margin-right: 6rem;
+      margin-bottom: 4rem;
+      margin-top: 4rem;
       font-family: "Poppins", Arial, sans-serif;
       background: #F5F5F5;
       color: #111;
       overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, p {
-      font-family: inherit;
-      font-size: 1.2rem;
-      text-align: left;
-      margin: 0 0 1rem 0;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-top: 2rem;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: #333;
-    }
-
-    /* ======= Fixed Navigation Bar ======= */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: flex-start;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #FFD700;
     }
 
     /* ======= Section containers ======= */
@@ -70,57 +21,94 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
       text-align: left;
-      padding: 3rem 6rem;
+      padding: 3rem 1rem;
       box-sizing: border-box;
     }
 
-    /* ======= Hero Section ======= */
+    /* ======= Section 1 & 2 : Title & subtitle ======= */
     .hero {
-      padding-top: 7rem; /* espace pour la nav bar */
-      gap: 2rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column; /* text then image */
+      align-items: flex-start; /* align left */
+      gap: 6rem; /* space between elements */
     }
-
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .hero h3 {
+      font-weight: normal;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 4rem;
+      text-align: left;
+    }
+    
     .hero .image img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      display: block;
+    width: 100%;       
+    height: 700px;     
+    object-fit: fill;  
+    border-radius: 0px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: block;    
     }
 
-    /* ======= Intro & Flourish Text ======= */
-    .intro-text,
-    .flourish1-text,
-    .flourish2-text,
-    .flourish3-text,
-    .flourish4-text,
-    .outro {
-      font-size: 1.2rem;
-      width: 100%;
-      max-width: 100%;
-    }
 
-    /* ======= Flourish Figures ======= */
-    .flourish1-figure,
-    .flourish3-figure,
-    .flourish4-figure {
+    /* ======= Section 2 : intro Text ======= */
+    .intro-text {
+    width: 100%;       
+    max-width: none;    
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;  
+  }
+    
+  /* ======= Section 3 : Flourish 1 Chart ======= */
+
+    .flourish1-section {
       width: 100%;
-      height: 500px;
+      max-width: none;
+      padding: 2rem;
+      text-align: left;
+    }
+    
+    .flourish1-section h2 {
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
-
-    iframe {
+    
+    .flourish1-figure {
+      width: 100%;
+      height: 500px; 
+      margin-bottom: 1rem;
+    }
+    
+    .flourish1-figure iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
     }
 
-    /* ======= Scrollytelling ======= */
+     /* ======= Section 4 : Flourish 1 Text ======= */
+      
+    .flourish1-text {
+        width: 100%;       
+        max-width: none;    
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: left;  
+      }
+
+
+    /* ======= Section 5 : Scrollytelling ======= */
     .scrolly-section {
       position: relative;
       display: flex;
@@ -128,34 +116,31 @@
       margin: 4rem 0;
     }
 
-      .visuals {
+    .visuals {
       position: sticky;
       top: 0;
       width: 100%;
       height: 100vh;
-      background: #000; 
+      background: #000;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1;
     }
-    
+
     .visuals iframe {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out; /* Plus rapide */
       border: none;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
     }
-    
+
     .visuals iframe.active {
       opacity: 1;
       z-index: 2;
     }
-
 
     .scrolling-text {
       position: relative;
@@ -169,42 +154,145 @@
     }
 
     .step {
-      
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3rem;
-
+      min-height: 100vh;
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      text-align: center;
+      opacity: 0.6;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: 2rem;
     }
 
     .step.is-active {
       opacity: 1;
       transform: scale(1.05);
     }
-  
 
-    /* ======= Images ======= */
-    .image1-section img {
+  /* ======= Section 6 : Flourish 2 Text ======= */
+
+    .flourish2-text {
+        width: 100%;       
+        max-width: none;    
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: left;  
+      }
+
+    /* ======= Section 7 : Flourish 3 Chart ======= */
+
+    .flourish3-section {
       width: 100%;
-      height: auto;
-      border-radius: 0px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: none;
+      padding: 2rem;
+      text-align: left;
+    }
+    
+    .flourish3-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .flourish3-figure {
+      width: 100%;
+      height: 500px; 
+      margin-bottom: 1rem;
+    }
+    
+    .flourish3-figure iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+  /* ======= Section 8 : Flourish 3 Text ======= */
+
+    .flourish3-text {
+            width: 100%;       
+            max-width: none;    
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: left;  
+          }
+    
+    
+  /* ======= Section 9 : Flourish 4 Chart ======= */
+
+    .flourish4-section {
+      width: 100%;
+      max-width: none;
+      padding: 2rem;
+      text-align: left;
+    }
+    
+    .flourish4-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .flourish4-figure {
+      width: 100%;
+      height: 500px; 
+      margin-bottom: 1rem;
+    }
+    
+    .flourish4-figure iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    
+    /* ======= Section 10 : Flourish 4 Text ======= */
+
+    .flourish4-text {
+        width: 100%;       
+        max-width: none;    
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: left;  
+      }
+
+
+    /* ======= Section 10 : Image 1 ======= */
+    
+    .image1-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; 
+      margin: 2rem 0;
+    }
+    
+    .image1-section img {
+      width: 100%; 
+      height: auto; 
+      border-radius: 0px; 
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); 
       margin-top: 1rem;
       margin-bottom: 1rem;
+    }
+    
+
+
+    /* ======= Section  : Conclusion ======= */
+    .outro {
+      font-size: 1.3rem;
+      max-width: 800px;
+      line-height: 1.6;
+      text-align: left;
+      padding: 4rem 1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#project">Project</a>
-    <a href="#about">About</a>
-  </nav>
-
   <!-- Section 1 : Title -->
-  <section class="hero" id="project">
+  <section class="hero">
     <div class="hero-content">
       <div class="text">
         <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
@@ -216,9 +304,10 @@
     </div>
   </section>
 
+
   <!-- Section 2 : Intro Text-->
   <section class="intro-text">
-      <p>
+    <p>
       Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress.  It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality.
     </p>
     <p>
@@ -229,24 +318,29 @@
     </p>
   </section>
 
+  
   <!-- Section 3 : Flourish chart -->
-  <section class="flourish1-section">
-    <div class="flourish1-figure">
-      <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
-    </div>
-  </section>
 
-  <!-- Section 4 : Flourish text -->
-  <section class="flourish1-text">
-     <p> 
+  <section class="flourish1-section">
+  <div class="flourish1-figure">
+    <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
+  </div>
+</section>
+  
+<!-- Section 4 : Flourish text -->
+  
+ <section class="flourish1-text"> 
+   <p> 
      In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
 
-    Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
+Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
    </p>
-  </section>
+
+</section>
+
 
   <!-- Section 5 : Scrollytelling -->
-    <section class="scrolly-section">
+  <section class="scrolly-section">
     <div class="visuals">
       <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
       <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
@@ -351,50 +445,35 @@
     </p>
   </section>
 
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About</h2>
-    <p>This project explores the impact of air pollution on health, infrastructure, and inequality across Africa, using data visualisations and scrollytelling for better understanding.</p>
-  </section>
-
-
-      <script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const steps = document.querySelectorAll('.step');
       const iframes = document.querySelectorAll('.visuals iframe');
-    
-      // Forcer chaque step à occuper la hauteur de l'écran
+
       function setStepHeights() {
         const vh = window.innerHeight;
         steps.forEach(step => step.style.minHeight = vh + 'px');
       }
       setStepHeights();
       window.addEventListener('resize', setStepHeights);
-    
-      // IntersectionObserver avec déclenchement plus permissif
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             steps.forEach(s => s.classList.remove('is-active'));
             entry.target.classList.add('is-active');
-    
             const targetId = entry.target.dataset.target;
             iframes.forEach(f => f.classList.remove('active'));
-    
             const activeFrame = document.getElementById(targetId);
             if (activeFrame) activeFrame.classList.add('active');
           }
         });
-      }, { threshold: 0.15 }); // 15% visible = activation (plus réactif)
-    
+      }, { threshold: 0.6 });
+
       steps.forEach(step => observer.observe(step));
-    
-      // Activer le premier visuel par défaut
-      if (iframes.length > 0) iframes[0].classList.add('active');
+      iframes[0].classList.add('active');
     });
-    </script>
-    
+  </script>
 
 </body>
 </html>
