@@ -842,22 +842,25 @@
   
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          const counter = entry.target;
-          const targetValue = parseFloat(counter.dataset.value);
+        const counter = entry.target;
+        const targetValue = parseFloat(counter.dataset.value);
+  
+        if (entry.isIntersecting) {
           let currentValue = 0;
-          const increment = targetValue / 100; // nombre d'étapes
+          const increment = targetValue / 100;
   
           const interval = setInterval(() => {
             currentValue += increment;
-            if(currentValue >= targetValue) {
+            if (currentValue >= targetValue) {
               counter.textContent = targetValue.toFixed(1);
               clearInterval(interval);
             } else {
               counter.textContent = currentValue.toFixed(1);
             }
-          }, 15); // vitesse de l'animation
-          observer.unobserve(counter); // on ne refait pas l'animation
+          }, 15);
+        } else {
+          
+          counter.textContent = '0';
         }
       });
     }, { threshold: 0.6 });
