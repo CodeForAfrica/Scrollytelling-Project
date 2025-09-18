@@ -211,7 +211,7 @@
     }
     
     /* ======= Scrolly Images ======= */
-    .scrolly-image-section {
+    /*.scrolly-image-section {
       display: flex;
       flex-direction: row;
       width: 100%;
@@ -262,7 +262,47 @@
     
     .scrolly-image-section .visuals img.active {
       opacity: 1;
+    }*/
+
+    .scrolly-image-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2rem 0;
+      position: relative;
     }
+    
+    .scrolly-image-section .scrolling-text {
+      flex: 1;
+      padding: 2rem;
+      z-index: 2;
+    }
+    
+    .scrolly-image-section .visuals {
+      flex: 1;
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .scrolly-image-section .visuals img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; 
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    
+    .scrolly-image-section .visuals img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
     
     /* ======= Images ======= */
     .image1-section img {
@@ -624,7 +664,7 @@
 
   <!-- Section 25 : Soudan Scrolly -->
 
- <section class="scrolly-image-section">
+      <section class="scrolly-image-section">
       <div class="scrolling-text">
         <div class="step" data-target="img-1">
           <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of 3.0 °C.</p>
@@ -638,11 +678,12 @@
       </div>
       
       <div class="visuals">
-        <img id="img-1" src="Bentiu-Sudan.png"  class="active">
-        <img id="img-2" src="Bor-Sudan.png" class="active">
-        <img id="img-3" src="Juba-Sudan.png" class="active" >
+        <img id="img-1" src="Bentiu-Sudan.png" class="active">
+        <img id="img-2" src="Bor-Sudan.png">
+        <img id="img-3" src="Juba-Sudan.png">
       </div>
-  </section>
+    </section>
+
 
 <!-- Section 26 : Sudan text -->
      <section class="intro-text">
@@ -805,23 +846,17 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Activer le texte
-          steps.forEach(s => s.classList.remove('is-active'));
-          entry.target.classList.add('is-active');
-  
-          // Afficher l'image correspondante
           const targetId = entry.target.dataset.target;
           images.forEach(img => img.classList.remove('active'));
           const activeImg = document.getElementById(targetId);
-          if(activeImg) activeImg.classList.add('active');
+          if (activeImg) activeImg.classList.add('active');
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
   
     steps.forEach(step => observer.observe(step));
   });
 
-  
   </script>
 
 </body>
