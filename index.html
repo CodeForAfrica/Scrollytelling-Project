@@ -757,7 +757,7 @@
     </ul>
 </section>
   
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
       const steps = document.querySelectorAll('.step');
       const iframes = document.querySelectorAll('.visuals iframe');
@@ -800,24 +800,26 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-    const steps = document.querySelectorAll('.scrolly-image-section .step');
-    const images = document.querySelectorAll('.scrolly-image-section .visuals img');
   
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const targetId = entry.target.dataset.target;
-          images.forEach(img => img.classList.remove('active'));
-          const activeImg = document.getElementById(targetId);
-          if (activeImg) activeImg.classList.add('active');
-        }
-      });
-    }, { threshold: 0.6 });
-  
-    steps.forEach(step => observer.observe(step));
+  document.addEventListener('DOMContentLoaded', () => {
+  const steps = document.querySelectorAll('.scrolly-image-section .step');
+  const images = document.querySelectorAll('.scrolly-image-section .visuals img');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const targetId = entry.target.dataset.target;
+        images.forEach(img => img.classList.remove('active'));
+        const activeImg = document.getElementById(targetId);
+        if (activeImg) activeImg.classList.add('active');
+      }
+    });
+  }, { threshold: 0.6 });
+
+  steps.forEach(step => observer.observe(step));
+  if (images.length > 0) images[0].classList.add('active');
   });
 
-  </script>
+</script>
 </body>
 </html>
