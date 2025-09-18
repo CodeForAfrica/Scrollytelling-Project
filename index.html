@@ -38,33 +38,37 @@
       color: #333;
       
     }
-
     /* ======= Fixed Navigation Bar ======= */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #808080;
-      color: white;
-      display: flex;
-      justify-content: flex-start;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #808080;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    z-index: 1000;
+   }
+  
+    nav .nav-right {
+      margin-left: auto; 
     }
-
+  
     nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    }
+  
+    nav a:hover {
+    color: #FFD700;
     }
 
-    nav a:hover {
-      color: #FFD700;
-    }
 
     /* ======= Section containers ======= */
     section {
@@ -123,8 +127,7 @@
       border: none;
       display: block;
     }
-
-
+    
     /* ======= Scrollytelling ======= */
     .scrolly-section {
       position: relative;
@@ -231,7 +234,6 @@
       transform: translateX(0);
     }
     
-   
     .scrolly-image-section .visuals {
       position: sticky;
       top: 0;
@@ -257,7 +259,6 @@
       opacity: 1;
     }
     
-
     /* ======= Images ======= */
     .image1-section img {
       width: 100%;
@@ -281,8 +282,8 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#project">Project</a>
-    <a href="#about">About</a>
+    <a href="project.html" class="nav-left">Project</a>
+    <a href="about.html" class="nav-right">About</a>
   </nav>
   
 <section id="project" class="tab-content active">
@@ -323,8 +324,7 @@
     <section class="intro-text">
        <p> 
        In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
-  
-      Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
+       Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
      </p>
     </section>
   
@@ -352,9 +352,7 @@
       </div>
     </section>
   
-  
     <!-- Section 6 : Flourish 2 text -->
-  
     <section class="intro-text">
     <p> AIR QUALITY AND INFRASTRUCTURE </p>
     <p>
@@ -369,7 +367,6 @@
   </section>
   
   <!-- Section 7 : Flourish 3 chart -->
-  
     <section class="flourish3-section">
     <div class="flourish3-figure">
       <iframe id="vis-4" src="https://public.flourish.studio/visualisation/24679794/embed"></iframe>
@@ -377,7 +374,6 @@
   </section>
   
   <!-- Section 8 : Flourish 3 Text -->
-    
   <section class="intro-text">
     <h3> Air Pollution in Mathare: Where Indoor and Outdoor Collide. </h3>
     <p>
@@ -390,9 +386,9 @@
     <p>
     We ground this story in air quality sensor data, building footprints, census records, and emissions tracking that reveal how geography, poverty, and policy failures converge to create one of Kenya’s most toxic neighborhoods.  
     </p>
-  
+    
   <h3>Sensors tell the story</h3>
-  
+    
   <p>
   From 2019 to 2024, data from Mathare’s <a href="https://sensors.africa/air/city/nairobi">air quality sensors</a> show a steady rise in pollution. 
   Fine particulate matter (PM₂.₅) reached levels nearly <strong>eight times</strong> higher than the WHO’s safe annual limit of <strong>5 µg/m³</strong>, while coarse particles (PM₁₀)  more than <strong>doubled</strong> the recommended <strong>15 µg/m³</strong>.
@@ -404,7 +400,6 @@
   </section>
   
   <!-- Section 9 : Flourish 4 chart -->
-  
     <section class="flourish4-section">
     <div class="flourish4-figure">
       <iframe id="vis-5" src="https://public.flourish.studio/visualisation/24855106/embed"></iframe>
@@ -421,13 +416,10 @@
     <p>Using <a href= "https://sites.research.google/gr/open-buildings/">Google’s Open Buildings</a> dataset, we verified 775 structures within the Mathare boundary.</p>
     </section>
   
-  
      <!-- Section 11 : Image 1 (satellite) -->
-  
     <section class="image1-section">
     <img src="Screenshot_11.png">
     </section>
-  
     <section class="image-text">
     <p>
       Behind every footprint on the map are families whose numbers, housing conditions, and energy choices all determine how polluted the air becomes.The census data reveals just how intense this human pressure is.
@@ -438,7 +430,6 @@
     </section>
   
     <!-- Section 12 : Flourish 5 chart -->
-  
     <section class = "flourish5-section">
       <div class="flourish5-figure">
       <iframe id="vis-6" src="https://public.flourish.studio/visualisation/24880798/embed"></iframe>
@@ -446,43 +437,35 @@
     </section>
     
    <!-- Section 13 : Flourish 5 Text -->
-  
     <section class = "intro-text">
     <p>
     The treemap highlights how residential structures dominate the settlement, from small single-room units to larger mixed units. The combination of cramped housing and limited open space leaves little room for pollutants to disperse, trapping poor air both inside and outside homes.
     </p>
     </section>
   
-  
-     <!-- Section 13 : Image 2 (satellite) -->
-  
+    <!-- Section 13 : Image 2 (satellite) -->
     <section class="image1-section">
     <img src="Mathare Classes 2.png" >
     </section>
     
      <!-- Section 14 : Image 2 Text -->
-    
     <section class="image-text">
     <p>
     Behind every footprint on the map are families whose numbers, housing conditions, and energy choices all determine how polluted the air becomes.The census data reveals just how intense this human pressure is.
     </p>
     </section>
   
-    <!-- Section 15 : Flourish 6 Text -->
-  
+  <!-- Section 15 : Flourish 6 Text -->
   <section class="intro-text">
-  
   <h3>
     The People Behind the Numbers
   </h3>
-  
   <p>
   The <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">2019 KNBS Census</a> reveals just how intense this density is. Nearly <strong>69,000</strong> people live in every <strong>square kilometre</strong> of Mathare, almost <strong>three times</strong> the density of Kamukunji, Nairobi's second-most dense sub-county.
   </p>  
   </section>
   
   <!-- Section 16 : Flourish 6 chart -->
-  
   <section class = "flourish6-section">
       <div class="flourish6-figure">
       <iframe id="vis-7" src="https://public.flourish.studio/visualisation/24881919/embed"></iframe>
@@ -490,7 +473,6 @@
   </section>
   
   <!-- Section 16' : Flourish 6 text -->
-  
   <section class = "intro-text">
   <p>
   Housing patterns reflect this pressure. About half of households live under iron-sheet roofs, while the others are stacked in concrete-roofed buildings. This distinction matters for air quality.
@@ -517,7 +499,6 @@
   </section>
   
   <!-- Section 18 : Flourish 7 Text -->
-  
     <section class="intro-text">
     <p>
      Energy choices in Mathare show why air pollution persists indoors. Almost <strong>half of households</strong> rely on paraffin (kerosene) for cooking, a fuel the World Health Organization classifies as highly polluting. 
@@ -525,7 +506,6 @@
   </section>
     
   <!-- Section 19 : Flourish 7 chart -->
-  
   <section class = "flourish7-section">
       <div class="flourish7-figure">
       <iframe id="vis-9" src="https://public.flourish.studio/visualisation/24882364/embed"></iframe>
@@ -533,7 +513,6 @@
   </section>
   
   <!-- Section 19' : Flourish 7 text -->
-  
   <section class = "intro-text">
   <p>
   Every day, families fill their homes with PM₂.₅, carbon monoxide, and toxic fumes. while others depend on charcoal or firewood. Even households using cleaner LPG often cook in poorly ventilated rooms, allowing smoke to escape outside where it mingles with emissions from neighboring homes.
@@ -544,7 +523,6 @@
   </section>
   
   <!-- Section 20 : Flourish 8 Text -->
-    
   <section class="intro-text">
   <h3>
     Traffic Adds Another Layer of Toxic Air
@@ -578,7 +556,6 @@
   </section>
   
   <!-- Section 22 : Flourish 9 text -->
-    
   <section class = "intro-text">  
     <h3>
       The Role of Waste in Air Pollution
@@ -657,11 +634,10 @@
       
       <div class="visuals">
         <img id="img-1" src="Bentiu-Sudan.png"  class="active">
-        <img id="img-2" src="Bor-Sudan.png" >
-        <img id="img-3" src="Juba-Sudan.png" >
+        <img id="img-2" src="Bor-Sudan.png" class="active">
+        <img id="img-3" src="Juba-Sudan.png" class="active" >
       </div>
   </section>
-
 
 <!-- Section 26 : Sudan text -->
      <section class="intro-text">
