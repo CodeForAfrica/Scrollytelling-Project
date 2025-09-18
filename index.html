@@ -285,6 +285,12 @@
     .tab-content.active {
     display: block; 
     }
+
+    .count {
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
     
   </style>
 </head>
@@ -632,7 +638,7 @@
       <section class="scrolly-image-section">
       <div class="scrolling-text">
         <div class="step" data-target="img-1">
-          <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of <strong>3.0 °C</strong>.</p>
+          <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of <span class="count" data-value="3.0">0</span> °C.</p>
         </div>
         <div class="step" data-target="img-2">
           <p>Bor, found in Jonglei State, in Central South Sudan records a temperature increase of <strong>2.8 °C</strong></p>
@@ -831,6 +837,33 @@
     steps.forEach(step => observer.observe(step));
   });
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.count');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          const counter = entry.target;
+          const targetValue = parseFloat(counter.dataset.value);
+          let currentValue = 0;
+          const increment = targetValue / 100; // nombre d'étapes
+  
+          const interval = setInterval(() => {
+            currentValue += increment;
+            if(currentValue >= targetValue) {
+              counter.textContent = targetValue.toFixed(1);
+              clearInterval(interval);
+            } else {
+              counter.textContent = currentValue.toFixed(1);
+            }
+          }, 15); // vitesse de l'animation
+          observer.unobserve(counter); // on ne refait pas l'animation
+        }
+      });
+    }, { threshold: 0.6 });
+  
+    counters.forEach(counter => observer.observe(counter));
+  });
 
 </script>
 </body>
