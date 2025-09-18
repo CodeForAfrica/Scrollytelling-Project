@@ -797,67 +797,66 @@
 </section>
   
   <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      /* === 1. Scrolly for Iframes === */
-      const iframeSteps = document.querySelectorAll('.scrolly-section .step');
-      const iframes = document.querySelectorAll('.scrolly-section .visuals iframe');
-    
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = document.querySelectorAll('.step');
+      const iframes = document.querySelectorAll('.visuals iframe');
+
       function setStepHeights() {
         const vh = window.innerHeight;
-        iframeSteps.forEach(step => step.style.minHeight = vh + 'px');
+        steps.forEach(step => step.style.minHeight = vh + 'px');
       }
       setStepHeights();
       window.addEventListener('resize', setStepHeights);
-    
-      const iframeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            iframeSteps.forEach(s => s.classList.remove('is-active'));
-            entry.target.classList.add('is-active');
-    
-            const targetId = entry.target.dataset.target;
-            iframes.forEach(f => f.classList.remove('active'));
-            const activeFrame = document.getElementById(targetId);
-            if (activeFrame) activeFrame.classList.add('active');
+
+      const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          steps.forEach(s => s.classList.remove('is-active'));
+          entry.target.classList.add('is-active');
+          const targetId = entry.target.dataset.target;
+          iframes.forEach(f => f.classList.remove('active'));
+          const activeFrame = document.getElementById(targetId);
+          if (activeFrame) activeFrame.classList.add('active');
           }
         });
-      }, { threshold: 0.3 });
+      }, { threshold: 0.3 }); 
+
+
+      steps.forEach(step => observer.observe(step));
+      iframes[0].classList.add('active');
+    });
+    const tabs = document.querySelectorAll('nav a'); 
+    const tabContents = document.querySelectorAll('.tab-content'); 
     
-      iframeSteps.forEach(step => iframeObserver.observe(step));
-      if (iframes.length > 0) iframes[0].classList.add('active');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        const targetId = tab.getAttribute('href').substring(1); 
+       
+        tabContents.forEach(tc => tc.classList.remove('active'));
     
-      /* === 2. Scrolly for Images === */
-      const imageSteps = document.querySelectorAll('.scrolly-image-section .step');
-      const images = document.querySelectorAll('.scrolly-image-section .visuals img');
-    
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const targetId = entry.target.dataset.target;
-            images.forEach(img => img.classList.remove('active'));
-            const activeImg = document.getElementById(targetId);
-            if (activeImg) activeImg.classList.add('active');
-          }
-        });
-      }, { threshold: 0.6 });
-    
-      imageSteps.forEach(step => imageObserver.observe(step));
-      if (images.length > 0) images[0].classList.add('active');
-    
-      /* === 3. Navigation Onglets === */
-      const tabs = document.querySelectorAll('nav a');
-      const tabContents = document.querySelectorAll('.tab-content');
-    
-      tabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = tab.getAttribute('href').substring(1);
-          tabContents.forEach(tc => tc.classList.remove('active'));
-          document.getElementById(targetId).classList.add('active');
-        });
+        document.getElementById(targetId).classList.add('active');
       });
     });
-</script>
 
+    document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.scrolly-image-section .step');
+    const images = document.querySelectorAll('.scrolly-image-section .visuals img');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetId = entry.target.dataset.target;
+          images.forEach(img => img.classList.remove('active'));
+          const activeImg = document.getElementById(targetId);
+          if (activeImg) activeImg.classList.add('active');
+        }
+      });
+    }, { threshold: 0.6 });
+  
+    steps.forEach(step => observer.observe(step));
+  });
+
+  </script>
 </body>
 </html>
