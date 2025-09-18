@@ -211,7 +211,7 @@
     }
     
     /* ======= Scrolly Images ======= */
-    /*.scrolly-image-section {
+    .scrolly-image-section {
       display: flex;
       flex-direction: row;
       width: 100%;
@@ -262,46 +262,8 @@
     
     .scrolly-image-section .visuals img.active {
       opacity: 1;
-    }*/
+    }
 
-    .scrolly-image-section {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 2rem 0;
-      position: relative;
-    }
-    
-    .scrolly-image-section .scrolling-text {
-      flex: 1;
-      padding: 2rem;
-      z-index: 2;
-    }
-    
-    .scrolly-image-section .visuals {
-      flex: 1;
-      position: relative;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .scrolly-image-section .visuals img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain; 
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-    }
-    
-    .scrolly-image-section .visuals img.active {
-      opacity: 1;
-      z-index: 1;
-    }
 
     
     /* ======= Images ======= */
@@ -315,10 +277,10 @@
     }
 
     .tab-content {
-    display: none; /* tout est caché par défaut */
+    display: none; 
     }
     .tab-content.active {
-    display: block; /* seul l’onglet actif apparaît */
+    display: block; 
     }
     
   </style>
@@ -327,8 +289,8 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="project.html" class="nav-left">Project</a>
-    <a href="about.html" class="nav-right">About</a>
+    <a href="#project" class="nav-left">Project</a>
+    <a href="#about" class="nav-right">About</a>
   </nav>
   
 <section id="project" class="tab-content active">
