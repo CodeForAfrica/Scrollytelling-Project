@@ -205,32 +205,11 @@
     /* ======= Scrolly Images ======= */
 
     .scrolly-image-section {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .scrolly-image-section .visuals {
-      position: sticky;
-      top: 0;
-      width: 60%;
-      height: 100vh;
-      overflow: hidden;
-    }
-    
-    .scrolly-image-section .visuals img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    
-    .scrolly-image-section .visuals img.active {
-      opacity: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     }
     
     .scrolly-image-section .scrolling-text {
@@ -251,6 +230,31 @@
     .scrolly-image-section .step.is-active {
       opacity: 1;
       transform: translateX(0);
+    }
+    
+    .scrolly-image-section .visuals {
+      position: sticky;
+      top: 0;
+      width: 60%;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end; 
+      align-items: center;
+      overflow: hidden;
+      /*background: #000;*/
+    }
+    
+    .scrolly-image-section .visuals img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; 
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: block;
+    }
+    
+    .scrolly-image-section .visuals img.active {
+      opacity: 1;
     }
 
     /* ======= Images ======= */
@@ -638,12 +642,6 @@
   <!-- Section 25 : Soudan Scrolly -->
 
     <section class="scrolly-image-section">
-      <div class="visuals">
-        <img id="img-1" src="Bentiu-Sudan.png"  class="active">
-        <img id="img-2" src="Bor-Sudan.png" >
-        <img id="img-3" src="Juba-Sudan.png" >
-      </div>
-    
       <div class="scrolling-text">
         <div class="step" data-target="img-1">
           <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of 3.0 °C.</p>
@@ -653,7 +651,13 @@
         </div>
         <div class="step" data-target="img-3">
           <p>Juba, found in the Central Equatoria State, in Southern South Sudan records a temperature increase of 2.6°C</p>
-        </div>
+        </div> 
+      </div>
+      
+      <div class="visuals">
+        <img id="img-1" src="Bentiu-Sudan.png"  class="active">
+        <img id="img-2" src="Bor-Sudan.png" >
+        <img id="img-3" src="Juba-Sudan.png" >
       </div>
     </section>
 
@@ -818,11 +822,11 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Activate step
+          // Activer le texte
           steps.forEach(s => s.classList.remove('is-active'));
           entry.target.classList.add('is-active');
   
-          // Show corresponding image
+          // Afficher l'image correspondante
           const targetId = entry.target.dataset.target;
           images.forEach(img => img.classList.remove('active'));
           const activeImg = document.getElementById(targetId);
@@ -833,8 +837,7 @@
   
     steps.forEach(step => observer.observe(step));
   });
-
-
+  
   </script>
 
 </body>
