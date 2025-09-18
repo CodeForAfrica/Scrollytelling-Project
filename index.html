@@ -97,15 +97,7 @@
 
     /* ======= Intro & Flourish Text ======= */
     .intro-text,
-    .flourish1-text,
-    .flourish2-text,
-    .flourish3-text,
-    .flourish4-text,
-    .flourish5-text,
-    .flourish6-text,
-    .flourish7-text,
-    .flourish8-text,
-    .image-text
+    .image-text,
     .outro {
       font-size: 1.2rem;
       width: 100%;
@@ -262,7 +254,7 @@
   </section>
 
   <!-- Section 4 : Flourish text -->
-  <section class="flourish1-text">
+  <section class="intro-text">
      <p> 
      In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
 
@@ -297,7 +289,7 @@
 
   <!-- Section 6 : Flourish 2 text -->
 
-  <section class="flourish2-text">
+  <section class="intro-text">
   <p> AIR QUALITY AND INFRASTRUCTURE </p>
   <p>
    People with lower incomes are more likely to live in areas with higher pollution levels due to various factors creating and perpetuating environmental inequality. Environmental burdens of society, like pollution, are disproportionately borne by marginalised communities. 
@@ -320,7 +312,7 @@
 
 <!-- Section 8 : Flourish 3 Text -->
   
-<section class="flourish3-text">
+<section class="intro-text">
   <h3> Air Pollution in Mathare: Where Indoor and Outdoor Collide. </h3>
   <p>
   <p> Globally, outdoor air pollution claims more lives than indoor pollution. 
@@ -354,7 +346,7 @@ Every year, the air has grown more hazardous to breathe.
 </section>
 
   <!-- Section 10 : Flourish 4 Text -->
-  <section class="flourish3-text">
+  <section class="intro-text">
   <p>At these concentrations, the risks are severe. The <a href="https://www.who.int/teams/environment-climate-change-and-health/air-quality-energy-and-health/health-impacts">WHO</a> notes that long-term exposure to PM₂.₅ and PM₁₀ increases the likelihood of asthma, heart disease, stroke, and premature death. In Mathare, this means residents are constantly breathing air that carries invisible but life-threatening health costs.
   To understand why pollution accumulates so heavily here, we need to look beyond the sensors, to Mathare’s built environment; dense housing and limited open space shaping how air moves through the settlement.</p> 
   
@@ -389,7 +381,7 @@ Every year, the air has grown more hazardous to breathe.
   
  <!-- Section 13 : Flourish 5 Text -->
 
-  <section class = "flourish5-text">
+  <section class = "intro-text">
   <p>
   The treemap highlights how residential structures dominate the settlement, from small single-room units to larger mixed units. The combination of cramped housing and limited open space leaves little room for pollutants to disperse, trapping poor air both inside and outside homes.
   </p>
@@ -412,7 +404,7 @@ Every year, the air has grown more hazardous to breathe.
 
   <!-- Section 15 : Flourish 6 Text -->
 
-<section class="flourish6-text">
+<section class="intro-text">
 
 <h3>
   The People Behind the Numbers
@@ -429,6 +421,11 @@ The <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">2019 KNBS Census
     <div class="flourish6-figure">
     <iframe id="vis-7" src="https://public.flourish.studio/visualisation/24881919/embed"></iframe>
   </div>
+</section>
+
+<!-- Section 16' : Flourish 6 text -->
+
+<section class = "intro-text">
 <p>
 Housing patterns reflect this pressure. About half of households live under iron-sheet roofs, while the others are stacked in concrete-roofed buildings. This distinction matters for air quality.
 </p>
@@ -439,24 +436,24 @@ Housing patterns reflect this pressure. About half of households live under iron
   <div class="visuals">
     <iframe id="vis-8" src="https://public.flourish.studio/visualisation/24882063/embed"></iframe>
   </div>
+</section>
 
-  <div class="scrolling-text">
-    <div class="step" data-target="vis-9">
+<div class="scrolling-text">
+  <div class="step" data-target="vis-9">
       <h3>Housing Materials in Mathare</h3>
       <p>
         Iron-sheet roofing usually points to single-storey structures, while concrete or cement slabs are a marker of multi-storey housing.
     </p>
     <p>
       This means, a single building footprint on our buildings map can stack many families on top of one another, multiplying the emissions and smoke produced in the same limited space.
-    </p>
-      
+    </p> 
     </div>
   </div>
 </section>
 
 <!-- Section 18 : Flourish 7 Text -->
 
-  <section class="flourish7-text">
+  <section class="intro-text">
   <p>
    Energy choices in Mathare show why air pollution persists indoors. Almost <strong>half of households</strong> rely on paraffin (kerosene) for cooking, a fuel the World Health Organization classifies as highly polluting. 
   </p>
@@ -468,6 +465,11 @@ Housing patterns reflect this pressure. About half of households live under iron
     <div class="flourish7-figure">
     <iframe id="vis-9" src="https://public.flourish.studio/visualisation/24882364/embed"></iframe>
   </div>
+</section>
+
+<!-- Section 19' : Flourish 7 text -->
+
+<section class = "intro-text">
 <p>
 Every day, families fill their homes with PM₂.₅, carbon monoxide, and toxic fumes. while others depend on charcoal or firewood. Even households using cleaner LPG often cook in poorly ventilated rooms, allowing smoke to escape outside where it mingles with emissions from neighboring homes.
 </p>
@@ -478,11 +480,10 @@ The census data confirms what the sensors measure, in Mathare, dense living cond
 
 <!-- Section 20 : Flourish 8 Text -->
   
-<section class="flourish6-text">
+<section class="intro-text">
 <h3>
   Traffic Adds Another Layer of Toxic Air
 </h3>
-
 <p>
 Beyond the smoke from thousands of cooking fires, busy roads cutting through Mathare deliver a constant stream of nitrogen oxides (NOx) that residents cannot escape as they navigate their community.
 </p>  
@@ -496,15 +497,19 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
     <div class="flourish8-figure">
     <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25137102/embed"></iframe>
   </div>
-<p>
-Once released, these Nitrogen Oxides (NOx) emissions convert into nitrogen dioxide (NO₂) and contribute to ground-level ozone formation respiratory irritants that cause chest pain and throat inflammation.
-</p>
-<p>
-Unlike household cooking smoke that residents can sometimes control by opening doors or cooking outside, traffic pollution is constant and inescapable.
-</p>
-<p>
-For Mathare's residents, this means the busy corridors where people walk to work, children play, and vendors sell goods are contaminated with pollutants. The persistent Nitrogen Oxides (NOx) levels ensure that outdoor air remains unhealthy even without the added burden from household cooking fuels and waste burning.
-</p>
+</section>
+
+<!-- Section 21' : Flourish 8 text -->
+<section class = "intro-text">  
+  <p>
+  Once released, these Nitrogen Oxides (NOx) emissions convert into nitrogen dioxide (NO₂) and contribute to ground-level ozone formation respiratory irritants that cause chest pain and throat inflammation.
+  </p>
+  <p>
+  Unlike household cooking smoke that residents can sometimes control by opening doors or cooking outside, traffic pollution is constant and inescapable.
+  </p>
+  <p>
+  For Mathare's residents, this means the busy corridors where people walk to work, children play, and vendors sell goods are contaminated with pollutants. The persistent Nitrogen Oxides (NOx) levels ensure that outdoor air remains unhealthy even without the added burden from household cooking fuels and waste burning.
+  </p>
 </section>
 
 
