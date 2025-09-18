@@ -285,12 +285,26 @@
     .tab-content.active {
     display: block; 
     }
-
+  /* ======= Temp section ======= */
     .count {
     font-weight: bold;
     font-size: 1.5rem;
     transition: all 0.3s ease;
   }
+
+    .temperature-section {
+    text-align: center; /* centre le contenu */
+    margin: 2rem 0;
+  }
+  
+    .temperature-section .count {
+      display: block;      
+      font-size: 4rem;
+      font-weight: bold;
+      color: #FF4500;      
+      line-height: 1;      
+      margin-bottom: 0.5rem;
+    }
     
   </style>
 </head>
@@ -638,7 +652,10 @@
       <section class="scrolly-image-section">
       <div class="scrolling-text">
         <div class="step" data-target="img-1">
-          <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of <span class="count" data-value="3.0">0</span> °C.</p>
+          <div class="temperature-section">
+            <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of </p> 
+            <span class="count" data-value="3.0">0</span> °C.
+          </div>
         </div>
         <div class="step" data-target="img-2">
           <p>Bor, found in Jonglei State, in Central South Sudan records a temperature increase of <strong>2.8 °C</strong></p>
