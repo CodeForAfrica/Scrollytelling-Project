@@ -201,6 +201,57 @@
       opacity: 1;
       transform: scale(1.05);
     }
+    
+    /* ======= Scrolly Images ======= */
+
+    .scrolly-image-section {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .scrolly-image-section .visuals {
+      position: sticky;
+      top: 0;
+      width: 60%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .scrolly-image-section .visuals img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .scrolly-image-section .visuals img.active {
+      opacity: 1;
+    }
+    
+    .scrolly-image-section .scrolling-text {
+      width: 40%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    
+    .scrolly-image-section .step {
+      min-height: 100vh;
+      opacity: 0.6;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .scrolly-image-section .step.is-active {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
     /* ======= Images ======= */
     .image1-section img {
@@ -572,8 +623,9 @@
   </section>
   
   <!-- Section 24 : Soudan -->
+  
   <section class="intro-text">
-    <p> South Sudan: Heating up and its effects on air quality </p>
+    <h3> South Sudan: Heating up and its effects on air quality </h3>
     <p>
       Climate change, a phenomenon referring to long-term shifts in temperatures and weather patterns, has been recorded as mainly driven by human activities. Heatwaves have been known to amplify air pollution risks in Sub-Saharan Africa. Greenhouse gases trap heat, causing the planet's average temperature to rise, and some impacts of climate change exacerbate air quality issues. 
     </p>
@@ -582,8 +634,48 @@
     </p>
    
   </section>
+
+  <!-- Section 25 : Soudan Scrolly -->
+
+    <section class="scrolly-image-section">
+      <div class="visuals">
+        <img id="img-1" src="Bentiu-Sudan.png"  class="active">
+        <img id="img-2" src="Bor-Sudan.png" >
+        <img id="img-3" src="Juba-Sudan.png" >
+      </div>
+    
+      <div class="scrolling-text">
+        <div class="step" data-target="img-1">
+          <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of 3.0 °C.</p>
+        </div>
+        <div class="step" data-target="img-2">
+          <p>Bor, found in Jonglei State, in Central South Sudan records a temperature increase of 2.8 °C</p>
+        </div>
+        <div class="step" data-target="img-3">
+          <p>Juba, found in the Central Equatoria State, in Southern South Sudan records a temperature increase of 2.6°C</p>
+        </div>
+      </div>
+    </section>
+
+<!-- Section 26 : Sudan text -->
+     <section class="intro-text">
+        <p>
+          South Sudan, and places like it, need to urgently implement systems to mitigate high temperatures. There is a need to support renewable energy, reduce carbon footprint, and advocate for climate policies. Practical steps include:
+       </p>
+        <p>
+          <ul>
+            <li>Create green spaces like parks and forests, urban forests, rooftop gardens, community gardens and green roofs & walls.</li>
+            <li>Plant native species to promote biodiversity.</li>
+            <li>Use renewable energy sources and improve energy efficiency.</li>
+            <li>Walk, bike or take public transport, which will reduce greenhouse gas emissions</li>
+            <li>Reduce, reuse, repair and recycle to reduce the carbon footprint.</li>
+            <li>Advocate for change. Speak up and get others to join in taking action.</li>
+          </ul>
+        </p>
+       
+      </section>
   
-  <!-- Section  : Conclusion -->
+<!-- Section  : Conclusion -->
     <section class="outro">
       <h2>Conclusion</h2>
       <p>
@@ -597,7 +689,6 @@
       </p>
       
     </section>
-    
 
   
 </section>
