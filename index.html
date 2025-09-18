@@ -211,6 +211,14 @@
       margin-top: 1rem;
       margin-bottom: 1rem;
     }
+
+    .tab-content {
+    display: none; /* tout est caché par défaut */
+    }
+    .tab-content.active {
+    display: block; /* seul l’onglet actif apparaît */
+    }
+    
   </style>
 </head>
 <body>
@@ -220,358 +228,361 @@
     <a href="#project">Project</a>
     <a href="#about">About</a>
   </nav>
-
-  <!-- Section 1 : Title -->
-  <section class="hero" id="project">
-    <div class="hero-content">
-      <div class="text">
-        <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
-        <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
+  
+<section id="project" class="tab-content active">
+    <!-- Section 1 : Title -->
+    <section class="hero" id="project">
+      <div class="hero-content">
+        <div class="text">
+          <h1>Breathing in Life or Death; A look at Africa's Air Quality</h1>
+          <h3>Air pollution and climate change are a deadly duo for Africa.</h3>
+        </div>
+        <div class="image">
+          <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg">
+        </div>
       </div>
-      <div class="image">
-        <img src="https://images.pexels.com/photos/10666664/pexels-photo-10666664.jpeg">
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2 : Intro Text-->
-  <section class="intro-text">
+    </section>
+  
+    <!-- Section 2 : Intro Text-->
+    <section class="intro-text">
+        <p>
+        Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress.  It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality.
+      </p>
       <p>
-      Pollutants from vehicles, factories, and everyday lifestyles negatively impact health, affecting respiratory and cardiovascular systems. The Africa Clean Air Programme, endorsed by the African Union Commission, notes that super pollutants, and their impact on air quality, can poison communities and accelerate the worst effects of climate change, putting both health and economies under stress.  It continues to note that across the continent, approximately 1 million people die prematurely per year due to the health impacts of poor air quality.
+        sensors.AFRICA records that the leading pollutant is particulate matter (PM), a common proxy indicator for air pollution, with strong evidence for the negative health impacts associated with exposure to it. PM is composed of sulfate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water droplets. Of note is Indoor (household) air pollution and outdoor (ambient) air pollution.
+      </p>
+      <p>
+        According to the World Health Organisation, the combined effects of ambient air pollution and household air pollution are associated with 6.7 million premature deaths annually. Ambient air pollution is estimated to have caused 4.2 million premature deaths worldwide while household air pollution was responsible for an estimated 3.2 million deaths per year.
+      </p>
+    </section>
+  
+    <!-- Section 3 : Flourish chart -->
+    <section class="flourish1-section">
+      <div class="flourish1-figure">
+        <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
+      </div>
+    </section>
+  
+    <!-- Section 4 : Flourish text -->
+    <section class="intro-text">
+       <p> 
+       In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
+  
+      Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
+     </p>
+    </section>
+  
+    <!-- Section 5 : Scrollytelling -->
+      <section class="scrolly-section">
+      <div class="visuals">
+        <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
+        <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
+        <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
+      </div>
+  
+      <div class="scrolling-text">
+        <div class="step" data-target="vis-1">
+          <h3>Exposure pollution</h3>
+          <p>Exposure to PM2 varies across the continent.</p>
+        </div>
+        <div class="step" data-target="vis-2">
+          <h3>Household pollution</h3>
+          <p>Indoor air pollution death rates are high in the West, Central and East.</p>
+        </div>
+        <div class="step" data-target="vis-3">
+          <h3>Ambient pollution</h3>
+          <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
+        </div>
+      </div>
+    </section>
+  
+  
+    <!-- Section 6 : Flourish 2 text -->
+  
+    <section class="intro-text">
+    <p> AIR QUALITY AND INFRASTRUCTURE </p>
+    <p>
+     People with lower incomes are more likely to live in areas with higher pollution levels due to various factors creating and perpetuating environmental inequality. Environmental burdens of society, like pollution, are disproportionately borne by marginalised communities. 
     </p>
     <p>
-      sensors.AFRICA records that the leading pollutant is particulate matter (PM), a common proxy indicator for air pollution, with strong evidence for the negative health impacts associated with exposure to it. PM is composed of sulfate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water droplets. Of note is Indoor (household) air pollution and outdoor (ambient) air pollution.
+      The 2018 study Nature: Air pollution and infant mortality in Africa by Heft-Neal et al., suggests that current estimates for the death toll of air pollution might be too low. With two datasets: one based on household surveys, which detail the time and place of nearly one million births across sub-Saharan Africa, and another detailing spatial distribution of exposure to PM2.5 based on satellite data, they estimate the impact of air pollution on mortality rates among infants in Africa. 
     </p>
     <p>
-      According to the World Health Organisation, the combined effects of ambient air pollution and household air pollution are associated with 6.7 million premature deaths annually. Ambient air pollution is estimated to have caused 4.2 million premature deaths worldwide while household air pollution was responsible for an estimated 3.2 million deaths per year.
+      Findings show that a 10μg/m³ increase in PM2.5 concentration is associated with a 9% rise in infant mortality. This suggests that PM2.5 exposure is responsible for 22% of infant deaths in the studied countries; this means 449,000 infant deaths in 2015 alone: an extremely high death toll, suggesting the exposure-response relationship in the select African countries is steeper than previous studies.
     </p>
   </section>
-
-  <!-- Section 3 : Flourish chart -->
-  <section class="flourish1-section">
-    <div class="flourish1-figure">
-      <iframe id="vis-0" src="https://public.flourish.studio/visualisation/24470534/embed"></iframe>
+  
+  <!-- Section 7 : Flourish 3 chart -->
+  
+    <section class="flourish3-section">
+    <div class="flourish3-figure">
+      <iframe id="vis-4" src="https://public.flourish.studio/visualisation/24679794/embed"></iframe>
     </div>
   </section>
-
-  <!-- Section 4 : Flourish text -->
+  
+  <!-- Section 8 : Flourish 3 Text -->
+    
   <section class="intro-text">
-     <p> 
-     In 2019, 99% of the world’s population was living in places where the WHO air quality guidelines levels were not met. Sadly, women and children bear the greatest health burden, with air pollution being one of the greatest environmental risks to child health. 
-
-    Looking at the 2030 Agenda for Sustainable Development Goals (SDGs), Air pollution impacts cut across several of them. SDGs related to air quality are SDG 3.9 focusing on reducing mortality and illness from hazardous chemicals and air pollution; SDG 11.6 aiming to reduce adverse environmental impact of cities, specifically by addressing air quality as well as SDG 7, which focuses on affordable and clean energy.
-   </p>
+    <h3> Air Pollution in Mathare: Where Indoor and Outdoor Collide. </h3>
+    <p>
+    <p> Globally, outdoor air pollution claims more lives than indoor pollution. 
+      In Mathare, Nairobi’s most densely populated sub-county, the line between the two is almost invisible. Mathare packs <strong>206,564 people</strong> into just <strong>3 km²</strong> <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">(KNBS Census, 2019) </a>, nearly <strong>69,000 residents per km²</strong>. Smoke from household fuels, vehicle emissions, waste burning, and the settlement’s dense construction make the air outside as hazardous as the air inside.
+    </p>
+    <p>
+      This environmental emergency extends beyond Mathare's boundaries. As of August 2025, <a href="https://www.iqair.com/world-air-quality-ranking">Nairobi ranked as Africa’s fourth most polluted city</a>, with informal settlements like Mathare bearing the heaviest burden of this urban-wide crisis. What's happening here offers a window into how extreme density transforms individual pollution sources into collective health emergencies.
+    </p>
+    <p>
+    We ground this story in air quality sensor data, building footprints, census records, and emissions tracking that reveal how geography, poverty, and policy failures converge to create one of Kenya’s most toxic neighborhoods.  
+    </p>
+  
+  <h3>Sensors tell the story</h3>
+  
+  <p>
+  From 2019 to 2024, data from Mathare’s <a href="https://sensors.africa/air/city/nairobi">air quality sensors</a> show a steady rise in pollution. 
+  Fine particulate matter (PM₂.₅) reached levels nearly <strong>eight times</strong> higher than the WHO’s safe annual limit of <strong>5 µg/m³</strong>, while coarse particles (PM₁₀)  more than <strong>doubled</strong> the recommended <strong>15 µg/m³</strong>.
+  Every year, the air has grown more hazardous to breathe.
+  </p>
+  
+  <p>Every year, the air has grown more hazardous to breathe.</p>
+    
   </section>
-
-  <!-- Section 5 : Scrollytelling -->
-    <section class="scrolly-section">
-    <div class="visuals">
-      <iframe id="vis-1" src="https://public.flourish.studio/visualisation/24728120/embed"></iframe>
-      <iframe id="vis-2" src="https://public.flourish.studio/visualisation/24838022/embed"></iframe>
-      <iframe id="vis-3" src="https://public.flourish.studio/visualisation/24838425/embed"></iframe>
+  
+  <!-- Section 9 : Flourish 4 chart -->
+  
+    <section class="flourish4-section">
+    <div class="flourish4-figure">
+      <iframe id="vis-5" src="https://public.flourish.studio/visualisation/24855106/embed"></iframe>
     </div>
-
-    <div class="scrolling-text">
-      <div class="step" data-target="vis-1">
-        <h3>Exposure pollution</h3>
-        <p>Exposure to PM2 varies across the continent.</p>
-      </div>
-      <div class="step" data-target="vis-2">
-        <h3>Household pollution</h3>
-        <p>Indoor air pollution death rates are high in the West, Central and East.</p>
-      </div>
-      <div class="step" data-target="vis-3">
-        <h3>Ambient pollution</h3>
-        <p>Northern and Southern Africa record the highest outdoor air pollution death rates.</p>
-      </div>
+  </section>
+  
+    <!-- Section 10 : Flourish 4 Text -->
+    <section class="intro-text">
+    <p>At these concentrations, the risks are severe. The <a href="https://www.who.int/teams/environment-climate-change-and-health/air-quality-energy-and-health/health-impacts">WHO</a> notes that long-term exposure to PM₂.₅ and PM₁₀ increases the likelihood of asthma, heart disease, stroke, and premature death. In Mathare, this means residents are constantly breathing air that carries invisible but life-threatening health costs.
+    To understand why pollution accumulates so heavily here, we need to look beyond the sensors, to Mathare’s built environment; dense housing and limited open space shaping how air moves through the settlement.</p> 
+    
+    <h3>Buildings reveal the density</h3>
+  
+    <p>Using <a href= "https://sites.research.google/gr/open-buildings/">Google’s Open Buildings</a> dataset, we verified 775 structures within the Mathare boundary.</p>
+    </section>
+  
+  
+     <!-- Section 11 : Image 1 (satellite) -->
+  
+    <section class="image1-section">
+    <img src="Screenshot_11.png">
+    </section>
+  
+    <section class="image-text">
+    <p>
+      Behind every footprint on the map are families whose numbers, housing conditions, and energy choices all determine how polluted the air becomes.The census data reveals just how intense this human pressure is.
+    </p> 
+    <p>
+      When we classify these verified buildings by area, the dominance of residential structures becomes clear.
+    </p> 
+    </section>
+  
+    <!-- Section 12 : Flourish 5 chart -->
+  
+    <section class = "flourish5-section">
+      <div class="flourish5-figure">
+      <iframe id="vis-6" src="https://public.flourish.studio/visualisation/24880798/embed"></iframe>
     </div>
-  </section>
-
-
-  <!-- Section 6 : Flourish 2 text -->
-
-  <section class="intro-text">
-  <p> AIR QUALITY AND INFRASTRUCTURE </p>
-  <p>
-   People with lower incomes are more likely to live in areas with higher pollution levels due to various factors creating and perpetuating environmental inequality. Environmental burdens of society, like pollution, are disproportionately borne by marginalised communities. 
-  </p>
-  <p>
-    The 2018 study Nature: Air pollution and infant mortality in Africa by Heft-Neal et al., suggests that current estimates for the death toll of air pollution might be too low. With two datasets: one based on household surveys, which detail the time and place of nearly one million births across sub-Saharan Africa, and another detailing spatial distribution of exposure to PM2.5 based on satellite data, they estimate the impact of air pollution on mortality rates among infants in Africa. 
-  </p>
-  <p>
-    Findings show that a 10μg/m³ increase in PM2.5 concentration is associated with a 9% rise in infant mortality. This suggests that PM2.5 exposure is responsible for 22% of infant deaths in the studied countries; this means 449,000 infant deaths in 2015 alone: an extremely high death toll, suggesting the exposure-response relationship in the select African countries is steeper than previous studies.
-  </p>
-</section>
-
-<!-- Section 7 : Flourish 3 chart -->
-
-  <section class="flourish3-section">
-  <div class="flourish3-figure">
-    <iframe id="vis-4" src="https://public.flourish.studio/visualisation/24679794/embed"></iframe>
-  </div>
-</section>
-
-<!-- Section 8 : Flourish 3 Text -->
+    </section>
+    
+   <!-- Section 13 : Flourish 5 Text -->
   
-<section class="intro-text">
-  <h3> Air Pollution in Mathare: Where Indoor and Outdoor Collide. </h3>
-  <p>
-  <p> Globally, outdoor air pollution claims more lives than indoor pollution. 
-    In Mathare, Nairobi’s most densely populated sub-county, the line between the two is almost invisible. Mathare packs <strong>206,564 people</strong> into just <strong>3 km²</strong> <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">(KNBS Census, 2019) </a>, nearly <strong>69,000 residents per km²</strong>. Smoke from household fuels, vehicle emissions, waste burning, and the settlement’s dense construction make the air outside as hazardous as the air inside.
-  </p>
-  <p>
-    This environmental emergency extends beyond Mathare's boundaries. As of August 2025, <a href="https://www.iqair.com/world-air-quality-ranking">Nairobi ranked as Africa’s fourth most polluted city</a>, with informal settlements like Mathare bearing the heaviest burden of this urban-wide crisis. What's happening here offers a window into how extreme density transforms individual pollution sources into collective health emergencies.
-  </p>
-  <p>
-  We ground this story in air quality sensor data, building footprints, census records, and emissions tracking that reveal how geography, poverty, and policy failures converge to create one of Kenya’s most toxic neighborhoods.  
-  </p>
-
-<h3>Sensors tell the story</h3>
-
-<p>
-From 2019 to 2024, data from Mathare’s <a href="https://sensors.africa/air/city/nairobi">air quality sensors</a> show a steady rise in pollution. 
-Fine particulate matter (PM₂.₅) reached levels nearly <strong>eight times</strong> higher than the WHO’s safe annual limit of <strong>5 µg/m³</strong>, while coarse particles (PM₁₀)  more than <strong>doubled</strong> the recommended <strong>15 µg/m³</strong>.
-Every year, the air has grown more hazardous to breathe.
-</p>
-
-<p>Every year, the air has grown more hazardous to breathe.</p>
+    <section class = "intro-text">
+    <p>
+    The treemap highlights how residential structures dominate the settlement, from small single-room units to larger mixed units. The combination of cramped housing and limited open space leaves little room for pollutants to disperse, trapping poor air both inside and outside homes.
+    </p>
+    </section>
   
-</section>
-
-<!-- Section 9 : Flourish 4 chart -->
-
-  <section class="flourish4-section">
-  <div class="flourish4-figure">
-    <iframe id="vis-5" src="https://public.flourish.studio/visualisation/24855106/embed"></iframe>
-  </div>
-</section>
-
-  <!-- Section 10 : Flourish 4 Text -->
-  <section class="intro-text">
-  <p>At these concentrations, the risks are severe. The <a href="https://www.who.int/teams/environment-climate-change-and-health/air-quality-energy-and-health/health-impacts">WHO</a> notes that long-term exposure to PM₂.₅ and PM₁₀ increases the likelihood of asthma, heart disease, stroke, and premature death. In Mathare, this means residents are constantly breathing air that carries invisible but life-threatening health costs.
-  To understand why pollution accumulates so heavily here, we need to look beyond the sensors, to Mathare’s built environment; dense housing and limited open space shaping how air moves through the settlement.</p> 
   
-  <h3>Buildings reveal the density</h3>
-
-  <p>Using <a href= "https://sites.research.google/gr/open-buildings/">Google’s Open Buildings</a> dataset, we verified 775 structures within the Mathare boundary.</p>
-  </section>
-
-
-   <!-- Section 11 : Image 1 (satellite) -->
-
-  <section class="image1-section">
-  <img src="Screenshot_11.png">
-  </section>
-
-  <section class="image-text">
-  <p>
+     <!-- Section 13 : Image 2 (satellite) -->
+  
+    <section class="image1-section">
+    <img src="Mathare Classes 2.png" >
+    </section>
+    
+     <!-- Section 14 : Image 2 Text -->
+    
+    <section class="image-text">
+    <p>
     Behind every footprint on the map are families whose numbers, housing conditions, and energy choices all determine how polluted the air becomes.The census data reveals just how intense this human pressure is.
-  </p> 
+    </p>
+    </section>
+  
+    <!-- Section 15 : Flourish 6 Text -->
+  
+  <section class="intro-text">
+  
+  <h3>
+    The People Behind the Numbers
+  </h3>
+  
   <p>
-    When we classify these verified buildings by area, the dominance of residential structures becomes clear.
-  </p> 
-  </section>
-
-  <!-- Section 12 : Flourish 5 chart -->
-
-  <section class = "flourish5-section">
-    <div class="flourish5-figure">
-    <iframe id="vis-6" src="https://public.flourish.studio/visualisation/24880798/embed"></iframe>
-  </div>
+  The <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">2019 KNBS Census</a> reveals just how intense this density is. Nearly <strong>69,000</strong> people live in every <strong>square kilometre</strong> of Mathare, almost <strong>three times</strong> the density of Kamukunji, Nairobi's second-most dense sub-county.
+  </p>  
   </section>
   
- <!-- Section 13 : Flourish 5 Text -->
-
+  <!-- Section 16 : Flourish 6 chart -->
+  
+  <section class = "flourish6-section">
+      <div class="flourish6-figure">
+      <iframe id="vis-7" src="https://public.flourish.studio/visualisation/24881919/embed"></iframe>
+    </div>
+  </section>
+  
+  <!-- Section 16' : Flourish 6 text -->
+  
   <section class = "intro-text">
   <p>
-  The treemap highlights how residential structures dominate the settlement, from small single-room units to larger mixed units. The combination of cramped housing and limited open space leaves little room for pollutants to disperse, trapping poor air both inside and outside homes.
+  Housing patterns reflect this pressure. About half of households live under iron-sheet roofs, while the others are stacked in concrete-roofed buildings. This distinction matters for air quality.
   </p>
   </section>
-
-
-   <!-- Section 13 : Image 2 (satellite) -->
-
-  <section class="image1-section">
-  <img src="Mathare Classes 2.png" >
-  </section>
   
-   <!-- Section 14 : Image 2 Text -->
-  
-  <section class="image-text">
-  <p>
-  Behind every footprint on the map are families whose numbers, housing conditions, and energy choices all determine how polluted the air becomes.The census data reveals just how intense this human pressure is.
-  </p>
-  </section>
-
-  <!-- Section 15 : Flourish 6 Text -->
-
-<section class="intro-text">
-
-<h3>
-  The People Behind the Numbers
-</h3>
-
-<p>
-The <a href="https://www.knbs.or.ke/reports/kenya-census-2019/">2019 KNBS Census</a> reveals just how intense this density is. Nearly <strong>69,000</strong> people live in every <strong>square kilometre</strong> of Mathare, almost <strong>three times</strong> the density of Kamukunji, Nairobi's second-most dense sub-county.
-</p>  
-</section>
-
-<!-- Section 16 : Flourish 6 chart -->
-
-<section class = "flourish6-section">
-    <div class="flourish6-figure">
-    <iframe id="vis-7" src="https://public.flourish.studio/visualisation/24881919/embed"></iframe>
-  </div>
-</section>
-
-<!-- Section 16' : Flourish 6 text -->
-
-<section class = "intro-text">
-<p>
-Housing patterns reflect this pressure. About half of households live under iron-sheet roofs, while the others are stacked in concrete-roofed buildings. This distinction matters for air quality.
-</p>
-</section>
-
-<!-- Section 17 : Single-Step Scrollytelling -->
-<section class="scrolly-section">
-  <div class="visuals">
-    <iframe id="vis-8" src="https://public.flourish.studio/visualisation/24882063/embed"></iframe>
-  </div>
-
-  <div class="scrolling-text">
-    <div class="step" data-target="vis-8">
-      <h3>Housing Materials in Mathare</h3>
-      <p>
-        Iron-sheet roofing usually points to single-storey structures, while concrete or cement slabs are a marker of multi-storey housing.
-      </p>
-      <p>
-        This means, a single building footprint on our buildings map can stack many families on top of one another, multiplying the emissions and smoke produced in the same limited space.
-      </p>
+  <!-- Section 17 : Single-Step Scrollytelling -->
+  <section class="scrolly-section">
+    <div class="visuals">
+      <iframe id="vis-8" src="https://public.flourish.studio/visualisation/24882063/embed"></iframe>
     </div>
-  </div>
-</section>
-
-<!-- Section 18 : Flourish 7 Text -->
-
-  <section class="intro-text">
-  <p>
-   Energy choices in Mathare show why air pollution persists indoors. Almost <strong>half of households</strong> rely on paraffin (kerosene) for cooking, a fuel the World Health Organization classifies as highly polluting. 
-  </p>
-</section>
   
-<!-- Section 19 : Flourish 7 chart -->
-
-<section class = "flourish7-section">
-    <div class="flourish7-figure">
-    <iframe id="vis-9" src="https://public.flourish.studio/visualisation/24882364/embed"></iframe>
-  </div>
-</section>
-
-<!-- Section 19' : Flourish 7 text -->
-
-<section class = "intro-text">
-<p>
-Every day, families fill their homes with PM₂.₅, carbon monoxide, and toxic fumes. while others depend on charcoal or firewood. Even households using cleaner LPG often cook in poorly ventilated rooms, allowing smoke to escape outside where it mingles with emissions from neighboring homes.
-</p>
-<p>
-The census data confirms what the sensors measure, in Mathare, dense living conditions and heavy reliance on polluting fuels turn every household into a source of outdoor air pollution.
-</p>
-</section>
-
-<!-- Section 20 : Flourish 8 Text -->
-  
-<section class="intro-text">
-<h3>
-  Traffic Adds Another Layer of Toxic Air
-</h3>
-<p>
-Beyond the smoke from thousands of cooking fires, busy roads cutting through Mathare deliver a constant stream of nitrogen oxides (NOx) that residents cannot escape as they navigate their community.
-</p>  
-<p>
-  <a href="https://climatetrace.org/explore/#admin=Mathare%20Constituency--%20Nairobi%20County--%20KEN:25221:KEN.30.13_1:county&gas=co2e&year=2024&timeframe=100&sector=&asset=3601371">climate TRACE</a> data reveals that road transport in Mathare generates approximately 34-37 tonnes of NOx emissions annually. While this represents a modest decline from 2021 levels, the persistent pollution load means that pathways where children play and vendors sell goods remain saturated with toxic air.
-</p>  
-</section>
-  
-<!-- Section 21 : Flourish 8 Figure -->
-<section class = "flourish8-section">
-    <div class="flourish8-figure">
-    <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25132500/embed"></iframe>
-  </div>
-</section>
-
-<!-- Section 21' : Flourish 8 text -->
-<section class = "intro-text">  
-  <p>
-  Once released, these Nitrogen Oxides (NOx) emissions convert into nitrogen dioxide (NO₂) and contribute to ground-level ozone formation respiratory irritants that cause chest pain and throat inflammation.
-  </p>
-  <p>
-  Unlike household cooking smoke that residents can sometimes control by opening doors or cooking outside, traffic pollution is constant and inescapable.
-  </p>
-  <p>
-  For Mathare's residents, this means the busy corridors where people walk to work, children play, and vendors sell goods are contaminated with pollutants. The persistent Nitrogen Oxides (NOx) levels ensure that outdoor air remains unhealthy even without the added burden from household cooking fuels and waste burning.
-  </p>
-</section>
-
-<!-- Section 22 : Flourish 9 text -->
-  
-<section class = "intro-text">  
-  <h3>
-    The Role of Waste in Air Pollution
-  </h3>
-  <p>
-    Air pollution in Mathare doesn’t only come from stoves and crowded homes. The way waste is managed or not managed also fuels the crisis.
-  </p>
-  <p>
-    Much of Mathare’s waste ends up being burned in the open. Plastic, food scraps, and household refuse are burned in open spaces, releasing PM₂.₅ and toxic gases directly where families live.
-  </p>
-  <p>
-    The waste problem extends far beyond Mathare's boundaries. Nairobi's largest dumping ground, Dandora landfill, sits just kilometers away. According to climate TRACE, Dandora landfill releases thousands of tonnes of greenhouse gases every year. The site’s smoke and methane emissions drift into neighbouring communities, adding to the air quality burden in informal settlement.
-  </p>
-</section>
-
-<!-- Section 23 : Single scrolly 2 -->
-<section class="scrolly-section">
-  <div class="visuals">
-    <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25137102/embed"></iframe>
-  </div>
-
-  <div class="scrolling-text">
-    <div class="step" data-target="vis-8">
-      <h3>Dandora landfill: Methane-heavy Emissions</h3>
-      <p>
-        In 2024, Dandora landfill released about 18,172 tonnes of Methane(CH₄), emissions that have steadily climbed from approximately 17,000 tonnes in 2021.
-      </p>
-      <p>
-        While methane doesn't directly damage the lungs like PM₂.₅, its atmospheric effects make Mathare's existing pollution crisis worse.      </p>
+    <div class="scrolling-text">
+      <div class="step" data-target="vis-8">
+        <h3>Housing Materials in Mathare</h3>
+        <p>
+          Iron-sheet roofing usually points to single-storey structures, while concrete or cement slabs are a marker of multi-storey housing.
+        </p>
+        <p>
+          This means, a single building footprint on our buildings map can stack many families on top of one another, multiplying the emissions and smoke produced in the same limited space.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
-
-
-<section class = "intro-text">  
-  <p>
-    As methane escapes from decomposing waste, it creates atmospheric conditions that act like an invisible lid over the informal settlement, preventing other pollutants from dispersing naturally. 
-  </p>
-  <p>
-    The methane also reacts with sunlight and nitrogen oxides from traffic to form ground-level ozone, creating another layer of respiratory irritants.
-  </p>
-  <p>
-    For residents with no choice but to breathe this air daily, Dandora's methane blanket makes their pollution exposure more intense and prolonged. The steady upward trend signals that without intervention, conditions will continue worsening.
-  </p>
-  <p>
-    The data reveals what policy must address, in Nairobi’s most densely populated settlement, clean air isn't just about individual choices, it requires coordinated action on housing, energy access, waste management, and urban planning. 
-  </p>
-</section>
-
-  <!-- Section  : Conclusion -->
-  <section class="outro">
-    <h2>Conclusion</h2>
+  </section>
+  
+  <!-- Section 18 : Flourish 7 Text -->
+  
+    <section class="intro-text">
     <p>
-      These graphics highlight the urgent need to implement public health policies adapted to the most affected regions.
+     Energy choices in Mathare show why air pollution persists indoors. Almost <strong>half of households</strong> rely on paraffin (kerosene) for cooking, a fuel the World Health Organization classifies as highly polluting. 
     </p>
   </section>
+    
+  <!-- Section 19 : Flourish 7 chart -->
+  
+  <section class = "flourish7-section">
+      <div class="flourish7-figure">
+      <iframe id="vis-9" src="https://public.flourish.studio/visualisation/24882364/embed"></iframe>
+    </div>
+  </section>
+  
+  <!-- Section 19' : Flourish 7 text -->
+  
+  <section class = "intro-text">
+  <p>
+  Every day, families fill their homes with PM₂.₅, carbon monoxide, and toxic fumes. while others depend on charcoal or firewood. Even households using cleaner LPG often cook in poorly ventilated rooms, allowing smoke to escape outside where it mingles with emissions from neighboring homes.
+  </p>
+  <p>
+  The census data confirms what the sensors measure, in Mathare, dense living conditions and heavy reliance on polluting fuels turn every household into a source of outdoor air pollution.
+  </p>
+  </section>
+  
+  <!-- Section 20 : Flourish 8 Text -->
+    
+  <section class="intro-text">
+  <h3>
+    Traffic Adds Another Layer of Toxic Air
+  </h3>
+  <p>
+  Beyond the smoke from thousands of cooking fires, busy roads cutting through Mathare deliver a constant stream of nitrogen oxides (NOx) that residents cannot escape as they navigate their community.
+  </p>  
+  <p>
+    <a href="https://climatetrace.org/explore/#admin=Mathare%20Constituency--%20Nairobi%20County--%20KEN:25221:KEN.30.13_1:county&gas=co2e&year=2024&timeframe=100&sector=&asset=3601371">climate TRACE</a> data reveals that road transport in Mathare generates approximately 34-37 tonnes of NOx emissions annually. While this represents a modest decline from 2021 levels, the persistent pollution load means that pathways where children play and vendors sell goods remain saturated with toxic air.
+  </p>  
+  </section>
+    
+  <!-- Section 21 : Flourish 8 Figure -->
+  <section class = "flourish8-section">
+      <div class="flourish8-figure">
+      <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25132500/embed"></iframe>
+    </div>
+  </section>
+  
+  <!-- Section 21' : Flourish 8 text -->
+  <section class = "intro-text">  
+    <p>
+    Once released, these Nitrogen Oxides (NOx) emissions convert into nitrogen dioxide (NO₂) and contribute to ground-level ozone formation respiratory irritants that cause chest pain and throat inflammation.
+    </p>
+    <p>
+    Unlike household cooking smoke that residents can sometimes control by opening doors or cooking outside, traffic pollution is constant and inescapable.
+    </p>
+    <p>
+    For Mathare's residents, this means the busy corridors where people walk to work, children play, and vendors sell goods are contaminated with pollutants. The persistent Nitrogen Oxides (NOx) levels ensure that outdoor air remains unhealthy even without the added burden from household cooking fuels and waste burning.
+    </p>
+  </section>
+  
+  <!-- Section 22 : Flourish 9 text -->
+    
+  <section class = "intro-text">  
+    <h3>
+      The Role of Waste in Air Pollution
+    </h3>
+    <p>
+      Air pollution in Mathare doesn’t only come from stoves and crowded homes. The way waste is managed or not managed also fuels the crisis.
+    </p>
+    <p>
+      Much of Mathare’s waste ends up being burned in the open. Plastic, food scraps, and household refuse are burned in open spaces, releasing PM₂.₅ and toxic gases directly where families live.
+    </p>
+    <p>
+      The waste problem extends far beyond Mathare's boundaries. Nairobi's largest dumping ground, Dandora landfill, sits just kilometers away. According to climate TRACE, Dandora landfill releases thousands of tonnes of greenhouse gases every year. The site’s smoke and methane emissions drift into neighbouring communities, adding to the air quality burden in informal settlement.
+    </p>
+  </section>
+  
+  <!-- Section 23 : Single scrolly 2 -->
+  <section class="scrolly-section">
+    <div class="visuals">
+      <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25137102/embed"></iframe>
+    </div>
+  
+    <div class="scrolling-text">
+      <div class="step" data-target="vis-8">
+        <h3>Dandora landfill: Methane-heavy Emissions</h3>
+        <p>
+          In 2024, Dandora landfill released about 18,172 tonnes of Methane(CH₄), emissions that have steadily climbed from approximately 17,000 tonnes in 2021.
+        </p>
+        <p>
+          While methane doesn't directly damage the lungs like PM₂.₅, its atmospheric effects make Mathare's existing pollution crisis worse.      </p>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class = "intro-text">  
+    <p>
+      As methane escapes from decomposing waste, it creates atmospheric conditions that act like an invisible lid over the informal settlement, preventing other pollutants from dispersing naturally. 
+    </p>
+    <p>
+      The methane also reacts with sunlight and nitrogen oxides from traffic to form ground-level ozone, creating another layer of respiratory irritants.
+    </p>
+    <p>
+      For residents with no choice but to breathe this air daily, Dandora's methane blanket makes their pollution exposure more intense and prolonged. The steady upward trend signals that without intervention, conditions will continue worsening.
+    </p>
+    <p>
+      The data reveals what policy must address, in Nairobi’s most densely populated settlement, clean air isn't just about individual choices, it requires coordinated action on housing, energy access, waste management, and urban planning. 
+    </p>
+  </section>
+  
+    <!-- Section  : Conclusion -->
+    <section class="outro">
+      <h2>Conclusion</h2>
+      <p>
+        These graphics highlight the urgent need to implement public health policies adapted to the most affected regions.
+      </p>
+    </section>
+</section>
 
-  <section id="about">
+  
+<section id="about" class="tab-content">
     <h2>Methodology</h2>
   
     <!-- Air Quality Sensor Data -->
@@ -642,8 +653,8 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
       <li>Daily Nation Story: <a href="#">Here</a></li>
       <li>Nairobi’s Air Quality Ranking: <a href="#">Here</a></li>
     </ul>
-  </section>
-
+</section>
+  
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const steps = document.querySelectorAll('.step');
@@ -673,6 +684,20 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
       steps.forEach(step => observer.observe(step));
       iframes[0].classList.add('active');
     });
+    const tabs = document.querySelectorAll('nav a'); 
+    const tabContents = document.querySelectorAll('.tab-content'); 
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        const targetId = tab.getAttribute('href').substring(1); 
+       
+        tabContents.forEach(tc => tc.classList.remove('active'));
+    
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
   </script>
 
 </body>
