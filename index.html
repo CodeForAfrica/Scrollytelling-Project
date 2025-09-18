@@ -495,7 +495,7 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
 <!-- Section 21 : Flourish 8 Figure -->
 <section class = "flourish8-section">
     <div class="flourish8-figure">
-    <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25137102/embed"></iframe>
+    <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25132500/embed"></iframe>
   </div>
 </section>
 
@@ -512,11 +512,56 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
   </p>
 </section>
 
-
-
+<!-- Section 22 : Flourish 9 text -->
   
+<section class = "intro-text">  
+  <h3>
+    The Role of Waste in Air Pollution
+  </h3>
+  <p>
+    Air pollution in Mathare doesn’t only come from stoves and crowded homes. The way waste is managed or not managed also fuels the crisis.
+  </p>
+  <p>
+    Much of Mathare’s waste ends up being burned in the open. Plastic, food scraps, and household refuse are burned in open spaces, releasing PM₂.₅ and toxic gases directly where families live.
+  </p>
+  <p>
+    The waste problem extends far beyond Mathare's boundaries. Nairobi's largest dumping ground, Dandora landfill, sits just kilometers away. According to climate TRACE, Dandora landfill releases thousands of tonnes of greenhouse gases every year. The site’s smoke and methane emissions drift into neighbouring communities, adding to the air quality burden in informal settlement.
+  </p>
+</section>
 
-  
+<!-- Section 23 : Single scrolly 2 -->
+<section class="scrolly-section">
+  <div class="visuals">
+    <iframe id="vis-10" src="https://public.flourish.studio/visualisation/25137102/embed"></iframe>
+  </div>
+
+  <div class="scrolling-text">
+    <div class="step" data-target="vis-8">
+      <h3>Dandora landfill: Methane-heavy Emissions</h3>
+      <p>
+        In 2024, Dandora landfill released about 18,172 tonnes of Methane(CH₄), emissions that have steadily climbed from approximately 17,000 tonnes in 2021.
+      </p>
+      <p>
+        While methane doesn't directly damage the lungs like PM₂.₅, its atmospheric effects make Mathare's existing pollution crisis worse.      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class = "intro-text">  
+  <p>
+    As methane escapes from decomposing waste, it creates atmospheric conditions that act like an invisible lid over the informal settlement, preventing other pollutants from dispersing naturally. 
+  </p>
+  <p>
+    The methane also reacts with sunlight and nitrogen oxides from traffic to form ground-level ozone, creating another layer of respiratory irritants.
+  </p>
+  <p>
+    For residents with no choice but to breathe this air daily, Dandora's methane blanket makes their pollution exposure more intense and prolonged. The steady upward trend signals that without intervention, conditions will continue worsening.
+  </p>
+  <p>
+    The data reveals what policy must address, in Nairobi’s most densely populated settlement, clean air isn't just about individual choices, it requires coordinated action on housing, energy access, waste management, and urban planning. 
+  </p>
+</section>
 
   <!-- Section  : Conclusion -->
   <section class="outro">
@@ -526,8 +571,78 @@ Beyond the smoke from thousands of cooking fires, busy roads cutting through Mat
     </p>
   </section>
 
-
- 
+  <section id="about">
+    <h2>Methodology</h2>
+  
+    <!-- Air Quality Sensor Data -->
+    <h3>Air Quality Sensor Data</h3>
+    <p>
+      Air pollution measurements were collected from sensors deployed in Mathare between 2019-2024. Annual averages were calculated from available monthly data, with the following data completeness:
+    </p>
+    <ul>
+      <li>2019: 7 months of data</li>
+      <li>2020: 6 months of data</li>
+      <li>2021: 4 months of data</li>
+      <li>2022: 7 months of data</li>
+      <li>2023: 11 months of data</li>
+      <li>2024: 10 months of data</li>
+    </ul>
+    <p>
+      Values were compared against WHO annual air quality guidelines (PM₂.₅: 5 μg/m³, PM₁₀: 15 μg/m³).  
+      Link to the data: <a href="#">Here</a>  
+      openAFRICA data: <a href="#">Here</a>
+    </p>
+  
+    <!-- Building Footprint Analysis -->
+    <h3>Building Footprint Analysis</h3>
+    <p>Building data was sourced from Google's Open Buildings Dataset. The analysis involved:</p>
+    <ul>
+      <li>Downloaded Mathare boundary polygon from OpenStreetMap</li>
+      <li>Clipped Google Open Buildings data to Mathare boundaries using GIS software</li>
+      <li>No confidence level filtering was applied to capture the full extent of structures in the informal settlement</li>
+    </ul>
+    <p>Buildings were classified by area using the following criteria:</p>
+    <table border="1" cellpadding="6" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Area (m²)</th>
+          <th>Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>&lt;20</td><td>Informal/Kiosk</td></tr>
+        <tr><td>20-100</td><td>Small/Medium Residential</td></tr>
+        <tr><td>101-200</td><td>Large/Mixed Residential</td></tr>
+        <tr><td>201-500</td><td>Commercial/Institutional</td></tr>
+        <tr><td>&gt;500</td><td>Large Commercial/Institutional</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Link to the data: <a href="#">Here</a>  
+      This classification reflects typical building uses in informal settlements, where smaller structures serve as single-family homes or shops, while larger buildings indicate multi-family residential use or institutional purposes.
+    </p>
+  
+    <!-- Population and Housing Data -->
+    <h3>Population and Housing Data</h3>
+    <p>
+      Census data was obtained directly from the Kenya National Bureau of Statistics (KNBS) 2019 Population and Housing Census. No data manipulation was performed. Population density calculations used the official Mathare sub-county area of 3 km².  
+      Link to the data: <a href="#">Here</a>
+    </p>
+  
+    <!-- Emissions Data -->
+    <h3>Emissions Data</h3>
+    <p>
+      Transportation NOx emissions and Dandora landfill methane emissions were sourced from climate TRACE, which provides annual facility-level and sector-level emissions estimates. Annual totals were used without modification.  
+      Link to data: <a href="#">Here</a>
+    </p>
+  
+    <!-- Other Sources -->
+    <h3>Other Sources</h3>
+    <ul>
+      <li>Daily Nation Story: <a href="#">Here</a></li>
+      <li>Nairobi’s Air Quality Ranking: <a href="#">Here</a></li>
+    </ul>
+  </section>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
