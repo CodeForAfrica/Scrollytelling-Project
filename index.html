@@ -211,7 +211,7 @@
     }
     
     /* ======= Scrolly Images ======= */
-    .scrolly-image-section {
+    /*.scrolly-image-section {
       display: flex;
       flex-direction: row;
       width: 100%;
@@ -263,8 +263,64 @@
     
     .scrolly-image-section .visuals img.active {
       opacity: 1;
+    }*/
+
+    .scrolly-image-section {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
     
+    .scrolly-image-section .scrolling-text {
+      width: 40%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    
+    .scrolly-image-section .step {
+      min-height: 100vh; 
+      opacity: 0.6;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .scrolly-image-section .step.is-active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .scrolly-image-section .visuals {
+      position: sticky;
+      top: 0;
+      width: 60%;
+      height: 70vh; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .scrolly-image-section .visuals img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; 
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    .scrolly-image-section .visuals img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
     /* ======= Images ======= */
     .image1-section img {
       width: 100%;
@@ -799,26 +855,34 @@
         document.getElementById(targetId).classList.add('active');
       });
     });
-
   
   document.addEventListener('DOMContentLoaded', () => {
-  const steps = document.querySelectorAll('.scrolly-image-section .step');
-  const images = document.querySelectorAll('.scrolly-image-section .visuals img');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const targetId = entry.target.dataset.target;
-        images.forEach(img => img.classList.remove('active'));
-        const activeImg = document.getElementById(targetId);
-        if (activeImg) activeImg.classList.add('active');
-      }
-    });
-  }, { threshold: 0.6 });
-
-  steps.forEach(step => observer.observe(step));
-  if (images.length > 0) images[0].classList.add('active');
+    const steps = document.querySelectorAll('.scrolly-image-section .step');
+    const images = document.querySelectorAll('.scrolly-image-section .visuals img');
+  
+    // Affiche la première image dès le chargement
+    if (images.length > 0) images[0].classList.add('active');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetId = entry.target.dataset.target;
+          // Masque toutes les images
+          images.forEach(img => img.classList.remove('active'));
+          // Active celle correspondante
+          const activeImg = document.getElementById(targetId);
+          if (activeImg) activeImg.classList.add('active');
+  
+          // Active aussi le step pour l'effet d'opacité
+          steps.forEach(s => s.classList.remove('is-active'));
+          entry.target.classList.add('is-active');
+        }
+      });
+    }, { threshold: 0.5 }); 
+  
+    steps.forEach(step => observer.observe(step));
   });
+
 
 </script>
 </body>
