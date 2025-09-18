@@ -293,7 +293,7 @@
   }
 
     .temperature-section {
-    text-align: center; /* centre le contenu */
+    text-align: center; 
     margin: 2rem 0;
   }
   
@@ -875,15 +875,15 @@
           const interval = setInterval(() => {
             currentValue += increment;
             if (currentValue >= targetValue) {
-              counter.textContent = targetValue.toFixed(1);
+              counter.textContent = targetValue.toFixed(1)  + '°C';
               clearInterval(interval);
             } else {
-              counter.textContent = currentValue.toFixed(1);
+              counter.textContent = currentValue.toFixed(1)  + '°C';
             }
           }, 15);
         } else {
           
-          counter.textContent = '0';
+          counter.textContent = '0°C';
         }
       });
     }, { threshold: 0.6 });
