@@ -179,19 +179,31 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       padding: 2rem;
       box-sizing: border-box;
       text-align: center;
       opacity: 0.6;
       transition: opacity 0.3s ease, transform 0.3s ease;
-      font-size: 2rem;
+    }
+    
+    .step h3 {
+      font-size: 2.2rem;
+      font-weight: bold; 
+      margin-bottom: 1rem;
+    }
+    
+    .step p {
+      font-size: 1.3rem; 
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .step.is-active {
       opacity: 1;
       transform: scale(1.05);
     }
-
 
     /* ======= Images ======= */
     .image1-section img {
