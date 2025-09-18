@@ -38,7 +38,7 @@
       color: #333;
       
     }
-    /* ======= Fixed Navigation Bar ======= */
+    /* ======= Navigation Bar ======= */
     nav {
     position: fixed;
     top: 0;
@@ -63,10 +63,10 @@
     }
   
     nav a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 4rem;
     transition: color 0.3s ease;
     }
   
@@ -243,7 +243,7 @@
       position: sticky;
       top: 0;
       width: 60%;
-      height: 100vh;
+      height: 80vh;
       display: flex;
       justify-content: flex-end; 
       align-items: center;
@@ -252,6 +252,7 @@
     }
     
     .scrolly-image-section .visuals img {
+      position: absolute
       max-width: 100%;
       max-height: 100%;
       object-fit: contain; 
@@ -263,8 +264,6 @@
     .scrolly-image-section .visuals img.active {
       opacity: 1;
     }
-
-
     
     /* ======= Images ======= */
     .image1-section img {
@@ -624,9 +623,14 @@
    
   </section>
 
-  <!-- Section 25 : Soudan Scrolly -->
+  <!-- Section 25 : Soudan Scrolly Images -->
 
       <section class="scrolly-image-section">
+         <div class="visuals">
+          <img id="img-1" src="Bentiu-Sudan.png" class="active">
+          <img id="img-2" src="Bor-Sudan.png">
+          <img id="img-3" src="Juba-Sudan.png">
+        </div>
       <div class="scrolling-text">
         <div class="step" data-target="img-1">
           <p>Bentiu, found in Unity State, in the North of South Sudan records a temperature increase of 3.0 °C.</p>
@@ -637,13 +641,8 @@
         <div class="step" data-target="img-3">
           <p>Juba, found in the Central Equatoria State, in Southern South Sudan records a temperature increase of 2.6°C</p>
         </div> 
-      </div>
+      </div> 
       
-      <div class="visuals">
-        <img id="img-1" src="Bentiu-Sudan.png" class="active">
-        <img id="img-2" src="Bor-Sudan.png">
-        <img id="img-3" src="Juba-Sudan.png">
-      </div>
     </section>
 
 
