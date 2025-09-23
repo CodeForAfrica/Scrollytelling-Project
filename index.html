@@ -178,7 +178,7 @@
      /* z-index: 2;*/
     }
 
-    /*.scrolling-text {
+    .scrolling-text {
       position: relative;
       z-index: 3;
       width: 100%;
@@ -190,31 +190,8 @@
       color: black;
       margin-top: 100vh;
       background-color: rgba(128, 128, 128, 0.8); 
-      }*/
-      /* Cadre gris pour le texte scrolly */
+      }
     
-    .scrolling-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem; 
-    }
-    
-    .scrolling-text .step {
-      background: rgba(200, 200, 200, 0.85); 
-      border-radius: 8px;
-      padding: 1.5rem;
-      max-width: 600px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-    
-    .scrolling-text .step.is-active {
-      background: rgba(180, 180, 180, 0.9); 
-      transform: translateY(-5px); 
-    }
-
     .step {
       min-height: 100vh;
       max-width: 700px;
