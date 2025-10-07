@@ -225,10 +225,15 @@
       transform: scale(1.05);
     }
     
-    .step:empty {
-      display: none !important;
+    .scrolling-text .step:empty {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      min-height: 0 !important;
+      height: 0 !important;
     }
-
     .flourish-scrolly .step {
     background: rgba(200, 200, 200, 0.7);
     border-radius: 5px;
@@ -674,7 +679,7 @@
     </div>
   
     <div class="scrolling-text">
-       <div class="step" data-target="vis-12" style="display:none;">
+       <div class="step" data-target="vis-12">
          </div>
 
          <div class="step" data-target="vis-8">
