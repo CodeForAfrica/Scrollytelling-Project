@@ -225,6 +225,10 @@
       transform: scale(1.05);
     }
 
+    .step[hidden], .step:empty {
+    display: none !important;
+    }
+
     .flourish-scrolly .step {
     background: rgba(200, 200, 200, 0.7);
     border-radius: 5px;
@@ -670,7 +674,7 @@
     </div>
   
     <div class="scrolling-text">
-       <div class="step" data-target="vis-12">
+       <div class="step" data-target="vis-12" hidden>
         <!--  <h3>Population Density Across Nairobi Sub-Counties</h3>  -->
          </div>
 
